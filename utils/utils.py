@@ -122,13 +122,25 @@ def fill_slots_description(description, name, surname, mansion):
 ############################################################################################################
 ############################################################################################################
 
+def get_5_random_skills(name_surname_gender_mansion):
+    """
+    Returns 5 random skills for each individual
+    
+    params: df with [name, surname, mansion, mansion_id, description, salary]
+    :return: list of 5 random skills for each individual
+    """
+    return [', '.join(random.sample(config.SKILLS, 5)) for _ in range(len(name_surname_gender_mansion))]
+
+############################################################################################################
+############################################################################################################
+
 def fill_all_slots_salary(name_surname_gender_mansion):
     """
     Fill all slots in description with random attributes in the dictionary
     in the config file. Additionally, add salary to the df.
     
     params: df with [name, surname, mansion, mansion_id]
-    :return: df with [name, surname, mansion, mansion_id, description, salary]
+    :return: df with [name, surname, mansion, mansion_id, description, salary, skills]
 
     """
     
@@ -143,5 +155,8 @@ def fill_all_slots_salary(name_surname_gender_mansion):
     
     # add salary
     name_surname_gender_mansion['salary'] = random_salary(name_surname_gender_mansion)
+    
+    # add skills
+    name_surname_gender_mansion['skills'] = get_5_random_skills(name_surname_gender_mansion)
     
     return name_surname_gender_mansion
