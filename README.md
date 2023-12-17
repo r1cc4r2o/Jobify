@@ -25,3 +25,8 @@ Look for a Job features:
 - [x] mansion category
 - [x] mansion category id
 - [x] skills
+
+## Similarity search
+
+- [x] Tf-idf vectorizer (with n-grams) + different kernel
+- [x] Cosine similarity Transformer Encoder

@@ -6,6 +6,8 @@ import random
 from transformers import AutoTokenizer, AutoModel
 import torch
 
+from sklearn.metrics.pairwise import rbf_kernel, linear_kernel, cosine_similarity, sigmoid_kernel, euclidean_distances, manhattan_distances, cosine_distances
+
 from tqdm import tqdm
 
 ############################################################################################################
@@ -301,3 +303,49 @@ def fill_all_slots_salary(name_surname_gender_mansion):
     name_surname_gender_mansion['level_education'] = get_education(name_surname_gender_mansion)
     
     return name_surname_gender_mansion
+
+############################################################################################################
+############################################################################################################
+
+def get_sorted_profiles(input_text, df, vectorizer, kernel=linear_kernel, n_top=100):
+    """
+    Get the most similar profiles to the input text.
+    
+    params: input_text: str - the input text to compare with the profiles
+    params: df: pd.DataFrame - the dataframe containing the profiles
+    params: vectorizer: sklearn.feature_extraction.text.TfidfVectorizer - the vectorizer used to transform the text
+    params: kernel: function - the kernel used to compute the similarity between the input text and the profiles
+    params: n_top: int - the number of profiles to return
+    
+    :return: pd.DataFrame - the dataframe containing the most similar profiles sorted by similarity
+    """
+    # Text Preprocessing
+    tfidf_matrix = vectorizer.fit_transform(df['description'].fillna(''))
+
+    # Feature Extraction
+    input_vector = vectorizer.transform([input_text])
+
+    # Similarity Calculation
+    cosine_similarities = kernel(input_vector, tfidf_matrix).flatten()
+
+    # Ranking
+    df['similarity'] = cosine_similarities
+    ranked_profiles = df.sort_values(by='similarity', ascending=False)
+
+    return ranked_profiles.head(n_top)
+
+############################################################################################################
+############################################################################################################
+
+def get_topK_name_surname_mansion_description(df, topK=10):
+    """
+    Get the topK name, surname, mansion and description of the profiles.
+    
+    params: df: pd.DataFrame - the dataframe containing the profiles
+    params: topK: int - the number of profiles to return
+    
+    :return: pd.DataFrame - the dataframe containing the topK profiles
+    """
+    df_k = df[['name', 'surname', 'mansion', 'description']].head(topK)
+    print(df_k['description'].values)
+    return df_k
