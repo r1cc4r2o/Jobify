@@ -71,7 +71,8 @@ entities:
 #     type: text
 
 
-# actions:
+actions:
+ - action_provide_candidate_profile
 
 
 responses:
@@ -87,6 +88,9 @@ responses:
 
   utter_confirmation_searching_for_candidate:
   - text: "I have noted down your requirements. Now I am searching for the best candidate for you."
+
+  # action_process_last_user_message:
+  # - text: "
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"

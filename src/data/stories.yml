@@ -16,6 +16,7 @@ stories:
   - action: utter_ask_candidate_characteristics
   - intent: characteristics
   - action: utter_confirmation_searching_for_candidate
+  - action: action_provide_candidate_profile
 
 
 
