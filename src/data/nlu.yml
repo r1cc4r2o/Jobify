@@ -1,0 +1,161 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - hey buddy
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - what are you?
+    - are you a real person?
+    - you're a bot?
+    - are you a bot or human?
+
+- intent: looking_for_job
+  examples: |
+    - I am looking for a job
+    - I am looking for a job in the field of data science
+    - I am looking for a job in the field 
+    - I am searching for a job
+    - I am searching for a job
+    - Yes I am looking for a job
+    - job
+    - job search
+  
+
+- intent: looking_for_candidate
+  examples: |
+    - I am looking for a candidate
+    - I am looking for a candidate in the field of data science
+    - I am looking for a candidate in the field 
+    - I am searching for a candidate
+    - I am searching for a candidate
+    - Yes I am looking for a candidate
+    - candidate
+    - candidate search
+    - I am looking for a candidate for a new job opening
+    - I am looking for a candidate for a new job opening in the field
+    - Good news! We have a new job opening and I am looking for a candidate
+
+- intent: characteristics
+  examples: |
+    - The candidate should have a [degree](candidate_education) in [computer science](candidate_degree)
+    - The candidate must be [fluent in English](candidate_language_skill)
+    - The candidate must have [experience](candidate_experience) in [machine learning](candidate_domain_skill)
+    - We are looking for someone with strong [communication skills](candidate_soft_skill)
+    - The ideal candidate should be [self-motivated](candidate_personality_trait)
+    - A candidate with a [Ph.D.](candidate_education) in [data science](candidate_degree) is preferred
+    - Proficiency in [Python](programming_language) is a required [skill](candidate_technical_skill)
+    - The candidate should demonstrate expertise in [project management](candidate_domain_skill)
+    - The candidate should possess a strong [analytical mindset](candidate_soft_skill)
+    - We are seeking someone with a [Bachelor's degree](candidate_education) in [engineering](candidate_degree)
+    - Candidates with [leadership experience](candidate_experience) in [IT management](candidate_domain_skill) are preferred
+    - Excellent [problem-solving skills](candidate_soft_skill) are a must
+    - [Effective communication](candidate_soft_skill) is crucial for this role
+    - The candidate should be familiar with [cloud computing](candidate_technical_skill) platforms such as [AWS](cloud_provider)
+    - We value candidates with a [proactive attitude](candidate_personality_trait)
+    - [Team collaboration](candidate_soft_skill) is an essential quality we are looking for
+    - Proficiency in [Java](programming_language) and [JavaScript](programming_language) is required
+    - An ideal candidate should have [5 years](years_of_experience) of experience in [software development](candidate_domain_skill)
+    - Candidates with a [Master's degree](candidate_education) in [data science](candidate_degree) will be given priority
+    - Strong [attention to detail](candidate_soft_skill) is necessary for this role
+    - The candidate should have a solid understanding of [data analysis](candidate_domain_skill) techniques
+    - [Adaptability](candidate_soft_skill) to changing technologies is important
+    - Experience with [Agile methodologies](candidate_domain_skill) is highly desirable
+    - [Critical thinking](candidate_soft_skill) is a must-have skill for this role
+    - [Leadership skills](candidate_soft_skill) are required for this role
+    - Good [interpersonal skills](candidate_soft_skill) are a must
+    - We require candidates with [excellent communication skills](candidate_soft_skill)
+    - The ideal candidate should have [5 years](years_of_experience) of experience in [data science](candidate_domain_skill)
+    - The ideal candidate should be an early adopter of [new technologies](candidate_domain_skill)
+    - The candidate should be a [junior](candidate_experience) [data scientist](candidate_domain_skill)
+    - The candidate should be a [senior](candidate_experience) [data scientist](candidate_domain_skill)
+    - The candidate should be a [mid-level](candidate_experience) [data scientist](candidate_domain_skill)
+
+
+
+  

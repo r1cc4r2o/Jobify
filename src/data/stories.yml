@@ -1,0 +1,46 @@
+version: "3.1"
+# exaple of a conversation
+
+stories:
+
+# The manager initiates the conversation 
+# announcing a new job opening and specifies 
+# the key requirements for the position
+
+- story: looking for a job 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: looking_for_candidate
+  - action: utter_ask_candidate_characteristics
+  - intent: characteristics
+  - action: utter_confirmation_searching_for_candidate
+
+
+
+# Find candidates with specific skills for a 
+# given job
+
+
+
+
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
+
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye

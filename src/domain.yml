@@ -1,0 +1,117 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - deny
+  - affirm
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+
+  ## custom intents ##
+  ## looking for a job ##
+
+  - looking_for_job
+
+  ## custom intents ##
+  ## looking for a candidate ##
+
+  - looking_for_candidate
+  - characteristics
+
+
+entities:
+  - candidate_characteristics
+  - job_characteristics
+  - candidate_skills
+
+  - job_skills
+  - job_experience
+
+  - candidate_experience
+  - candidate_education
+  - candidate_degree
+  - candidate_salary
+
+  - candidate_personality_trait
+  - candidate_domain_skill
+  - candidate_soft_skill
+  - candidate_language_skill
+  - years_of_experience
+
+# slots:
+#   candidate_characteristics:
+#     type: text
+#   job_characteristics:
+#     type: text
+#   candidate_skills:
+#     type: text
+#   job_skills:
+#     type: text
+#   candidate_experience:
+#     type: text
+#   job_experience:
+#     type: text
+#   candidate_education:
+#     type: text
+#   candidate_degree:
+#     type: text
+#   candidate_salary:
+#     type: text
+#   candidate_personality_trait:
+#     type: text
+#   candidate_domain_skill:
+#     type: text
+#   candidate_soft_skill:
+#     type: text
+#   candidate_language_skill:
+#     type: text
+#   years_of_experience:
+#     type: text
+
+
+# actions:
+
+
+responses:
+
+  utter_greet:
+  - text: "Hey! Glad to help you out."
+
+  utter_help:
+  - text: "Are you looking for a job? or Are you looking for a candidate?"
+
+  utter_ask_candidate_characteristics:
+  - text: "I can help you with that. Colud you please tell me what kind of candidate are you looking for?"
+
+  utter_confirmation_searching_for_candidate:
+  - text: "I have noted down your requirements. Now I am searching for the best candidate for you."
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+
+# forms:
+#   request_form:
+#     required_slots:
+
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
