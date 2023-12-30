@@ -26,7 +26,7 @@ stories:
     - intent: confirm_candidate
     - intent: confirm_candidate_reachout
   - action: utter_random_confirmation
-  - utter_help:
+  - action: utter_help
   - or:
     - intent: affirm
     - intent: deny
