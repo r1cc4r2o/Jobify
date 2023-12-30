@@ -12,3 +12,14 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+# - rule: Could you please rephrase the candidate characteristics
+#   steps:
+#   - intent: characteristics
+#   - action: action_check_confidence
+
+
+
+
+
+

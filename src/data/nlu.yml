@@ -84,6 +84,7 @@ nlu:
     - so saad
     - so sad
 
+# check if the user is a bot or human
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -94,23 +95,64 @@ nlu:
     - are you a real person?
     - you're a bot?
     - are you a bot or human?
+    - I want to know if you are a bot or a human
+    - Are you an automated program?
+    - Are you a machine?
+    - Is this interaction with a bot?
+    - Is this conversation with a real person?
+    - What type of entity are you?
+    - Are you an actual individual?
+    - Can I confirm if you're a bot?
+    - Are you an automated system?
+    - Are you a bot, or are you human?
+    - I'd like to determine whether you're a bot or a human.
+    - Can you clarify if you're a bot?
+    - Are you a person or a machine?
+    - Is there a human behind this?
+    - Can you confirm your nature, bot or human?
+    - Are you a real human being?
+    - Are you an artificial intelligence?
+    - Can you disclose whether you're a bot?
+    - Are you a human user?
+    - Could you specify if you're a bot or human?
+    - I'm curious if you are an automated entity or a human.
 
 - intent: looking_for_job
   examples: |
     - I am looking for a job
-    - I am looking for a job in the field of data science
+    - I am looking for a job in the field of [data science](candidate_degree)
     - I am looking for a job in the field 
     - I am searching for a job
     - I am searching for a job
     - Yes I am looking for a job
     - job
     - job search
+    - an open position
+    - I am seeking employment.
+    - I am seeking a job in the realm of [data science](candidate_degree).
+    - I am seeking a job within the industry.
+    - I am actively pursuing job opportunities.
+    - I am currently on a job hunt.
+    - Yes, I am currently in search of a job.
+    - Job opportunity.
+    - Actively engaged in a job search.
+    - Exploring available job positions.
+    - Open position inquiry.
+    - Actively seeking a role in [data science](candidate_degree)
+    - On the lookout for opportunities in the industry.
+    - Engaged in the active exploration of job prospects.
+    - Currently involved in a job search.
+    - Indeed, I am in the process of job hunting.
+    - Exploring available positions.
+    - Actively searching for job opportunities.
+    - Delving into job prospects.
+    - Inquiring about an open position.
   
 
 - intent: looking_for_candidate
   examples: |
     - I am looking for a candidate
-    - I am looking for a candidate in the field of data science
+    - I am looking for a candidate in the field of [data science](candidate_degree)
     - I am looking for a candidate in the field 
     - I am searching for a candidate
     - I am searching for a candidate
@@ -120,6 +162,26 @@ nlu:
     - I am looking for a candidate for a new job opening
     - I am looking for a candidate for a new job opening in the field
     - Good news! We have a new job opening and I am looking for a candidate
+    - I am in search of a potential candidate.
+    - I am seeking a candidate specializing in [data science](candidate_degree).
+    - I am in need of a candidate within the industry.
+    - Currently on the lookout for a suitable candidate.
+    - Actively exploring potential candidates.
+    - Yes, I am currently seeking a candidate.
+    - Candidate search is underway.
+    - In quest of a candidate for a new job opportunity.
+    - Exploring potential candidates for a new job opening.
+    - Exciting news! A new job opening is available, and I'm searching for a candidate.
+    - I am in the process of candidate selection.
+    - Actively engaged in the pursuit of a candidate.
+    - On the search for a candidate with expertise in [data science](candidate_degree).
+    - Exploring candidates within the industry.
+    - Actively seeking a suitable candidate.
+    - Yes, I am currently in need of a candidate.
+    - Candidate exploration is underway.
+    - In pursuit of a candidate for a recently opened position.
+    - Actively considering candidates for a new job opportunity.
+    - Great news! We have a new job opening, and I'm on the lookout for a candidate.
 
 - intent: characteristics
   examples: |
@@ -156,6 +218,29 @@ nlu:
     - The candidate should be a [senior](candidate_experience) [data scientist](candidate_domain_skill)
     - The candidate should be a [mid-level](candidate_experience) [data scientist](candidate_domain_skill)
 
+- intent: ask_candidate_characteristics
+  examples: |
+    - Can you tell me more about the candidate [1](candidate_number)?
+    - Can you tell me more about the candidate [2](candidate_number)?
+    - I would like to know more about the candidate [3](candidate_number)
+    - I want to know more about the candidate [1](candidate_number)
+    - The candidate [2](candidate_number) sounds interesting. Can you tell me more about him?
+    - Would you like to know more about the candidate [3](candidate_number)?
+    - It would be great if you could tell me more about the candidate [1](candidate_number)
+    - Perhaps you could tell me more about the candidate [2](candidate_number)?
+    - Perfect! I would like to know more about the candidate [3](candidate_number)
+    - Good to know! Can you tell me more about the candidate [1](candidate_number)?
+    - The cabdidate [2](candidate_number) is perfect. Can you tell me more about him?
 
-
+- regex: candidate_number
+  examples: |
+    - one
+    - two
+    - three
+    - ONE
+    - TWO
+    - THREE
+    - 1
+    - 2
+    - 3
   
