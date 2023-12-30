@@ -7,7 +7,7 @@ stories:
 # announcing a new job opening and specifies 
 # the key requirements for the position
 
-- story: looking for a job 1
+- story: Looking for a candidate dialogue type 1
   steps:
   - intent: greet
   - action: utter_greet
@@ -15,14 +15,22 @@ stories:
   - intent: looking_for_candidate
   - action: utter_ask_candidate_characteristics
   - intent: characteristics 
-  # - action: action_check_confidence
   - action: utter_confirmation_searching_for_candidate
+  # - action: utter_random_confirmation
   - action: action_provide_candidate_profile
   - action: utter_ask_job_characteristics
   - intent: ask_candidate_characteristics
-    # entities:
-    # - candidate_number: "1"
   - action: action_provide_candidate_profile_details_llm
+  - action: utter_ask_candidate_characteristics
+  - or:
+    - intent: confirm_candidate
+    - intent: confirm_candidate_reachout
+  - action: utter_random_confirmation
+  - utter_help:
+  - or:
+    - intent: affirm
+    - intent: deny
+  - action: utter_goodbye_candidate
 
 
 

@@ -1,18 +1,18 @@
 version: "3.1"
 
 intents:
+  ## default intents greet, goodbye, affirm, deny ##
   - greet
-  - goodbye
   - deny
   - affirm
   - mood_great
   - mood_unhappy
-  - bot_challenge
 
   ## custom intents ##
   ## looking for a job ##
 
   - looking_for_job
+
 
   ## custom intents ##
   ## looking for a candidate ##
@@ -21,15 +21,37 @@ intents:
   - characteristics
   - ask_candidate_characteristics
 
+  - confirm_candidate
+  - confirm_candidate_reachout
+
+
+  ## goodbye intent ##
+
+  - goodbye
+
+
+  ## bot challenge intent ##
+
+  - bot_challenge
+
+
 
 entities:
-  - candidate_characteristics
-  - candidate_number
-  - job_characteristics
-  - candidate_skills
 
+  ## custom entities ##
+  ## job_characteristics ##
+  - job_characteristics
+
+
+  ## job_skills ##
   - job_skills
   - job_experience
+
+
+  ## candidate_characteristics ##
+  - candidate_characteristics
+  - candidate_skills
+  - candidate_number
 
   - candidate_experience
   - candidate_education
@@ -81,36 +103,63 @@ actions:
 
 responses:
 
+########## help ##########
+  utter_help:
+  - text: "Was this dialogue helpful?"
+
+########## greet ##########
   utter_greet:
   - text: "Hey! Glad to help you out."
+
+########## goodbye ##########
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_goodbye_candidate:
+  - text: "Bye. I will reach out him/her and get back to you soon."
+
+########## bot challenge ##########
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+########## help ##########
+
+  utter_did_that_help:
+  - text: "Did that help you?"
 
   utter_help:
   - text: "Are you looking for a job? or Are you looking for a candidate?"
 
+
+########## ask characteristics ##########
+
   utter_ask_candidate_characteristics:
   - text: "I can help you with that. Colud you please tell me what kind of candidate are you looking for?"
+  
+  utter_ask_job_characteristics:
+  - text: "Would you like more details on any of these candidates or do you have specific criteria in mind?"
+
+
+########## confirmation ##########
 
   utter_confirmation_searching_for_candidate:
   - text: "I have noted down your requirements. Now I am searching for the best candidate for you."
 
-  utter_ask_job_characteristics:
-  - text: "Would you like more details on any of these candidates or do you have specific criteria in mind?"
+  utter_random_confirmation:
+  - text: "Certainly!!"
+
+################################
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
-
   utter_happy:
   - text: "Great, carry on!"
 
-  utter_goodbye:
-  - text: "Bye"
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
 
 
 # forms:

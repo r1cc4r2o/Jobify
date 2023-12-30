@@ -1,0 +1,9 @@
+marker_help_yes:
+  seq:
+    - action: utter_help
+    - intent: affirm
+
+marker_help_no:
+  seq:
+    - action: utter_help
+    - intent: deny

@@ -232,6 +232,26 @@ nlu:
     - Good to know! Can you tell me more about the candidate [1](candidate_number)?
     - The cabdidate [2](candidate_number) is perfect. Can you tell me more about him?
 
+- intent: confirm_candidate
+  examples: |
+    - Yes, the candidate is a good fit
+    - Yes, the candidate is a good fit for the job
+    - That's great! The candidate is a good fit
+    - That's great! The candidate is a good fit for the job
+    - The candidate is perfect for the job
+    - The candidate is perfect 
+    - The candidate is perfect for the open position
+
+- intent: confirm_candidate_reachout
+  examples: |
+    - Yes, the candidate is a good fit, please reach out to him
+    - Yes, the candidate is a good fit for the job, please reach out to him
+    - That's great! The candidate is a good fit, please reach out to him
+    - That's great! The candidate is a good fit for the job, please reach out to him
+    - The candidate is perfect for the job, please reach out to him
+    - The candidate is perfect, please reach out to him
+    - The candidate is perfect for the open position, please reach out to him
+
 - regex: candidate_number
   examples: |
     - one

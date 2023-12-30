@@ -169,6 +169,10 @@ class ActionCheckConfidence(Action):
         return "action_check_confidence"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        # get name of the intent
+        # intent = tracker.latest_message['intent'].get('name')
+        
         # Get the confidence of the predicted intent
         confidence = tracker.latest_message['intent']['confidence']
 
