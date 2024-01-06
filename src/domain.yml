@@ -12,6 +12,7 @@ intents:
   ## looking for a job ##
 
   - looking_for_job
+  - get_job_features
 
 
   ## custom intents ##
