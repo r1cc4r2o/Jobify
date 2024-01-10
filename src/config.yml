@@ -23,11 +23,13 @@ pipeline:
   min_ngram: 1
   max_ngram: 4
 - name: DIETClassifier
-  epochs: 100
+  # epochs: 100
+  epochs: 10
   constrain_similarities: true
 - name: EntitySynonymMapper
 - name: ResponseSelector
-  epochs: 100
+  # epochs: 100
+  epochs: 10
   constrain_similarities: true
 - name: FallbackClassifier
   threshold: 0.3
@@ -42,12 +44,17 @@ policies:
   # - name: MemoizationPolicy
 - name: AugmentedMemoizationPolicy
 - name: RulePolicy
+  # core_fallback_threshold: 0.3
+  # core_fallback_action_name: "action_default_fallback"
+  # enable_fallback_prediction: True
 - name: UnexpecTEDIntentPolicy
   max_history: 5
-  epochs: 100
+  epochs: 10
+  # epochs: 100
 - name: TEDPolicy
   max_history: 5   # number of previous turns to keep in dialogue history
-  epochs: 100
+  # epochs: 100
+  epochs: 10
   constrain_similarities: true
 
 # NOTES ON POLICIES:
@@ -58,7 +65,8 @@ policies:
 #                        the value of the confidence to be considered as the same intent
 #                        https://www.youtube.com/watch?v=ITwgNNfyG7A
 # MemoizationPolicy it memorizes the conversation history and predicts the next action based on
-#                   the previous conversation history 
+#                   the previous conversation history (perdict the next action based on the stories
+#                   in the stories.yml file)
 # AugmentedMemoizationPolicy it memorizes the conversation history and predicts the next action based on
 #                            the previous conversation history and the current intent... it has an additional
 #                            mechanism to prevent forgetting the conversation history

@@ -159,6 +159,9 @@ class ActionProvideCandidateProfile(Action):
         global DESCRIPTION_USERS
         DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], last_messages + last_messages)}
         
+        utter_ask_to_know_more_about_candidate = "Would you like to know more about one of the candidates? Number 1, 2 or 3?"
+        last_message = last_message + "\n\n" + utter_ask_to_know_more_about_candidate
+        
         # Send the message back to the user
         dispatcher.utter_message(text=last_message)
         

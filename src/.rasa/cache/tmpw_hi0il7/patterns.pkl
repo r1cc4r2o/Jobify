@@ -1,0 +1,38 @@
+[
+  {
+    "name": "candidate_number",
+    "pattern": "1"
+  },
+  {
+    "name": "candidate_number",
+    "pattern": "2"
+  },
+  {
+    "name": "candidate_number",
+    "pattern": "3"
+  },
+  {
+    "name": "candidate_number",
+    "pattern": "ONE"
+  },
+  {
+    "name": "candidate_number",
+    "pattern": "THREE"
+  },
+  {
+    "name": "candidate_number",
+    "pattern": "TWO"
+  },
+  {
+    "name": "candidate_number",
+    "pattern": "one"
+  },
+  {
+    "name": "candidate_number",
+    "pattern": "three"
+  },
+  {
+    "name": "candidate_number",
+    "pattern": "two"
+  }
+]
