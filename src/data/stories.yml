@@ -26,7 +26,7 @@ stories:
   - intent: confirm_in_place
   - slot_was_set:
     - in_place_or_remote: in_place
-  - checkpoint: utter_ask_candidate_education_level
+  - action: utter_ask_candidate_education_level
 
 - story: Intro looking for candidates remote 1.1 
   steps:
@@ -39,7 +39,7 @@ stories:
   - intent: confirm_relocation
   - slot_was_set:
     - relocation: yes
-  - checkpoint: utter_ask_candidate_education_level
+  - action: utter_ask_candidate_education_level
 
 - story: Intro looking for candidates remote 1.2
   steps:
@@ -52,7 +52,7 @@ stories:
   - intent: deny_relocation
   - slot_was_set:
     - relocation: no
-  - checkpoint: utter_ask_candidate_education_level
+  - action: utter_ask_candidate_education_level
 
 - story: Handle go back to utter_ask_inplace_or_remote 1.1
   steps:
@@ -67,7 +67,7 @@ stories:
   - intent: deny_relocation
   - slot_was_set:
     - relocation: no
-  - checkpoint: utter_ask_candidate_education_level
+  - action: utter_ask_candidate_education_level
 
 - story: Handle go back to utter_ask_inplace_or_remote 1.2
   steps:
@@ -82,7 +82,7 @@ stories:
   - intent: confirm_relocation
   - slot_was_set:
     - relocation: yes
-  - checkpoint: utter_ask_candidate_education_level
+  - action: utter_ask_candidate_education_level
 
 
 - story: Handle go back to utter_ask_inplace_or_remote 2
@@ -94,11 +94,11 @@ stories:
   - intent: confirm_in_place
   - slot_was_set:
     - in_place_or_remote: in_place
-  - checkpoint: utter_ask_candidate_education_level
+  - action: utter_ask_candidate_education_level
 
 
 
-## education level
+# education level
 
 - story: Looking for a candidate level of education phd
   steps:
@@ -106,7 +106,7 @@ stories:
   - intent: confirm_candidate_education_level_phd
   - slot_was_set:
     - candidate_education: phd
-  - checkpoint: utter_ask_candidate_salary
+  - action: utter_ask_candidate_salary
 
 - story: Looking for a candidate level of education masters
   steps:
@@ -114,7 +114,7 @@ stories:
   - intent: confirm_candidate_education_level_masters
   - slot_was_set:
     - candidate_education: masters
-  - checkpoint: utter_ask_candidate_salary
+  - action: utter_ask_candidate_salary
 
 - story: Looking for a candidate level of education bachelors
   steps:
@@ -122,7 +122,7 @@ stories:
   - intent: confirm_candidate_education_level_bachelors
   - slot_was_set:
     - candidate_education: bachelors
-  - checkpoint: utter_ask_candidate_salary
+  - action: utter_ask_candidate_salary
 
 - story: Looking for a candidate level of education diploma
   steps:
@@ -130,7 +130,7 @@ stories:
   - intent: confirm_candidate_education_level_diploma
   - slot_was_set:
     - candidate_education: diploma
-  - checkpoint: utter_ask_candidate_salary
+  - action: utter_ask_candidate_salary
 
 - story: Handle go back to utter_ask_candidate_education_level phd
   steps:
@@ -141,7 +141,7 @@ stories:
   - intent: confirm_candidate_education_level_phd
   - slot_was_set:
     - candidate_education: phd
-  - checkpoint: utter_ask_candidate_salary
+  - action: utter_ask_candidate_salary
 
 - story: Handle go back to utter_ask_candidate_education_level masters
   steps:
@@ -152,7 +152,7 @@ stories:
   - intent: confirm_candidate_education_level_masters
   - slot_was_set:
     - candidate_education: masters
-  - checkpoint: utter_ask_candidate_salary
+  - action: utter_ask_candidate_salary
 
 - story: Handle go back to utter_ask_candidate_education_level bachelors
   steps:
@@ -163,7 +163,7 @@ stories:
   - intent: confirm_candidate_education_level_bachelors
   - slot_was_set:
     - candidate_education: bachelors
-  - checkpoint: utter_ask_candidate_salary
+  - action: utter_ask_candidate_salary
 
 - story: Handle go back to utter_ask_candidate_education_level diploma
   steps:
@@ -174,8 +174,7 @@ stories:
   - intent: confirm_candidate_education_level_diploma
   - slot_was_set:
     - candidate_education: diploma
-  - checkpoint: utter_ask_candidate_salary
-
+  - action: utter_ask_candidate_salary
 
 ## salary
 
@@ -183,7 +182,7 @@ stories:
   steps:
   - checkpoint: utter_ask_candidate_salary
   - intent: confirm_candidate_salary
-  - checkpoint: utter_ask_candidate_type_position
+  - action: utter_ask_candidate_type_position
 
 - story: Handle go back to utter_ask_candidate_salary
   steps:
@@ -192,7 +191,7 @@ stories:
   - action: utter_random_sorry
   - action: utter_ask_candidate_salary
   - intent: confirm_candidate_salary
-  - checkpoint: utter_ask_candidate_type_position
+  - action: utter_ask_candidate_type_position
 
 ## type of position
 
@@ -202,7 +201,7 @@ stories:
   - intent: confirm_candidate_type_position_full_time
   - slot_was_set:
     - candidate_type_position: full_time
-  - checkpoint: utter_ask_level_of_experience
+  - action: utter_ask_level_of_experience
 
 - story: Looking for a candidate type of position part time
   steps:
@@ -210,7 +209,7 @@ stories:
   - intent: confirm_candidate_type_position_part_time
   - slot_was_set:
     - candidate_type_position: part_time
-  - checkpoint: utter_ask_level_of_experience
+  - action: utter_ask_level_of_experience
 
 - story: Looking for a candidate type of position internship
   steps:
@@ -218,7 +217,8 @@ stories:
   - intent: confirm_candidate_type_position_internship
   - slot_was_set:
     - candidate_type_position: internship
-  - checkpoint: utter_ask_level_of_experience
+  - action: utter_ask_level_of_experience
+
 
 - story: Handle go back to utter_ask_candidate_type_position full time
   steps:
@@ -229,7 +229,7 @@ stories:
   - intent: confirm_candidate_type_position_full_time
   - slot_was_set:
     - candidate_type_position: full_time
-  - checkpoint: utter_ask_level_of_experience
+  - action: utter_ask_level_of_experience
 
 - story: Handle go back to utter_ask_candidate_type_position part time
   steps:
@@ -240,7 +240,7 @@ stories:
   - intent: confirm_candidate_type_position_part_time
   - slot_was_set:
     - candidate_type_position: part_time
-  - checkpoint: utter_ask_level_of_experience
+  - action: utter_ask_level_of_experience
 
 - story: Handle go back to utter_ask_candidate_type_position internship
   steps:
@@ -251,7 +251,7 @@ stories:
   - intent: confirm_candidate_type_position_internship
   - slot_was_set:
     - candidate_type_position: internship
-  - checkpoint: utter_ask_level_of_experience
+  - action: utter_ask_level_of_experience
 
 ## level of experience
 
@@ -261,7 +261,7 @@ stories:
   - intent: confirm_level_of_experience_junior
   - slot_was_set:
     - candidate_experience: junior
-  - checkpoint: utter_ask_candidate_characteristics
+  - action: utter_ask_candidate_characteristics
 
 - story: Looking for a candidate level of experience senior
   steps:
@@ -269,7 +269,7 @@ stories:
   - intent: confirm_level_of_experience_senior
   - slot_was_set:
     - candidate_experience: senior
-  - checkpoint: utter_ask_candidate_characteristics
+  - action: utter_ask_candidate_characteristics
 
 - story: Looking for a candidate level of experience expert
   steps:
@@ -277,8 +277,7 @@ stories:
   - intent: confirm_level_of_experience_expert
   - slot_was_set:
     - candidate_experience: expert
-  - checkpoint: utter_ask_candidate_characteristics
-
+  - action: utter_ask_candidate_characteristics
 
 - story: Handle go back to utter_ask_level_of_experience junior
   steps:
@@ -289,7 +288,7 @@ stories:
   - intent: confirm_level_of_experience_junior
   - slot_was_set:
     - candidate_experience: junior
-  - checkpoint: utter_ask_candidate_characteristics
+  - action: utter_ask_candidate_characteristics
 
 - story: Handle go back to utter_ask_level_of_experience senior
   steps:
@@ -300,7 +299,7 @@ stories:
   - intent: confirm_level_of_experience_senior
   - slot_was_set:
     - candidate_experience: senior
-  - checkpoint: utter_ask_candidate_characteristics
+  - action: utter_ask_candidate_characteristics
 
 - story: Handle go back to utter_ask_level_of_experience expert
   steps:
@@ -311,7 +310,7 @@ stories:
   - intent: confirm_level_of_experience_expert
   - slot_was_set:
     - candidate_experience: expert
-  - checkpoint: utter_ask_candidate_characteristics
+  - action: utter_ask_candidate_characteristics
 
 ## candidate characteristics
 
@@ -321,7 +320,7 @@ stories:
   - intent: candidate_role
   - action: utter_confirmation_searching_for_candidate
   - action: utter_random_confirmation
-  - checkpoint: action_provide_candidate_profile
+  - action: action_provide_candidate_profile
 
 - story: Handle go back to utter_ask_candidate_characteristics
   steps:
@@ -332,7 +331,7 @@ stories:
   - intent: candidate_role
   - action: utter_confirmation_searching_for_candidate
   - action: utter_random_confirmation
-  - checkpoint: action_provide_candidate_profile
+  - action: action_provide_candidate_profile
 
 ## candidate profile characteristics
 
@@ -341,14 +340,14 @@ stories:
   - checkpoint: action_provide_candidate_profile
   - intent: ask_to_know_more_about_candidate
   - action: action_provide_candidate_profile_details_llm
-  - checkpoint: utter_ask_candidate_characteristics
+  - action: utter_ask_candidate_characteristics
 
 - story: Handle repeat utter_ask_candidate_characteristics
   steps:
   - checkpoint: utter_ask_candidate_characteristics
   - intent: ask_to_know_more_about_candidate
   - action: action_provide_candidate_profile_details_llm
-  - checkpoint: utter_ask_candidate_characteristics
+  - action: utter_ask_candidate_characteristics
 
 ## confirmation
 
@@ -358,7 +357,7 @@ stories:
   - intent: confirm_candidate
   - action: utter_random_confirmation_2
   - action: utter_ask_need_something_else
-  - checkpoint: utter_ask_want_stop_conversation
+  - action: utter_ask_want_stop_conversation
 
 - story: Looking for a candidate confirmation 2
   steps:
@@ -366,7 +365,7 @@ stories:
   - intent: confirm_candidate_reachout
   - action: utter_confirm_candidate_reachout
   - action: utter_ask_need_something_else
-  - checkpoint: utter_ask_want_stop_conversation
+  - action: utter_ask_want_stop_conversation
 
 
 ### Here there are two cases:
@@ -390,6 +389,17 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
+# - story: Stop the conversation 
+#   steps:
+#   - checkpoint: utter_ask_want_stop_conversation
+#   - intent: affirm
+#   # markers
+#   - action: utter_help
+#   - or:
+#     - intent: affirm
+#     - intent: deny
+#   - action: utter_goodbye
+
 # Continue the conversation
 
 - story: Continue the conversation
@@ -397,16 +407,59 @@ stories:
   - checkpoint: utter_ask_want_stop_conversation
   - intent: deny
   - action: utter_help
-  - checkpoint: looking_for_candidate
+  - action: looking_for_candidate
 
-- story: Continue the conversation
-  steps:
-  - checkpoint: utter_ask_want_stop_conversation
-  - intent: deny
-  - action: utter_help
-  - checkpoint: looking_for_job
+# - story: Continue the conversation
+#   steps:
+#   - checkpoint: utter_ask_want_stop_conversation
+#   - intent: deny
+#   - action: utter_help
+#   - action: looking_for_job
 
 
+
+
+
+# in place with level of education with salary
+
+
+# - story: Intro looking for candidates remote 1.1 
+#   steps:
+#   - checkpoint: looking_for_candidate
+#   - action: utter_ask_inplace_or_remote
+#   - or:
+#     - intent: confirm_in_place
+#     - intent: confirm_remote
+#   - action: utter_ask_relocation
+#   - intent: confirm_relocation
+#   - slot_was_set:
+#     - relocation: yes
+#   - action: utter_ask_candidate_education_level
+#   - or:
+#     - intent: confirm_candidate_education_level_phd
+#     - intent: confirm_candidate_education_level_masters
+#     - intent: confirm_candidate_education_level_bachelors
+#     - intent: confirm_candidate_education_level_diploma
+#   - action: utter_ask_candidate_salary
+#   - intent: confirm_candidate_salary
+#   - action: utter_ask_candidate_type_position
+#   - or: 
+#     - intent: confirm_candidate_type_position_full_time
+#     - intent: confirm_candidate_type_position_part_time
+#     - intent: confirm_candidate_type_position_internship
+#   - action: utter_ask_level_of_experience
+#   - or:
+#     - intent: confirm_level_of_experience_junior
+#     - intent: confirm_level_of_experience_senior
+#     - intent: confirm_level_of_experience_expert
+#   - action: utter_ask_candidate_characteristics
+#   - intent: candidate_role
+#   - action: utter_confirmation_searching_for_candidate
+#   - action: utter_random_confirmation
+#   - action: action_provide_candidate_profile
+#   - intent: ask_to_know_more_about_candidate
+#   - action: action_provide_candidate_profile_details_llm
+#   - intent: ask_candidate_characteristics
 
 #   - intent: confirm_candidate_salary
 #   - action: utter_ask_candidate_type_position

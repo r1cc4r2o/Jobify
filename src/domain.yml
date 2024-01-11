@@ -333,15 +333,15 @@ responses:
 
 
 
-forms:
-  looking_for_candidate_form:
-    required_slots:
-      - in_place_or_remote
-      - candidate_education
-      - candidate_salary_max
-      - candidate_type_position
-      - candidate_experience
-      - relocation    
+# forms:
+#   looking_for_candidate_form:
+#     required_slots:
+#       - in_place_or_remote
+#       - candidate_education
+#       - candidate_salary_max
+#       - candidate_type_position
+#       - candidate_experience
+#       - relocation    
 
 
 
