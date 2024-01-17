@@ -501,7 +501,6 @@ nlu:
   examples: |
     - I am looking for something else
     - Stop the conversation, I am looking for something else
-    - 
 
 
 - regex: candidate_number
