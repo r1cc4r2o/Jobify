@@ -39,6 +39,7 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - yes I want this candidate
 
 - intent: deny
   examples: |
@@ -49,6 +50,7 @@ nlu:
     - don't like that
     - no way
     - not really
+    - no I don't want this candidate
 
 - intent: mood_great
   examples: |
@@ -186,39 +188,36 @@ nlu:
 - intent: candidate_role
   examples: |
     - The candidate should have a [Bachelor's degree](candidate_education) in [computer science](candidate_degree)
-    - The candidate must be [fluent in English](candidate_language_skill)
-    - The candidate must have experience in [machine learning](candidate_domain_skill)
-    - We are looking for someone with strong [communication skills](candidate_soft_skill)
-    - The ideal candidate should be [self-motivated](candidate_personality_trait)
+    - The candidate must be fluent in [English](candidate_language)
+    - The candidate must have experience in machine learning
+    - We are looking for someone with strong communication skills
+    - The ideal candidate should be self-motivated
     - A candidate with a [Ph.D.](candidate_education) in [data science](candidate_degree) is preferred
-    - Proficiency in [Python](programming_language) is a required [skill](candidate_technical_skill)
-    - The candidate should demonstrate expertise in [project management](candidate_domain_skill)
-    - The candidate should possess a strong [analytical mindset](candidate_soft_skill)
-    - We are seeking someone with a [Bachelor's degree](candidate_education) in [engineering](candidate_degree)
-    - Candidates with [leadership](candidate_personality_trait) experience in [IT management](candidate_domain_skill) are preferred
-    - Excellent [problem-solving skills](candidate_soft_skill) are a must
-    - [Effective communication](candidate_soft_skill) is crucial for this role
-    - The candidate should be familiar with [cloud computing](candidate_technical_skill) platforms such as [AWS](cloud_provider)
-    - We value candidates with a [proactive attitude](candidate_personality_trait)
-    - [Team collaboration](candidate_soft_skill) is an essential quality we are looking for
-    - Proficiency in [Java](programming_language) and [JavaScript](programming_language) is required
-    - An ideal candidate should have [5](years_of_experience) years of experience in [software development](candidate_domain_skill)
-    - Candidates with a [Master's degree](candidate_education) in [data science](candidate_degree) will be given priority
-    - Strong [attention to detail](candidate_soft_skill) is necessary for this role
+    - A candidate with a [PhD](candidate_education) in [data science](candidate_degree) is preferred
+    - A candidate with a [phd](candidate_education) in [data science](candidate_degree) is preferred
+    - Proficiency in Python is a required skill for this role
+    - The candidate should demonstrate expertise in programming languages such as Python
+    - The candidate should possess a strong analytical mindset
+    - We are seeking someone with a [Bachelor](candidate_education)'s degree in [engineering](candidate_degree)
+    - Candidates with leadership experience in IT are preferred
+    - Excellent problem-solving skills are required for this role
+    - Effective communication skills are a must-have for this role
+    - The candidate should be familiar with cloud computing and big data technologies
+    - We value candidates with a proven track record of success with ambitious projects
+    - Team leadership skills are required for this role and the candidate should be a team player
+    - Proficiency in Java is a required skill for this role. Moreover, the candidate should be familiar with cloud computing and big data technologies
+    - An ideal candidate should have [5](years_of_experience) years of experience in software engineering
+    - Candidates with a [Master](candidate_education)'s degree in [data science](candidate_degree) will be given priority
+    - Strong attention to detail is required for this role
     - The candidate should have a solid understanding of [data analysis](candidate_domain_skill) techniques
-    - [Adaptability](candidate_soft_skill) to changing technologies is important
+    - Adaptability is a must-have skill for this role and the candidate should be able to work in a fast-paced environment
     - Experience with [Agile methodologies](candidate_domain_skill) is highly desirable
-    - [Critical thinking](candidate_soft_skill) is a must-have skill for this role
-    - [Leadership skills](candidate_soft_skill) are required for this role
-    - Good [interpersonal skills](candidate_soft_skill) are a must
+    - Critical thinking skills are required for this role
+    - Leadership skills are required for this role and the candidate should be a team player
+    - Good communication skills are required for this role and the candidate should be a team player 
     - We require candidates with [excellent communication skills](candidate_soft_skill)
     - The ideal candidate should have [5](years_of_experience) years of experience in [data science](candidate_domain_skill)
-    - The ideal candidate should be an early adopter of [new technologies](candidate_domain_skill)
-    - The candidate should be a [junior](candidate_experience) [data scientist](candidate_domain_skill)
-    - The candidate should be a [senior](candidate_experience) [data scientist](candidate_domain_skill)
-    - The candidate should be a [mid-level](candidate_experience) [data scientist](candidate_domain_skill)
-    - We need a candidate with [5](years_of_experience) years of experience in [data science](candidate_domain_skill) and [machine learning](candidate_domain_skill)
-    - The candidate should have a [motivated](candidate_personality_trait) personality and [leadership skills](candidate_soft_skill)
+    - The ideal candidate should be an early adopter of 
 
 - intent: ask_to_know_more_about_candidate
   examples: |
@@ -294,42 +293,6 @@ nlu:
     - The candidate is perfect, please reach out to him
     - The candidate is perfect for the open position, please reach out to him
 
-- intent: confirm_candidate_education_level_phd
-  examples: |
-    - The candidate should have a [Ph.D.](candidate_education) in [data science](candidate_degree)
-    - The candidate should have a [Ph.D.](candidate_education) in [computer science](candidate_degree)
-    - The candidate should have a [Ph.D.](candidate_education) in [engineering](candidate_degree)
-    - [Ph.D.](candidate_education) in [data science](candidate_degree)
-    - [Ph.D.](candidate_education) in [computer science](candidate_degree)
-    - [Ph.D.](candidate_education) 
-
-- intent: confirm_candidate_education_level_masters
-  examples: |
-    - The candidate should have a [Master's degree](candidate_education) in [data science](candidate_degree)
-    - The candidate should have a [Master's degree](candidate_education) in [computer science](candidate_degree)
-    - The candidate should have a [Master's degree](candidate_education) in [engineering](candidate_degree)
-    - [Master's degree](candidate_education) in [data science](candidate_degree)
-    - [Master's degree](candidate_education) in [computer science](candidate_degree)
-    - [Master's degree](candidate_education)
-
-- intent: confirm_candidate_education_level_bachelors
-  examples: |
-    - The candidate should have a [Bachelor's degree](candidate_education) in [data science](candidate_degree)
-    - The candidate should have a [Bachelor's degree](candidate_education) in [computer science](candidate_degree)
-    - The candidate should have a [Bachelor's degree](candidate_education) in [engineering](candidate_degree)
-    - [Bachelor's degree](candidate_education) in [data science](candidate_degree)
-    - [Bachelor's degree](candidate_education) in [computer science](candidate_degree)
-    - [Bachelor's degree](candidate_education)
-
-- intent: confirm_candidate_education_level_diploma
-  examples: |
-    - The candidate should have a [diploma](candidate_education) in [data science](candidate_degree)
-    - The candidate should have a [diploma](candidate_education) in [computer science](candidate_degree)
-    - The candidate should have a [diploma](candidate_education) in [engineering](candidate_degree)
-    - [diploma](candidate_education) in [data science](candidate_degree)
-    - [diploma](candidate_education) in [computer science](candidate_degree)
-    - [diploma](candidate_education)
-
 - intent: confirm_candidate_salary
   examples: |
     - The candidate salary must not exceed [100000](candidate_salary_max) USD
@@ -384,23 +347,6 @@ nlu:
     - [expert](candidate_experience) [software engineer](candidate_domain_skill)
     - [expert](candidate_experience) [machine learning engineer](candidate_domain_skill)
 
-- intent: confirm_relocation
-  examples: |
-    - The candidate should be willing to relocate to [New York](candidate_city)
-    - The candidate should be willing to relocate to [Los Angeles](candidate_city)
-    - The candidate should be willing to relocate to [San Francisco](candidate_city)
-    - The candidate must be willing to relocate to [New York](candidate_city)
-    - [New York](candidate_city) is the location for the candidate, so he should be willing to relocate.
-    
-
-- intent: deny_relocation
-  examples: |
-    - The candidate should not be willing to relocate to [New York](candidate_city)
-    - The candidate should not be willing to relocate to [Los Angeles](candidate_city)
-    - The candidate should not be willing to relocate to [San Francisco](candidate_city)
-    - The candidate must not be willing to relocate to [New York](candidate_city)
-    - [New York](candidate_city) is the location for the candidate, so he should not be willing to relocate.
-
 - intent: want_stop_conversation
   examples: |
     - Yes, I want to stop the conversation
@@ -414,67 +360,6 @@ nlu:
     - I need to go, bye bye
     - I need to go, goodbye
 
-- intent: go_back_to_in_place_or_remote
-  examples: |
-    - I would like to go back to the in place or remote question
-    - I made a mistake, I would like to go back to the in place or remote question
-    - I misspoke the in place or remote question, I would like to go back
-    - you misunderstood me, I would like to go back to the in place or remote question
-
-- intent: go_back_to_candidate_education_level
-  examples: |
-    - I would like to go back to the candidate education level question
-    - I made a mistake, I would like to go back to the candidate education level question
-    - I misspoke the candidate education level question, I would like to go back
-    - I would like to go back to the candidate education level question
-    - I made a mistake, I would like to go back to the candidate education level question
-    - I'd like to go back to the candidate education level question
-    - I would repeat the candidate education level question
-    - you misunderstood me, I would like to go back to the candidate education level question
-
-- intent: go_back_to_candidate_salary
-  examples: |
-    - I would like to go back to the candidate salary question
-    - I made a mistake, I would like to go back to the candidate salary question
-    - I misspoke the candidate salary question, I would like to go back
-    - I would like to go back to the candidate salary question
-    - I made a mistake, I would like to go back to the candidate salary question
-    - I'd like to go back to the candidate salary question
-    - I would repeat the candidate salary question
-    - you misunderstood me, I would like to go back to the candidate salary question
-
-- intent: go_back_to_candidate_type_position
-  examples: |
-    - I would like to go back to the candidate type position question
-    - I made a mistake, I would like to go back to the candidate type position question
-    - I misspoke the candidate type position question, I would like to go back
-    - I would like to go back to the candidate type position question
-    - I made a mistake, I would like to go back to the candidate type position question
-    - I'd like to go back to the candidate type position question
-    - I would repeat the candidate type position question
-    - you misunderstood me, I would like to go back to the candidate type position question
-
-- intent: go_back_to_level_of_experience
-  examples: |
-    - I would like to go back to the level of experience question
-    - I made a mistake, I would like to go back to the level of experience question
-    - I misspoke the level of experience question, I would like to go back
-    - I would like to go back to the level of experience question
-    - I made a mistake, I would like to go back to the level of experience question
-    - I'd like to go back to the level of experience question
-    - I would repeat the level of experience question
-    - you misunderstood me, I would like to go back to the level of experience question
-
-- intent: go_back_to_relocation
-  examples: |
-    - I would like to go back to the relocation question
-    - I made a mistake, I would like to go back to the relocation question
-    - I misspoke the relocation question, I would like to go back
-    - I would like to go back to the relocation question
-    - I made a mistake, I would like to go back to the relocation question
-    - I'd like to go back to the relocation question
-    - I would repeat the relocation question
-    - you misunderstood me, I would like to go back to the relocation question
 
 - intent: go_back_to_candidate_characteristics
   examples: |
@@ -501,6 +386,12 @@ nlu:
   examples: |
     - I am looking for something else
     - Stop the conversation, I am looking for something else
+
+- intent: redo_candidate_profile
+  examples: |
+    - I would like to redo the candidate profile
+    - Could I go back to the candidate profile question?
+    - I would like to go back to the candidate profile question
 
 
 - regex: candidate_number

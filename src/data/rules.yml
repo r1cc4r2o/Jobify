@@ -3,20 +3,20 @@ version: "3.1"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
+# - rule: Say goodbye anytime the user says goodbye
+#   steps:
+#   - intent: goodbye
+#   - action: utter_goodbye
 
-- rule: Say 'I am a bot' anytime the user challenges
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+# - rule: Say 'I am a bot' anytime the user challenges
+#   steps:
+#   - intent: bot_challenge
+#   - action: utter_iamabot
 
-- rule: Say the bot goal anytime the user asks
-  steps:
-  - intent: bot_goal
-  - action: utter_bot_goal
+# - rule: Say the bot goal anytime the user asks
+#   steps:
+#   - intent: bot_goal
+#   - action: utter_bot_goal
 
 
 ### Activate looking for candidate FORM ###
@@ -24,39 +24,51 @@ rules:
 # activate the looking for candidate form
 # when the intent looking_for_candidate is 
 # detected
-- rule: Activate looking for candidate FORM
-  steps:
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: looking_for_candidate_form
-  - active_loop: looking_for_candidate_form
+# - rule: Activate looking for candidate FORM
+#   steps:
+#   - intent: looking_for_candidate
+#   - action: looking_for_candidate_form
+#   - active_loop: looking_for_candidate_form
 
-# deactivate the looking for candidate form
-# when the user ask that he/she is not looking
-# for a candidate
-- rule: Deactivate looking for candidate FORM
-  condition:
-  - active_loop: looking_for_candidate_form
-  steps:
-  - intent: looking_for_something_else
-  - action: looking_for_candidate_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_help
-  - action: utter_ask_want_stop_conversation
+# # deactivate the looking for candidate form
+# # when the user ask that he/she is not looking
+# # for a candidate
+# - rule: Deactivate looking for candidate FORM
+#   condition:
+#   - active_loop: looking_for_candidate_form
+#   steps:
+#   - intent: looking_for_something_else
+#   - action: looking_for_candidate_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_help
+#   - action: utter_ask_want_stop_conversation
 
-# deactivate the looking for candidate form
-# when the user provided all the required slots
-- rule: Deactivate looking for candidate FORM
-  condition:
-  - active_loop: looking_for_candidate_form
-  steps:
-  - action: looking_for_candidate_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: action_provide_candidate_profile
-  - action: utter_ask_job_characteristics
+# # deactivate the looking for candidate form
+# # when the user provided all the required slots
+# - rule: Deactivate looking for candidate FORM 1
+#   condition:
+#   - active_loop: looking_for_candidate_form
+#   steps:
+#   - action: looking_for_candidate_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: action_provide_candidate_profile
+#   - action: utter_which_candidate_confirmation
+#   - che
+
+# - rule: Deactivate looking for candidate FORM 2
+#   condition:
+#   - active_loop: looking_for_candidate_form
+#   steps:
+#   - action: looking_for_candidate_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: action_provide_candidate_profile
+#   - action: utter_which_candidate_confirmation
 
 # # handle interruption 1 in looking for candidate FORM
 # # when the ask if the user ask to the system if it is

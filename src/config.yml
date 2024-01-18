@@ -24,16 +24,16 @@ pipeline:
   max_ngram: 4
 - name: DIETClassifier
   # epochs: 100
-  epochs: 100
+  epochs: 20
   constrain_similarities: true
 - name: EntitySynonymMapper
 - name: ResponseSelector
   # epochs: 100
-  epochs: 100
+  epochs: 20
   constrain_similarities: true
-- name: FallbackClassifier
-  threshold: 0.3
-  ambiguity_threshold: 0.1
+# - name: FallbackClassifier
+#   threshold: 0.3
+#   ambiguity_threshold: 0.1
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
@@ -50,14 +50,14 @@ policies:
 - name: UnexpecTEDIntentPolicy
   max_history: 5
   # epochs: 10
-  epochs: 100
+  epochs: 20
 - name: TEDPolicy
   max_history: 5   # number of previous turns to keep in dialogue history
-  epochs: 100
+  epochs: 20
   # epochs: 10
   constrain_similarities: true
 
-# NOTES ON POLICIES:
+# # NOTES ON POLICIES:
 # 1. it is not suggested to have more than one policy with the same priority
 # TEDPolicy https://arxiv.org/abs/1910.00486
 # UnexpecTEDIntentPolicy it measures the similarity between the user input and the intent with 

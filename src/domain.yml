@@ -19,7 +19,6 @@ intents:
   - looking_for_candidate
 
   - candidate_role
-  - go_back_to_candidate_characteristics
 
   # ask characteristics
   - ask_to_know_more_about_candidate
@@ -27,12 +26,6 @@ intents:
   - confirm_in_place
   - go_back_to_in_place_or_remote
   - confirm_remote
-
-  - confirm_candidate_education_level_phd
-  - confirm_candidate_education_level_masters
-  - confirm_candidate_education_level_bachelors
-  - confirm_candidate_education_level_diploma
-  - go_back_to_candidate_education_level
 
   - inform_candidate_characteristics
 
@@ -49,9 +42,8 @@ intents:
   - confirm_level_of_experience_expert
   - go_back_to_level_of_experience
 
-  - confirm_relocation
-  - deny_relocation
-
+  # go back
+  - redo_candidate_profile
 
   # confirm candidate
   - confirm_candidate
@@ -80,25 +72,15 @@ entities:
   ## job_characteristics ##
   - job_characteristics
 
-
   ## job_skills ##
-  - job_skills
-  - job_experience
-
 
   ## candidate_characteristics ##
-  - candidate_characteristics
-
-  - candidate_skills
 
   - candidate_experience
 
   - candidate_education
 
-  - candidate_degree
-
   - candidate_salary_max
-  - candidate_salary_min
 
   - candidate_relocate
 
@@ -112,17 +94,13 @@ entities:
 
   - years_of_experience
 
-  - candidate_personality_trait
-
-  - candidate_domain_skill
-
-  - candidate_soft_skill
-  
-  - candidate_language_skill
-
   - candidate_type_position
 
   - relocation
+
+  - candidate_language
+
+  - candidate_degree
 
 
 
@@ -135,6 +113,7 @@ slots:
     ## job_characteristics ##
     in_place_or_remote:
       type: categorical
+      influence_conversation: true
       values:
       - in_place
       - remote
@@ -146,48 +125,20 @@ slots:
           intent: confirm_remote
           value: remote
 
-    candidate_education:
-      type: categorical
-      values:
-      - bachelors
-      - masters
-      - phd
-      - diploma
-      mappings:
-        - type: from_intent
-          intent: confirm_candidate_education_level_bachelors
-          value: bachelors
-        - type: from_intent
-          intent: confirm_candidate_education_level_masters
-          value: masters
-        - type: from_intent
-          intent: confirm_candidate_education_level_phd
-          value: phd
-        - type: from_intent
-          intent: confirm_candidate_education_level_diploma
-          value: diploma
-
     candidate_salary_max:
       type: float
+      influence_conversation: true
       min_value: 10000
       max_value: 1000000
       mappings:
         - type: from_entity
           entity: candidate_salary_max
           value: candidate_salary_max
-
-    candidate_salary_min:
-      type: float
-      min_value: 10000
-      max_value: 1000000
-      mappings:
-        - type: from_entity
-          entity: candidate_salary_min
-          value: candidate_salary_min
       
 
     candidate_type_position:
       type: categorical
+      influence_conversation: true
       values:
       - full_time
       - part_time
@@ -205,6 +156,7 @@ slots:
 
     candidate_experience:
       type: categorical
+      influence_conversation: true
       values:
       - junior
       - senior
@@ -227,11 +179,42 @@ slots:
       - no
       mappings:
         - type: from_intent
-          intent: confirm_relocation
+          intent: affirm
           value: yes
         - type: from_intent
-          intent: deny_relocation
+          intent: deny
           value: no
+
+    years_of_experience:
+      type: float 
+      min_value: 0
+      max_value: 40
+      mappings:
+        - type: from_entity
+          entity: years_of_experience
+          value: years_of_experience
+
+    candidate_number:
+      type: text
+      mappings:
+        - type: from_entity
+          entity: candidate_number
+          value: candidate_number
+      
+    candidate_education:
+      type: text
+      mappings:
+        - type: from_entity
+          entity: candidate_education
+          value: candidate_education
+
+    candidate_language:
+      type: text
+      mappings:
+        - type: from_entity
+          entity: candidate_language
+          value: candidate_language
+
 
 actions:
  - action_check_confidence
@@ -295,13 +278,13 @@ responses:
   utter_ask_candidate_education_level:
   - text: "What is the education level of the candidate you are looking for? Bachelors, Masters, PhD or Diploma?"
 
-  utter_ask_candidate_salary:
-  - text: "What is the salary range of the candidate you are looking for? or What is the maximum salary of the candidate you are looking for?"
+  utter_ask_candidate_salary_max:
+  - text: "What is the maximum salary you are willing to pay?"
 
   utter_ask_candidate_type_position:
   - text: "What type of position are you looking for? Full time, Part time or Internship?"
 
-  utter_ask_level_of_experience:
+  utter_ask_candidate_experience:
   - text: "What is the level of experience of the candidate you are looking for? Junior, Senior or Expert?"
 
   utter_ask_relocation:
@@ -314,6 +297,9 @@ responses:
 
   utter_confirmation_searching_for_candidate_2:
   - text: "Wonderful. I have lots of candidates in mind. Let me find the best one for you."
+
+  utter_which_candidate_confirmation:
+  - text: "Which candidate would you like to know more about? One, Two or Three?"
 
   utter_random_confirmation:
   - text: "Certainly!!"
@@ -340,11 +326,10 @@ forms:
   looking_for_candidate_form:
     required_slots:
       - in_place_or_remote
-#       - candidate_education
-#       - candidate_salary_max
-#       - candidate_type_position
-#       - candidate_experience
-#       - relocation    
+      - candidate_experience
+      - candidate_type_position
+      - candidate_salary_max
+      
 
 
 
