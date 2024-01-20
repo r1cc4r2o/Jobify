@@ -3,89 +3,51 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
-    - hey
     - hello
     - hi
-    - hello there
+    - hey
     - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
     - good afternoon
 
-- intent: goodbye
+- intent: choose_purpose
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - I am looking for a job
+    - I want a job
+    - I want to find a candidate
+    - I'm looking for a candidate
 
-- intent: affirm
+- intent: user_wants_job
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - I want to find a job
+    - help me find a job
+    - job search
+    - I'm looking for a job
 
-- intent: deny
+- intent: provide_job_search_conditions
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - I have 3 years of experience in software development
+    - Looking for a job in New York
+    - Job search with a salary range of 50k-80k
 
-- intent: mood_great
+- intent: user_wants_another_job
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - Find more jobs
+    - Look for another job
 
-- intent: mood_unhappy
+- intent: user_wants_candidate
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - I am looking for a candidate
+    - Help me find a suitable candidate
+    - Candidate search
 
-- intent: bot_challenge
+- intent: provide_candidate_search_conditions
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - Need a candidate with 5+ years of experience
+    - Looking for candidates with Python skills
+
+- intent: user_wants_another_candidate
+  examples: |
+    - Find more candidates
+    - Look for another candidate
+
+

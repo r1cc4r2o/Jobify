@@ -404,3 +404,5 @@ FodyWeavers.xsd
 *.csv
 
 *venv/
+*.rasa
+models/

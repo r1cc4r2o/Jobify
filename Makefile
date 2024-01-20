@@ -19,13 +19,18 @@ help:
 install:
 	@which python || (echo ${RED}"[!] Error: Python is not installed. Please install Python before proceeding."${NC} && exit 1)
 	@echo ${YELLOW}"Installing dependencies..."${NC}
-	@pip install -r requirements.txt
+	-@pip install -r requirements.txt
+	-@pip install rasa
 	@echo ${GREEN}"Dependencies installed successfully."${NC}
 	@echo ${YELLOW}"Creating your vector database..."${NC}
 	@python ./installation/install.py
 	@echo ${GREEN}"Vector database created successfully."${NC}
 
 run:
+	@if [ ! -d "./data/jobs_index" ]; then \
+		echo ${RED}"[!] Error: Jobify has not been installed yet. Installing right now."${NC}; \
+		make install; \
+	fi
 	@echo ${YELLOW}"Launching Rasa shell..."${NC}
 	@rasa shell
 	@echo ${GREEN}"Rasa shell closed."${NC}

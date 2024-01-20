@@ -18,13 +18,10 @@ stories:
   - intent: provide_job_search_conditions
   - action: action_search_jobs
   - action: utter_job_results
-  - checkpoint: checkpoint_after_job_search
-  - action: utter_ask_another_search
 
 - story: User Wants to Look for Another Job
   steps:
   - intent: user_wants_another_job
-  - checkpoint: checkpoint_after_job_search
   - action: utter_ask_job_search_conditions
 
 - story: User is Looking for a Candidate
@@ -37,11 +34,8 @@ stories:
   - intent: provide_candidate_search_conditions
   - action: action_search_candidates
   - action: utter_candidate_results
-  - checkpoint: checkpoint_after_candidate_search
-  - action: utter_ask_another_search
 
 - story: User Wants to Look for Another Candidate
   steps:
   - intent: user_wants_another_candidate
-  - checkpoint: checkpoint_after_candidate_search
   - action: utter_ask_candidate_search_conditions

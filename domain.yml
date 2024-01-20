@@ -15,13 +15,8 @@ intents:
   - utter_ask_candidate_search_conditions
   - utter_job_results
   - utter_candidate_results
-  - utter_ask_another_search
   - utter_goodbye
 
-entities:
-  - experience
-  - location
-  - skills
 
 responses:
   utter_greet:
