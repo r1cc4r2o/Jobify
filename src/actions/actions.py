@@ -93,12 +93,61 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
+from rasa_sdk import Tracker, FormValidationAction, Action
+from rasa_sdk.events import SlotSet, EventType
+from rasa_sdk.types import DomainDict
+from rasa_sdk.executor import CollectingDispatcher
+
 import pandas as pd
 
 
 # GLOBAL VARIABLES set
 DESCRIPTION_USERS = ''
 
+
+
+
+class ValidateLookingForCandidateForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_looking_for_candidate_form"
+    
+    def validate_in_place_or_remote(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
+        if slot_value.lower() in ['remote', 'in place']:
+            # confirm the slot value to the user
+            dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
+            return {"in_place_or_remote": slot_value}
+        else:
+            dispatcher.utter_message(text="Please specify if you are looking for a remote or in place candidate.")
+            return {"in_place_or_remote": None}
+        
+    def validate_candidate_experience(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
+        if slot_value.lower() in ['junior', 'senior', 'expert']:
+            # confirm the slot value to the user
+            dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
+            return {"candidate_experience": slot_value}
+        else:
+            dispatcher.utter_message(text="Please specify if you are looking for a junior or senior candidate.")
+            return {"candidate_experience": None}
+
+    def validate_candidate_type_position(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
+        if slot_value.lower() in ['full time', 'part time']:
+            # confirm the slot value to the user
+            dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
+            return {"candidate_type_position": slot_value}
+        else:
+            dispatcher.utter_message(text="Please specify if you are looking for a full time or part time candidate.")
+            return {"candidate_type_position": None}
+        
+    def validate_candidate_salary_max(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
+        if slot_value.isdigit():
+            # confirm the slot value to the user
+            dispatcher.utter_message(text=f"Ok, you are looking for a candidate with a maximum salary of {slot_value} €.")
+            return {"candidate_salary_max": slot_value}
+        else:
+            dispatcher.utter_message(text="Please specify the maximum salary you are willing to pay.")
+            return {"candidate_salary_max": None}
+        
+    
 
 
 
