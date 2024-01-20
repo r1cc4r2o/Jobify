@@ -24,26 +24,26 @@ rules:
 # activate the looking for candidate form
 # when the intent looking_for_candidate is 
 # detected
-# - rule: Activate looking for candidate FORM
-#   steps:
-#   - intent: looking_for_candidate
-#   - action: looking_for_candidate_form
-#   - active_loop: looking_for_candidate_form
+- rule: Activate looking for candidate FORM
+  steps:
+  - intent: looking_for_candidate
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
 
 # # deactivate the looking for candidate form
 # # when the user ask that he/she is not looking
 # # for a candidate
-# - rule: Deactivate looking for candidate FORM
-#   condition:
-#   - active_loop: looking_for_candidate_form
-#   steps:
-#   - intent: looking_for_something_else
-#   - action: looking_for_candidate_form
-#   - active_loop: null
-#   - slot_was_set:
-#     - requested_slot: null
-#   - action: utter_help
-#   - action: utter_ask_want_stop_conversation
+- rule: Deactivate looking for candidate FORM
+  condition:
+  - active_loop: looking_for_candidate_form
+  steps:
+  - intent: looking_for_something_else
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_help
+  - action: utter_ask_want_stop_conversation
 
 # # deactivate the looking for candidate form
 # # when the user provided all the required slots
@@ -73,25 +73,25 @@ rules:
 # # handle interruption 1 in looking for candidate FORM
 # # when the ask if the user ask to the system if it is
 # # a bot
-# - rule: Handle interruption 1 in looking for candidate FORM
-#   condition:
-#   - active_loop: looking_for_candidate_form
-#   steps:
-#   - intent: bot_challenge
-#   - action: utter_iamabot
-#   - action: looking_for_candidate_form
-#   - active_loop: looking_for_candidate_form
+- rule: Handle interruption 1 in looking for candidate FORM
+  condition:
+  - active_loop: looking_for_candidate_form
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
 
 # # handle interruption 2 in looking for candidate FORM
 # # when the user ask which is the goal of the bot
-# - rule: Handle interruption 2 in looking for candidate FORM
-#   condition:
-#   - active_loop: looking_for_candidate_form
-#   steps:
-#   - intent: bot_goal
-#   - action: utter_bot_goal
-#   - action: looking_for_candidate_form
-#   - active_loop: looking_for_candidate_form
+- rule: Handle interruption 2 in looking for candidate FORM
+  condition:
+  - active_loop: looking_for_candidate_form
+  steps:
+  - intent: bot_goal
+  - action: utter_bot_goal
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
 
 
 # # - rule: Could you please rephrase the candidate characteristics

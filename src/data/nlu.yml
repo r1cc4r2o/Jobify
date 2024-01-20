@@ -1,5 +1,4 @@
 version: "3.1"
-
 nlu:
 - intent: greet
   examples: |
@@ -17,7 +16,6 @@ nlu:
     - goodevening
     - good afternoon
     - hey buddy
-
 - intent: goodbye
   examples: |
     - cu
@@ -30,7 +28,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -40,7 +37,6 @@ nlu:
     - that sounds good
     - correct
     - yes I want this candidate
-
 - intent: deny
   examples: |
     - no
@@ -51,7 +47,6 @@ nlu:
     - no way
     - not really
     - no I don't want this candidate
-
 - intent: mood_great
   examples: |
     - perfect
@@ -68,7 +63,6 @@ nlu:
     - so so perfect
     - so good
     - so perfect
-
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -85,8 +79,6 @@ nlu:
     - extremly sad
     - so saad
     - so sad
-
-# check if the user is a bot or human
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -118,13 +110,11 @@ nlu:
     - Are you a human user?
     - Could you specify if you're a bot or human?
     - I'm curious if you are an automated entity or a human.
-
 - intent: looking_for_job
   examples: |
     - I am looking for a job
     - I am looking for a job in the field of [data science](candidate_degree)
-    - I am looking for a job in the field 
-    - I am searching for a job
+    - I am looking for a job in the field
     - I am searching for a job
     - Yes I am looking for a job
     - job
@@ -149,14 +139,13 @@ nlu:
     - Actively searching for job opportunities.
     - Delving into job prospects.
     - Inquiring about an open position.
-  
+
 
 - intent: looking_for_candidate
   examples: |
     - I am looking for a candidate
     - I am looking for a candidate in the field of [data science](candidate_degree)
-    - I am looking for a candidate in the field 
-    - I am searching for a candidate
+    - I am looking for a candidate in the field
     - I am searching for a candidate
     - Yes I am looking for a candidate
     - candidate
@@ -184,6 +173,7 @@ nlu:
     - In pursuit of a candidate for a recently opened position.
     - Actively considering candidates for a new job opportunity.
     - Great news! We have a new job opening, and I'm on the lookout for a candidate.
+
 
 - intent: candidate_role
   examples: |
@@ -214,10 +204,11 @@ nlu:
     - Experience with [Agile methodologies](candidate_domain_skill) is highly desirable
     - Critical thinking skills are required for this role
     - Leadership skills are required for this role and the candidate should be a team player
-    - Good communication skills are required for this role and the candidate should be a team player 
+    - Good communication skills are required for this role and the candidate should be a team player
     - We require candidates with [excellent communication skills](candidate_soft_skill)
     - The ideal candidate should have [5](years_of_experience) years of experience in [data science](candidate_domain_skill)
-    - The ideal candidate should be an early adopter of 
+    - The ideal candidate should be an early adopter of
+
 
 - intent: ask_to_know_more_about_candidate
   examples: |
@@ -234,44 +225,27 @@ nlu:
     - Good to know! Can you tell me more about the candidate [1](candidate_number)?
     - The cabdidate [2](candidate_number) is perfect. Can you tell me more about him?
 
-- intent: inform_candidate_characteristics
+
+- intent: in_place
   examples: |
-    - [Geoffrey Hinton](candidate_name) from [Toronto](candidate_city) 
-    - [Andrew Ng](candidate_name) from [Rome](candidate_city)
-    - [Yann LeCun](candidate_name) from [Paris](candidate_city)
-    - [Yoshua Bengio](candidate_name) from [Montreal](candidate_city)
-    - [Garry Kasparov](candidate_name) from [New York](candidate_city)
-    - [Elon Musk](candidate_name) from [Los Angeles](candidate_city)
+    - in place
+    - the candidate should work in place
+    - the candidate shouldn't work remotely
+    - no remote work
+
+- intent: remote
+  examples: |
+    - remote
+    - the candidate should work remotely
+    - the candidate shouldn't work in place
+    - no in place work
+
+- intent: inform
+  examples: |
     - The candidate salary must not exceed [100000](candidate_salary_max) USD
     - The candidate salary shouldn't be more than [100000](candidate_salary_max) USD
     - The salary range for the candidate should be between [50000](candidate_salary_min) and [100000](candidate_salary_max) USD
-    - The candidate should be [willing to relocate](candidate_relocate) to [New York](candidate_city).
 
-
-- intent: confirm_in_place
-  examples: |
-    - The candidate should be in place
-    - The candidate should be in place for the job
-    - The position is in place
-    - The position is in place for the candidate
-    - in place
-    - in place for the job
-    - in place for the candidate
-    - in place for the position
-
-- intent: confirm_remote
-  examples: |
-    - The candidate should be remote
-    - The candidate should be remote for the job
-    - The position is remote
-    - The position is remote for the candidate
-    - remote
-    - remote for the job
-    - remote for the candidate
-    - remote for the position
-    - From home
-    - From home for the job
-    - The open position ir remote
 
 - intent: confirm_candidate
   examples: |
@@ -280,8 +254,9 @@ nlu:
     - That's great! The candidate is a good fit
     - That's great! The candidate is a good fit for the job
     - The candidate is perfect for the job
-    - The candidate is perfect 
+    - The candidate is perfect
     - The candidate is perfect for the open position
+
 
 - intent: confirm_candidate_reachout
   examples: |
@@ -292,61 +267,7 @@ nlu:
     - The candidate is perfect for the job, please reach out to him
     - The candidate is perfect, please reach out to him
     - The candidate is perfect for the open position, please reach out to him
-
-- intent: confirm_candidate_salary
-  examples: |
-    - The candidate salary must not exceed [100000](candidate_salary_max) USD
-    - The candidate salary shouldn't be more than [100000](candidate_salary_max) USD
-    - The salary range for the candidate should be between [50000](candidate_salary_min) and [100000](candidate_salary_max) USD
-    - The candidate salary must not exceed [100000](candidate_salary_max) USD
-    - The candidate salary shouldn't be more than [100000](candidate_salary_max) USD
-    - The salary range for the candidate should be between [50000](candidate_salary_min) and [100000](candidate_salary_max) USD
-
-- intent: confirm_candidate_type_position_full_time
-  examples: |
-    - The candidate should be [full-time](candidate_type_position)
-    - [full-time](candidate_type_position)
-
-
-- intent: confirm_candidate_type_position_part_time
-  examples: |
-    - The candidate should be [part-time](candidate_type_position)
-    - [intern](candidate_type_position)
-    - [internship](candidate_type_position)
-
-- intent: confirm_candidate_type_position_internship
-  examples: |
-    - The candidate should be [intern](candidate_type_position)
-    - The candidate should be [internship](candidate_type_position)
-    - [part-time](candidate_type_position)
-
-- intent: confirm_level_of_experience_junior
-  examples: |
-    - The candidate should be a [junior](candidate_experience) [data scientist](candidate_domain_skill)
-    - The candidate should be a [junior](candidate_experience) [software engineer](candidate_domain_skill)
-    - The candidate should be a [junior](candidate_experience) [machine learning engineer](candidate_domain_skill)
-    - [junior](candidate_experience) [data scientist](candidate_domain_skill)
-    - [junior](candidate_experience) [software engineer](candidate_domain_skill)
-    - [junior](candidate_experience) [machine learning engineer](candidate_domain_skill)
-
-- intent: confirm_level_of_experience_senior
-  examples: |
-    - The candidate should be a [senior](candidate_experience) [data scientist](candidate_domain_skill)
-    - The candidate should be a [senior](candidate_experience) [software engineer](candidate_domain_skill)
-    - The candidate should be a [senior](candidate_experience) [machine learning engineer](candidate_domain_skill)
-    - [senior](candidate_experience) [data scientist](candidate_domain_skill)
-    - [senior](candidate_experience) [software engineer](candidate_domain_skill)
-    - [senior](candidate_experience) [machine learning engineer](candidate_domain_skill)
-
-- intent: confirm_level_of_experience_expert
-  examples: |
-    - The candidate should be an [expert](candidate_experience) [data scientist](candidate_domain_skill)
-    - The candidate should be an [expert](candidate_experience) [software engineer](candidate_domain_skill)
-    - The candidate should be an [expert](candidate_experience) [machine learning engineer](candidate_domain_skill)
-    - [expert](candidate_experience) [data scientist](candidate_domain_skill)
-    - [expert](candidate_experience) [software engineer](candidate_domain_skill)
-    - [expert](candidate_experience) [machine learning engineer](candidate_domain_skill)
-
+    
 - intent: want_stop_conversation
   examples: |
     - Yes, I want to stop the conversation
@@ -359,19 +280,14 @@ nlu:
     - I need to go, bye
     - I need to go, bye bye
     - I need to go, goodbye
-
-
 - intent: go_back_to_candidate_characteristics
   examples: |
     - I would like to go back to the candidate characteristics question
     - I made a mistake, I would like to go back to the candidate characteristics question
     - I misspoke the candidate characteristics question, I would like to go back
-    - I would like to go back to the candidate characteristics question
-    - I made a mistake, I would like to go back to the candidate characteristics question
     - I'd like to go back to the candidate characteristics question
     - I would repeat the candidate characteristics question
     - you misunderstood me, I would like to go back to the candidate characteristics question
-
 - intent: bot_goal
   examples: |
     - What is your goal?
@@ -381,29 +297,23 @@ nlu:
     - What is your intention?
     - What is your mission?
     - Why are you here?
-
 - intent: looking_for_something_else
   examples: |
     - I am looking for something else
     - Stop the conversation, I am looking for something else
-
 - intent: redo_candidate_profile
   examples: |
     - I would like to redo the candidate profile
     - Could I go back to the candidate profile question?
     - I would like to go back to the candidate profile question
-
-
 - regex: candidate_number
   examples: |
-    - one
-    - two
-    - three
-    - ONE
-    - TWO
-    - THREE
     - 1
     - 2
     - 3
-  
-
+    - ONE
+    - THREE
+    - TWO
+    - one
+    - three
+    - two

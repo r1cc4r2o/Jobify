@@ -1,345 +1,214 @@
-version: "3.1"
+version: '3.1'
 
 intents:
-  ## default intents greet, goodbye, affirm, deny ##
-  - greet
-  - deny
-  - affirm
-  - mood_great
-  - mood_unhappy
-
-  ## custom intents ##
-  ## looking for a job ##
-
-  - looking_for_job
-
-  ## custom intents ##
-  ## looking for a candidate ##
-
-  - looking_for_candidate
-
-  - candidate_role
-
-  # ask characteristics
-  - ask_to_know_more_about_candidate
-
-  - confirm_in_place
-  - confirm_remote
-
-  - inform_candidate_characteristics
-
-  - confirm_candidate_salary
-
-  - confirm_candidate_type_position_full_time
-  - confirm_candidate_type_position_part_time
-  - confirm_candidate_type_position_internship
-
-  - confirm_level_of_experience_junior
-  - confirm_level_of_experience_senior
-  - confirm_level_of_experience_expert
-
-  # go back
-  - redo_candidate_profile
-
-  # confirm candidate
-  - confirm_candidate
-  - confirm_candidate_reachout
-
-
-  ## goodbye intent ##
-
-  - want_stop_conversation
-  - goodbye
-
-
-  ## bot challenge intent ##
-
-  - bot_challenge
-  - bot_goal
-
-  ## fallback intent ##
-
-  - looking_for_something_else
-
-  ## form intent ##
-  - request_looking_for_candidate_form
-
-######################################################
+- affirm
+- ask_to_know_more_about_candidate
+- bot_challenge
+- bot_goal
+- candidate_role
+- confirm_candidate
+- confirm_candidate_reachout
+- deny
+- goodbye
+- greet
+- in_place
+- inform
+- looking_for_candidate
+- looking_for_job
+- looking_for_something_else
+- mood_great
+- mood_unhappy
+- redo_candidate_profile
+- remote
+- request_looking_for_candidate_form
+- want_stop_conversation
 
 entities:
-
-  ## custom entities ##
-  ## job_characteristics ##
-  - job_characteristics
-
-  ## job_skills ##
-
-  ## candidate_characteristics ##
-
-  - candidate_experience
-
-  - candidate_education
-
-  - candidate_salary_max
-
-  - candidate_relocate
-
-  - in_place_or_remote
-
-  - candidate_number
-
-  - candidate_city
-
-  - candidate_name
-
-  - years_of_experience
-
-  - candidate_type_position
-
-  - relocation
-
-  - candidate_language
-
-  - candidate_degree
-
-######################################################
+- job_characteristics
+- candidate_experience
+- candidate_education
+- candidate_salary_max
+- candidate_relocate
+- in_place_or_remote
+- candidate_number
+- candidate_city
+- candidate_name
+- years_of_experience
+- candidate_type_position
+- relocation
+- candidate_language
+- candidate_degree
 
 slots:
-  
-    ## custom slots ##
-
-
-
-    ## job_characteristics ##
-    in_place_or_remote:
-      type: categorical
-      influence_conversation: true
-      values:
-      - in_place
-      - remote
-      mappings:
-        - type: from_intent
-          intent: confirm_in_place
-          value: in_place
-        - type: from_intent
-          intent: confirm_remote
-          value: remote
-
-    candidate_salary_max:
-      type: float
-      influence_conversation: true
-      min_value: 10000
-      max_value: 1000000
-      mappings:
-        - type: from_entity
-          entity: candidate_salary_max
-          value: candidate_salary_max
-      
-
-    candidate_type_position:
-      type: categorical
-      influence_conversation: true
-      values:
-      - full_time
-      - part_time
-      - internship
-      mappings:
-        - type: from_intent
-          intent: confirm_candidate_type_position_full_time
-          value: full_time
-        - type: from_intent
-          intent: confirm_candidate_type_position_part_time
-          value: part_time
-        - type: from_intent
-          intent: confirm_candidate_type_position_internship
-          value: internship
-
-    candidate_experience:
-      type: categorical
-      influence_conversation: true
-      values:
-      - junior
-      - senior
-      - expert
-      mappings:
-        - type: from_intent
-          intent: confirm_level_of_experience_junior
-          value: junior
-        - type: from_intent
-          intent: confirm_level_of_experience_senior
-          value: senior
-        - type: from_intent
-          intent: confirm_level_of_experience_expert
-          value: expert
-
-    relocation:
-      type: categorical
-      values:
-      - yes
-      - no
-      mappings:
-        - type: from_intent
-          intent: affirm
-          value: yes
-        - type: from_intent
-          intent: deny
-          value: no
-
-    years_of_experience:
-      type: float 
-      min_value: 0
-      max_value: 40
-      mappings:
-        - type: from_entity
-          entity: years_of_experience
-          value: years_of_experience
-
-    candidate_number:
-      type: text
-      mappings:
-        - type: from_entity
-          entity: candidate_number
-          value: candidate_number
-      
-    candidate_education:
-      type: text
-      mappings:
-        - type: from_entity
-          entity: candidate_education
-          value: candidate_education
-
-    candidate_language:
-      type: text
-      mappings:
-        - type: from_entity
-          entity: candidate_language
-          value: candidate_language
-
-######################################################
-
+  in_place_or_remote:
+    type: categorical
+    values:
+    - in_place
+    - remote
+    mappings:
+    - type: from_intent
+      intent: remote
+      value: remote
+    - type: from_intent
+      intent: in_place
+      value: in_place
+  candidate_salary_max:
+    type: float
+    influence_conversation: true
+    min_value: 10000
+    max_value: 1000000
+    mappings:
+    - type: from_entity
+      entity: candidate_salary_max
+      value: candidate_salary_max
+  candidate_type_position:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: candidate_type_position
+      value: candidate_type_position
+  candidate_experience:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: candidate_experience
+      value: candidate_experience
+  relocation:
+    type: categorical
+    values:
+    - yes
+    - no
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+    - type: from_intent
+      intent: deny
+      value: no
+  years_of_experience:
+    type: float
+    min_value: 0
+    max_value: 40
+    mappings:
+    - type: from_entity
+      entity: years_of_experience
+      value: years_of_experience
+  candidate_number:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: candidate_number
+      value: candidate_number
+  candidate_education:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: candidate_education
+      value: candidate_education
+  candidate_language:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: candidate_language
+      value: candidate_language
 actions:
- - action_check_confidence
- - action_provide_candidate_profile
- - action_provide_candidate_profile_details_llm
- - validate_looking_for_candidate_form
- 
-######################################################
+- utter_help
 
+- utter_ask_in_place_or_remote
+- utter_ask_to_know_more_about_candidate
+- utter_ask_candidate_characteristics
+- utter_ask_candidate_education
+- utter_ask_candidate_salary_max  
+- utter_ask_candidate_type_position
+- utter_ask_candidate_experience
+- utter_ask_relocation
+- utter_ask_want_stop_conversation
+- utter_ask_need_something_else
+- validate_looking_for_candidate_form
+
+- utter_greet
+- action_check_confidence
+- action_provide_candidate_profile
+- action_provide_candidate_profile_details_llm
 
 forms:
   looking_for_candidate_form:
     required_slots:
-      - in_place_or_remote
-      - candidate_experience
-      - candidate_type_position
-      - candidate_salary_max
-
-######################################################
+    # - in_place_or_remote
+    - candidate_experience
+    - candidate_type_position
+    - candidate_salary_max
 
 responses:
 
-
-########## greet ##########
+## greet
   utter_greet:
-  - text: "Hey! Glad to help you out."
+  - text: Hey! Glad to help you out.
 
-########## goodbye ##########
-
+## goodbye
   utter_goodbye:
-  - text: "Bye, it was nice talking to you. See you soon."
-
+  - text: Bye, it was nice talking to you. See you soon.
   utter_goodbye_candidate:
-  - text: "Bye. I will reach out him/her and get back to you soon."
-
-########## affirm ##########
-
+  - text: Bye. I will reach out him/her and get back to you soon.
   utter_confirm_candidate_reachout:
-  - text: "Great. I will reach out him/her and get back to you soon."
-
-########## bot challenge ##########
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
-  utter_bot_goal:
-  - text: "I am a bot, powered by Rasa. I can help you with your job search or candidate search. "
-
-########## help ##########
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_help:
-  - text: "Are you looking for a job? or Are you looking for a candidate?"
-
+  - text: Great. I will reach out him/her and get back to you soon.
   utter_ask_want_stop_conversation:
-  - text: "Or Do you want to stop the conversation?"
-
+  - text: Or Do you want to stop the conversation?
   utter_ask_need_something_else:
-  - text: "Do you need something else?"
+  - text: Do you need something else?
 
-########## ask characteristics ##########
+## challenge
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_bot_goal:
+  - text: 'I am a bot, powered by Rasa. I can help you with your job search or candidate search. '
 
-  utter_ask_inplace_or_remote:
-  - text: "Would you like a candidate to work in place or remotely?"
+## help
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_help:
+  - text: Are you looking for a job? or Are you looking for a candidate?
 
+## inform
+  utter_ask_in_place_or_remote:
+  - text: Would you like a candidate to work in place or remotely?
   utter_ask_to_know_more_about_candidate:
-  - text: "I can help you with that. Colud you please tell me what kind of candidate are you looking for?"
-  
+  - text: I can help you with that. Colud you please tell me what kind of candidate are you looking for?
   utter_ask_candidate_characteristics:
-  - text: "Would you like more details on any of these candidates or do you have specific criteria in mind for the role?"
-
-  utter_ask_candidate_education_level:
-  - text: "What is the education level of the candidate you are looking for? Bachelors, Masters, PhD or Diploma?"
-
+  - text: Would you like more details on any of these candidates or do you have specific criteria in mind for the role?
+  utter_ask_candidate_education:
+  - text: What is the education level of the candidate you are looking for? Bachelors, Masters, PhD or Diploma?
   utter_ask_candidate_salary_max:
-  - text: "What is the maximum salary you are willing to pay?"
-
+  - text: What is the maximum salary you are willing to pay?
   utter_ask_candidate_type_position:
-  - text: "What type of position are you looking for? Full time, Part time or Internship?"
-
+  - text: What type of position are you looking for? Full time, Part time or Internship?
   utter_ask_candidate_experience:
-  - text: "What is the level of experience of the candidate you are looking for? Junior, Senior or Expert?"
-
+  - text: What is the level of experience of the candidate you are looking for? Junior, Senior or Expert?
   utter_ask_relocation:
-  - text: "Would you like the candidate to relocate?"
+  - text: Would you like the candidate to relocate?
 
-########## confirmation ##########
-
+## confirm
   utter_confirmation_searching_for_candidate:
-  - text: "I have noted down your requirements. Now I am searching for the best candidate for you."
-
+  - text: I have noted down your requirements. Now I am searching for the best candidate for you.
   utter_confirmation_searching_for_candidate_2:
-  - text: "Wonderful. I have lots of candidates in mind. Let me find the best one for you."
-
+  - text: Wonderful. I have lots of candidates in mind. Let me find the best one for you.
   utter_which_candidate_confirmation:
-  - text: "Which candidate would you like to know more about? One, Two or Three?"
-
+  - text: Which candidate would you like to know more about? One, Two or Three?
   utter_random_confirmation:
-  - text: "Certainly!!"
-
+  - text: Certainly!!
   utter_random_confirmation_2:
-  - text: "Wonderful!!"
+  - text: Wonderful!!
 
-################################
-
+## excuse
   utter_random_sorry:
-  - text: "Certainly!! Could you please repeat?"
-
+  - text: Certainly!! Could you please repeat?
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
   utter_happy:
-  - text: "Great, carry on!"
-
-
-
-
-      
-
-
-
+  - text: Great, carry on!
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
