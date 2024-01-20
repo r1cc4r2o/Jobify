@@ -3,7 +3,7 @@ YELLOW := "\033[1;33m"
 RED := "\033[1;31m"
 NC := "\033[0m"
 
-.PHONY: install run help
+.PHONY: install run help train
 
 default: help
 
@@ -11,6 +11,7 @@ help:
 	@echo ${GREEN}"Available targets:"${NC}
 	@echo ${YELLOW}"  make install"${NC}" - Install dependencies."
 	@echo ${YELLOW}"  make run"${NC}"     - Launch Rasa shell."
+	@echo ${YELLOW}"  make train"${NC}"   - Launch Rasa train."
 	@echo ${YELLOW}"  make help"${NC}"    - Show this help message."
 	@echo ${GREEN}"Usage:"${NC}
 	@echo "  make <target>"
@@ -28,3 +29,8 @@ run:
 	@echo ${YELLOW}"Launching Rasa shell..."${NC}
 	@rasa shell
 	@echo ${GREEN}"Rasa shell closed."${NC}
+
+train:
+	@echo ${YELLOW}"Starting training..."${NC}
+	@rasa train
+	@echo ${GREEN}"Rasa training completed."${NC}

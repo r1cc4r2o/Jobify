@@ -2,12 +2,40 @@ version: "3.1"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
+- rule: User Wants a Job
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: user_wants_job
+  - action: utter_ask_job_search_conditions
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Provide Job Search Conditions
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: provide_job_search_conditions
+  - action: action_search_jobs
+  - action: utter_job_results
+  - checkpoint: checkpoint_after_job_search
+  - action: utter_ask_another_search
+
+- rule: User Wants Another Job
+  steps:
+  - intent: user_wants_another_job
+  - checkpoint: checkpoint_after_job_search
+  - action: utter_ask_job_search_conditions
+
+- rule: User Wants a Candidate
+  steps:
+  - intent: user_wants_candidate
+  - action: utter_ask_candidate_search_conditions
+
+- rule: Provide Candidate Search Conditions
+  steps:
+  - intent: provide_candidate_search_conditions
+  - action: action_search_candidates
+  - action: utter_candidate_results
+  - checkpoint: checkpoint_after_candidate_search
+  - action: utter_ask_another_search
+
+- rule: User Wants Another Candidate
+  steps:
+  - intent: user_wants_another_candidate
+  - checkpoint: checkpoint_after_candidate_search
+  - action: utter_ask_candidate_search_conditions
