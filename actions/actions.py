@@ -4,7 +4,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-JOBS_VECTOR_DB_PATH = "../data/jobs_index"
+JOBS_VECTOR_DB_PATH = "./data/jobs_index"
 
 class ActionSearchJobs(Action):
     def name(self) -> Text:
