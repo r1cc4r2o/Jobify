@@ -14,7 +14,7 @@ class ActionSearchJobs(Action):
         query = tracker.latest_message.get('text')
 
         db = FAISS_db.load_db(index_path=JOBS_VECTOR_DB_PATH)
-        search_results = FAISS_db.search(query, top_k=3)
+        search_results = FAISS_db.search(db, query)
 
         if search_results:
             message = f"Here are the top job results based on your query:\n"
@@ -34,7 +34,7 @@ class ActionSearchCandidates(Action):
         query = tracker.latest_message.get('text')
 
         db = FAISS_db.load_db(index_path=JOBS_VECTOR_DB_PATH)
-        search_results = FAISS_db.search(query, top_k=3)
+        search_results = FAISS_db.search(db, query)
 
         if search_results:
             message = f"Here are the top candidates results based on your query:\n"
