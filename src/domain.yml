@@ -2,26 +2,48 @@ version: '3.1'
 
 intents:
 - affirm
-- ask_to_know_more_about_candidate
 - bot_challenge
 - bot_goal
-- candidate_role
-- confirm_candidate
-- confirm_candidate_reachout
+
 - deny
 - goodbye
 - greet
-- in_place
 - inform
-- looking_for_candidate
-- looking_for_job
-- looking_for_something_else
 - mood_great
 - mood_unhappy
+
+
+##  looking for a job
+- looking_for_job
+
+
+##  looking for a candidate
+
+- looking_for_candidate
+- candidate_role
+
+- looking_for_something_else
+
+- ask_to_know_more_about_candidate
+
+- confirm_candidate
+- confirm_candidate_reachout
+
 - redo_candidate_profile
-- remote
 - request_looking_for_candidate_form
 - want_stop_conversation
+
+- remote
+- in_place
+
+- full_time
+- part_time
+- internship
+
+- junior
+- senior
+- expert
+
 
 entities:
 - job_characteristics
@@ -62,19 +84,41 @@ slots:
       entity: candidate_salary_max
       value: candidate_salary_max
   candidate_type_position:
-    type: text
+    type: categorical
     influence_conversation: true
+    values:
+    - full_time
+    - part_time
+    - internship
     mappings:
-    - type: from_entity
-      entity: candidate_type_position
-      value: candidate_type_position
+    - type: from_intent
+      intent: full_time
+      value: full_time
+    - type: from_intent
+      intent: part_time
+      value: part_time
+    - type: from_intent
+      intent: internship
+      value: internship
+
   candidate_experience:
-    type: text
+    type: categorical
     influence_conversation: true
+    values:
+    - junior
+    - senior
+    - expert
     mappings:
-    - type: from_entity
-      entity: candidate_experience
-      value: candidate_experience
+    - type: from_intent
+      intent: junior
+      value: junior
+    - type: from_intent
+      intent: senior
+      value: senior
+    - type: from_intent
+      intent: expert
+      value: expert
+
   relocation:
     type: categorical
     values:
@@ -87,6 +131,7 @@ slots:
     - type: from_intent
       intent: deny
       value: no
+
   years_of_experience:
     type: float
     min_value: 0
@@ -95,24 +140,28 @@ slots:
     - type: from_entity
       entity: years_of_experience
       value: years_of_experience
+
   candidate_number:
     type: text
     mappings:
     - type: from_entity
       entity: candidate_number
       value: candidate_number
+
   candidate_education:
     type: text
     mappings:
     - type: from_entity
       entity: candidate_education
       value: candidate_education
+
   candidate_language:
     type: text
     mappings:
     - type: from_entity
       entity: candidate_language
       value: candidate_language
+      
 actions:
 - utter_help
 
@@ -209,6 +258,8 @@ responses:
     image: https://i.imgur.com/nGF1K8f.jpg
   utter_happy:
   - text: Great, carry on!
+
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

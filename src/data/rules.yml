@@ -47,17 +47,18 @@ rules:
 
 # # deactivate the looking for candidate form
 # # when the user provided all the required slots
-# - rule: Deactivate looking for candidate FORM 1
-#   condition:
-#   - active_loop: looking_for_candidate_form
-#   steps:
-#   - action: looking_for_candidate_form
-#   - active_loop: null
-#   - slot_was_set:
-#     - requested_slot: null
-#   - action: action_provide_candidate_profile
-#   - action: utter_which_candidate_confirmation
-#   - che
+- rule: Deactivate looking for candidate FORM 1
+  condition:
+  - active_loop: looking_for_candidate_form
+  steps:
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_ask_candidate_characteristics
+  - intent: candidate_role
+  - action: action_provide_candidate_profile
+  - action: utter_which_candidate_confirmation
 
 # - rule: Deactivate looking for candidate FORM 2
 #   condition:

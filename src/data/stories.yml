@@ -13,8 +13,9 @@ stories:
   - intent: in_place
   - slot_was_set:
     - in_place_or_remote: in_place
-  - action: looking_for_candidate_form
+  - action: looking_for_candidate_formhey there
   - active_loop: looking_for_candidate_form
+  
 
 - story: Intro looking for candidates 2 relocation affirm
   steps:
