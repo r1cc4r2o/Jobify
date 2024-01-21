@@ -1,4 +1,4 @@
-from ..installation.vector_db import FAISS_db
+from installation.vector_db import FAISS_db
 
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
@@ -19,7 +19,7 @@ class ActionSearchJobs(Action):
         if search_results:
             message = f"Here are the top job results based on your query:\n"
             for result in search_results:
-                message += f"{result.page_content}\n"
+                message += f"{result.page_content}\n\n\n"
         else:
             message = "I'm sorry, but I couldn't find any matching jobs."
 

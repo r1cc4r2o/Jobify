@@ -1,6 +1,6 @@
-from langchain_community.document_loaders import CSVLoader
-from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain.document_loaders import CSVLoader
+from langchain.vectorstores.faiss import FAISS
+from langchain.embeddings import HuggingFaceEmbeddings
 
 model = 'sentence-transformers/all-MiniLM-L6-v2'
 

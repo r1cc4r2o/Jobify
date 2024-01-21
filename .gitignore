@@ -400,8 +400,6 @@ FodyWeavers.xsd
 # FAISS db
 *faiss_index
 
-# CSV DATA
-*.csv
 
 *venv/
 *.rasa

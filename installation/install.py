@@ -1,6 +1,5 @@
 import os
 
-from langchain_community.document_loaders import CSVLoader
 from vector_db import create_db
 
 DATA_PATH = "./installation/data/jobs.csv"

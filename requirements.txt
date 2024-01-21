@@ -1,3 +1,4 @@
 faiss-cpu
+rasa
 sentence-transformers
-langchain-community
+langchain
