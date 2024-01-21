@@ -5,6 +5,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
 JOBS_VECTOR_DB_PATH = "./data/jobs_index"
+CANDIDATES_VECTOR_DB_PATH = "./data/candidates_index"
 
 class ActionSearchJobs(Action):
     def name(self) -> Text:
@@ -33,7 +34,7 @@ class ActionSearchCandidates(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         query = tracker.latest_message.get('text')
 
-        db = FAISS_db.load_db(index_path=JOBS_VECTOR_DB_PATH)
+        db = FAISS_db.load_db(index_path=CANDIDATES_VECTOR_DB_PATH)
         search_results = FAISS_db.search(db, query)
 
         if search_results:
