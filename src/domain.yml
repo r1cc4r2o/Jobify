@@ -74,6 +74,7 @@ slots:
     - type: from_intent
       intent: in_place
       value: in_place
+
   candidate_salary_max:
     type: float
     influence_conversation: true
@@ -83,6 +84,7 @@ slots:
     - type: from_entity
       entity: candidate_salary_max
       value: candidate_salary_max
+      
   candidate_type_position:
     type: categorical
     influence_conversation: true
@@ -172,6 +174,7 @@ actions:
 - utter_ask_candidate_salary_max  
 - utter_ask_candidate_type_position
 - utter_ask_candidate_experience
+- utter_confirm_candidate_reachout
 - utter_ask_relocation
 - utter_ask_want_stop_conversation
 - utter_ask_need_something_else

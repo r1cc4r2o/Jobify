@@ -59,6 +59,7 @@ rules:
   - intent: candidate_role
   - action: action_provide_candidate_profile
   - action: utter_which_candidate_confirmation
+  - checkpoint: ask_to_know_more_about_candidate
 
 # - rule: Deactivate looking for candidate FORM 2
 #   condition:
