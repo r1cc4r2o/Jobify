@@ -89,13 +89,13 @@ def random_salary(name_surname_gender_mansion):
     """
     Return random salary
     """
-    return torch.randint(700, 7000, (len(name_surname_gender_mansion),)).tolist()
+    return [str(usd)+' USD' for usd in ((torch.randint(20000, 150000, (len(name_surname_gender_mansion),))/1000).to(torch.int)*1000).tolist()]
 
 ############################################################################################################
 ############################################################################################################
 
 
-def fill_slots_description(description, name, surname, mansion):
+def fill_slots_description(description, name, surname, mansion, experience_years):
     """
     Fill slots in description with random values
 
@@ -118,6 +118,8 @@ def fill_slots_description(description, name, surname, mansion):
     description = description.replace('{NAME}', name)
     description = description.replace('{SURNAME}', surname)
     description = description.replace('{MANSION}', mansion)
+    description = description.replace('{NUMBER}', str(experience_years))
+    
         
     return description
 
@@ -226,7 +228,7 @@ def get_years_experience(name_surname_gender_mansion):
     :return: a list of years of experience for each individual
 
     """
-    return [random.randint(0, 20) for _ in range(len(name_surname_gender_mansion))]
+    return [random.randint(0, 10) for _ in range(len(name_surname_gender_mansion))]
 
 ############################################################################################################
 ############################################################################################################
@@ -262,14 +264,17 @@ def fill_all_slots_salary(name_surname_gender_mansion):
     # get all [name, surname, mansion, description]
     X_description = zip(name_surname_gender_mansion['name'], name_surname_gender_mansion['surname'], name_surname_gender_mansion['mansion'], [random.sample(config.DESCRIPTIONS, 1)[0] for _ in range(len(name_surname_gender_mansion['name']))])
 
+    # add years of experience
+    name_surname_gender_mansion['experience_years'] = get_years_experience(name_surname_gender_mansion)
+    
     # fill slots
-    X_description = [fill_slots_description(description, name, surname, mansion) for name, surname, mansion, description in tqdm(X_description)]   
+    X_description = [fill_slots_description(description, name, surname, mansion, exp) for (name, surname, mansion, description), exp in tqdm(zip(X_description, name_surname_gender_mansion['experience_years']))]   
 
     # add description to df name_surname_gender_mansion
     name_surname_gender_mansion['description'] = X_description
     
     # add salary
-    name_surname_gender_mansion['salary'] = random_salary(name_surname_gender_mansion)
+    name_surname_gender_mansion['minimum salary'] = random_salary(name_surname_gender_mansion)
     
     # add skills
     name_surname_gender_mansion['skills'] = get_5_random_skills(name_surname_gender_mansion)
@@ -296,12 +301,71 @@ def fill_all_slots_salary(name_surname_gender_mansion):
     # add level position
     name_surname_gender_mansion['junior_senior'] = get_level_position(name_surname_gender_mansion)
     
-    # add years of experience
-    name_surname_gender_mansion['experience_years'] = get_years_experience(name_surname_gender_mansion)
-    
     # add education
     name_surname_gender_mansion['level_education'] = get_education(name_surname_gender_mansion)
     
+    return name_surname_gender_mansion
+
+############################################################################################################
+############################################################################################################
+
+def fill_all_slots_salary_faiss(name_surname_gender_mansion):
+    """
+    Fill all slots in description with random attributes in the dictionary
+    in the config file. Additionally, add salary to the df.
+    
+    params: df with [name, surname, mansion, mansion_id]
+    :return: df with [name, surname, mansion, mansion_id, description, salary, skills]
+
+    """
+    
+    # get all [name, surname, mansion, description]
+    X_description = zip(name_surname_gender_mansion['name'], name_surname_gender_mansion['surname'], name_surname_gender_mansion['mansion'], [random.sample(config.DESCRIPTIONS, 1)[0] for _ in range(len(name_surname_gender_mansion['name']))])
+
+    # add years of experience
+    name_surname_gender_mansion['experience_years'] = get_years_experience(name_surname_gender_mansion)
+    
+    # fill slots
+    X_description = [fill_slots_description(description, name, surname, mansion, exp) for (name, surname, mansion, description), exp in tqdm(zip(X_description, name_surname_gender_mansion['experience_years']))]   
+
+    # add description to df name_surname_gender_mansion
+    name_surname_gender_mansion['description'] = X_description
+    
+    # add salary
+    name_surname_gender_mansion['minimum salary'] = random_salary(name_surname_gender_mansion)
+    
+    # add skills
+    name_surname_gender_mansion['skills'] = get_5_random_skills(name_surname_gender_mansion)
+    
+    # add city and country
+    city, country = get_random_city_country(name_surname_gender_mansion)
+    name_surname_gender_mansion['city'] = city
+    name_surname_gender_mansion['country'] = country
+    
+    del city, country
+    
+    # add remote, hybrid or office
+    remote_hybrid_office = ['remote', 'hybrid', 'office']
+    name_surname_gender_mansion['remote_hybrid_office'] = [remote_hybrid_office[item] for item in get_remote_hybrid_office(name_surname_gender_mansion)]
+    
+    # add relocation
+    relocation = ['no', 'yes']
+    name_surname_gender_mansion['relocation'] = [relocation[item] for item in get_relocation(name_surname_gender_mansion)]
+    
+    # add name of companies
+    name_surname_gender_mansion['current_company'] = get_name_companies(name_surname_gender_mansion)
+    
+    # add part or full time
+    part_full_time = ['part time', 'full time']
+    name_surname_gender_mansion['part_full_time'] = [part_full_time[item] for item in get_part_full_time(name_surname_gender_mansion)]
+    
+    # add level position
+    junior_senior = ['junior', 'senior']
+    name_surname_gender_mansion['junior_senior'] = [junior_senior[item] for item in get_level_position(name_surname_gender_mansion)]
+    
+    # add education
+    level_education = ['high school', 'bachelor', 'master', 'phd', 'postdoc']
+    name_surname_gender_mansion['level_education'] = [level_education[item] for item in get_education(name_surname_gender_mansion)]
     return name_surname_gender_mansion
 
 ############################################################################################################
