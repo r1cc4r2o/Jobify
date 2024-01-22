@@ -1,0 +1,4 @@
+faiss-cpu
+rasa
+sentence-transformers
+langchain

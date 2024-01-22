@@ -398,4 +398,12 @@ FodyWeavers.xsd
 *.sln.iml
 
 src/models/*
-src/.rasa/*
+
+# FAISS db
+*faiss_index
+
+
+*venv/
+*.rasa
+
+

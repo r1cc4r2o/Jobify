@@ -2,26 +2,47 @@ version: '3.1'
 
 intents:
 - affirm
-- ask_to_know_more_about_candidate
 - bot_challenge
 - bot_goal
-- candidate_role
-- confirm_candidate
-- confirm_candidate_reachout
+
 - deny
 - goodbye
 - greet
-- in_place
 - inform
-- looking_for_candidate
-- looking_for_job
-- looking_for_something_else
 - mood_great
 - mood_unhappy
+
+
+##  looking for a job
+- looking_for_job
+
+
+##  looking for a candidate
+
+- looking_for_candidate
+- candidate_role
+
+- looking_for_something_else
+
+- ask_to_know_more_about_candidate
+
+- confirm_candidate
+- confirm_candidate_reachout
+
 - redo_candidate_profile
-- remote
 - request_looking_for_candidate_form
 - want_stop_conversation
+
+- remote
+- in_place
+
+- full_time
+- part_time
+- internship
+
+- junior
+- senior
+- expert
 
 entities:
 - job_characteristics
