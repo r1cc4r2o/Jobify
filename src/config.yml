@@ -48,7 +48,7 @@ policies:
   # core_fallback_action_name: "action_default_fallback"
   # enable_fallback_prediction: True
 - name: UnexpecTEDIntentPolicy
-  max_history: 5
+  max_history: 6
   # epochs: 10
   epochs: 100
 - name: TEDPolicy

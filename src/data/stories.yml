@@ -7,7 +7,7 @@ stories:
   - intent: greet
   - action: utter_greet
   - action: utter_help
-  - checkpoint: looking_for_candidate
+  - intent: looking_for_candidate
   - action: utter_ask_in_place_or_remote
   - intent: in_place
   - slot_was_set:
@@ -15,12 +15,73 @@ stories:
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
 
-- story: Intro looking for candidates 2 relocation affirm
+- story: Goodbye 1
+  steps:
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - intent: goodbye
+
+- story: Go back to candidate profile 1
+  steps:
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: redo_candidate_profile
+  - action: utter_random_confirmation
+  - action: utter_help
+  - checkpoint: looking_for_candidate
+
+
+- story: Intro looking for candidates 2
   steps:
   - intent: greet
   - action: utter_greet
   - action: utter_help
-  - checkpoint: looking_for_candidate
+  - intent: looking_for_candidate
+  - action: utter_ask_in_place_or_remote
+  - intent: in_place
+  - slot_was_set:
+    - in_place_or_remote: in_place
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+
+
+
+- story: Intro looking for candidates 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: looking_for_candidate
+  - action: utter_ask_in_place_or_remote
+  - intent: in_place
+  - slot_was_set:
+    - in_place_or_remote: in_place
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: redo_candidate_profile
+  - action: utter_random_confirmation
+  - action: utter_help
+  - intent: looking_for_job
+
+- story: Intro looking for candidates 2 relocation affirm 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: looking_for_candidate
   - action: utter_ask_in_place_or_remote
   - intent: remote
   - slot_was_set:
@@ -31,12 +92,121 @@ stories:
     - relocation: true
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - intent: goodbye
 
-- story: Intro looking for candidates 2 relocation deny
+- story: Intro looking for candidates 2 relocation affirm 2
   steps:
   - intent: greet
   - action: utter_greet
   - action: utter_help
+  - intent: looking_for_candidate
+  - action: utter_ask_in_place_or_remote
+  - intent: remote
+  - slot_was_set:
+    - in_place_or_remote: remote
+  - action: utter_ask_relocation
+  - intent: affirm
+  - slot_was_set:
+    - relocation: true
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: redo_candidate_profile
+  - action: utter_random_confirmation
+  - action: utter_help
+  - checkpoint: looking_for_candidate
+ 
+- story: Intro looking for candidates 2 relocation deny 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: looking_for_candidate
+  - action: utter_ask_in_place_or_remote
+  - intent: remote
+  - slot_was_set:
+    - in_place_or_remote: remote
+  - action: utter_ask_relocation
+  - intent: deny
+  - slot_was_set:
+    - relocation: false
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - intent: goodbye
+
+
+- story: Intro looking for candidates 2 relocation deny 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: looking_for_candidate
+  - action: utter_ask_in_place_or_remote
+  - intent: remote
+  - slot_was_set:
+    - in_place_or_remote: remote
+  - action: utter_ask_relocation
+  - intent: deny
+  - slot_was_set:
+    - relocation: false
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: redo_candidate_profile
+  - action: utter_random_confirmation
+  - action: utter_help
+  - checkpoint: looking_for_candidate
+
+- story: Intro looking for candidates 2 relocation deny 3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: looking_for_candidate
+  - action: utter_ask_in_place_or_remote
+  - intent: remote
+  - slot_was_set:
+    - in_place_or_remote: remote
+  - action: utter_ask_relocation
+  - intent: deny
+  - slot_was_set:
+    - relocation: false
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: redo_candidate_profile
+  - action: utter_random_confirmation
+  - action: utter_help
+  - intent: looking_for_job
+
+- story: Looking for a candidate and reachout
+  steps:
   - checkpoint: looking_for_candidate
   - action: utter_ask_in_place_or_remote
   - intent: remote
@@ -48,6 +218,45 @@ stories:
     - relocation: false
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - intent: goodbye
+  - action: utter_goodbye
+
+
+# - story: Utter ask candidate more info
+#   steps:  
+
+
+# - story: Utter ask candidate redo profile candidate 
+#   steps:  
+#   - intent: ask_to_know_more_about_candidate
+#   - action: action_provide_candidate_profile_details_llm
+#   - action: utter_which_candidate_confirmation
+#   - action: utter_ask_candidate_characteristics
+#   - action: utter_ask_need_something_else
+#   - intent: redo_candidate_profile
+#   - action: utter_random_confirmation
+#   - action: utter_help
+#   - checkpoint: looking_for_candidate
+
+# - story: Utter ask candidate redo profile job
+#   steps:  
+#   - intent: ask_to_know_more_about_candidate
+#   - action: action_provide_candidate_profile_details_llm
+#   - action: utter_which_candidate_confirmation
+#   - action: utter_ask_candidate_characteristics
+#   - action: utter_ask_need_something_else
+#   - intent: redo_candidate_profile
+#   - action: utter_random_confirmation
+#   - action: utter_help
+#   - checkpoint: looking_for_job
+
 
 # - story: Intro looking for candidates candidate role 1
 #   steps:

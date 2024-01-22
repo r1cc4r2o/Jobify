@@ -112,7 +112,7 @@ class ValidateLookingForCandidateForm(FormValidationAction):
         return "validate_looking_for_candidate_form"
     
     def validate_in_place_or_remote(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
-        if slot_value.lower() in ['remote', 'in place']:
+        if slot_value.lower() in ['remote', 'in_place']:
             # confirm the slot value to the user
             dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
             return {"in_place_or_remote": slot_value}
@@ -130,7 +130,7 @@ class ValidateLookingForCandidateForm(FormValidationAction):
             return {"candidate_experience": None}
 
     def validate_candidate_type_position(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
-        if slot_value.lower() in ['full time', 'part time']:
+        if slot_value.lower() in ['full_time', 'part_time', 'internship']:
             # confirm the slot value to the user
             dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
             return {"candidate_type_position": slot_value}
@@ -148,7 +148,6 @@ class ValidateLookingForCandidateForm(FormValidationAction):
             return {"candidate_salary_max": None}
         
     
-
 
 
 class ActionProvideCandidateProfile(Action):

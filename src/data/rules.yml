@@ -18,17 +18,20 @@ rules:
 #   - intent: bot_goal
 #   - action: utter_bot_goal
 
+# - rule: Give to the user details about the candidate
+#   steps:
+
 
 ### Activate looking for candidate FORM ###
 
 # activate the looking for candidate form
 # when the intent looking_for_candidate is 
 # detected
-- rule: Activate looking for candidate FORM
-  steps:
-  - intent: looking_for_candidate
-  - action: looking_for_candidate_form
-  - active_loop: looking_for_candidate_form
+# - rule: Activate looking for candidate FORM
+#   steps:
+#   - intent: looking_for_candidate
+#   - action: looking_for_candidate_form
+#   - active_loop: looking_for_candidate_form
 
 # # deactivate the looking for candidate form
 # # when the user ask that he/she is not looking
@@ -47,17 +50,20 @@ rules:
 
 # # deactivate the looking for candidate form
 # # when the user provided all the required slots
-# - rule: Deactivate looking for candidate FORM 1
-#   condition:
-#   - active_loop: looking_for_candidate_form
-#   steps:
-#   - action: looking_for_candidate_form
-#   - active_loop: null
-#   - slot_was_set:
-#     - requested_slot: null
-#   - action: action_provide_candidate_profile
-#   - action: utter_which_candidate_confirmation
-#   - che
+- rule: Deactivate looking for candidate FORM 1
+  condition:
+  - active_loop: looking_for_candidate_form
+  steps:
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_ask_candidate_characteristics
+  - intent: candidate_role
+  - action: action_provide_candidate_profile
+  - action: utter_which_candidate_confirmation
+  # - intent: ask_to_know_more_about_candidate
+  # - action: action_provide_candidate_profile_details_llm
 
 # - rule: Deactivate looking for candidate FORM 2
 #   condition:

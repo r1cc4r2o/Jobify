@@ -63,6 +63,7 @@ nlu:
     - so so perfect
     - so good
     - so perfect
+
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -79,6 +80,7 @@ nlu:
     - extremly sad
     - so saad
     - so sad
+
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -110,6 +112,7 @@ nlu:
     - Are you a human user?
     - Could you specify if you're a bot or human?
     - I'm curious if you are an automated entity or a human.
+
 - intent: looking_for_job
   examples: |
     - I am looking for a job
@@ -224,6 +227,8 @@ nlu:
     - Perfect! I would like to know more about the candidate [3](candidate_number)
     - Good to know! Can you tell me more about the candidate [1](candidate_number)?
     - The cabdidate [2](candidate_number) is perfect. Can you tell me more about him?
+    - The candidate [3](candidate_number) is perfect. Can you tell me if is a good fit for a software engineer role?
+    - The candidate [1](candidate_number) is perfect. Can you tell me if is a good fit for journalism role?
 
 
 - intent: in_place
@@ -232,6 +237,12 @@ nlu:
     - the candidate should work in place
     - the candidate shouldn't work remotely
     - no remote work
+    - inplace
+    - in-place
+    - in place work
+    - in-place work
+    - not remote
+    - not remote work
 
 - intent: remote
   examples: |
@@ -239,6 +250,12 @@ nlu:
     - the candidate should work remotely
     - the candidate shouldn't work in place
     - no in place work
+    - remote work
+    - remote-work
+    - remote-work
+    - not in place
+    - not in place work
+
 
 - intent: inform
   examples: |
@@ -267,7 +284,7 @@ nlu:
     - The candidate is perfect for the job, please reach out to him
     - The candidate is perfect, please reach out to him
     - The candidate is perfect for the open position, please reach out to him
-    
+
 - intent: want_stop_conversation
   examples: |
     - Yes, I want to stop the conversation
@@ -280,6 +297,7 @@ nlu:
     - I need to go, bye
     - I need to go, bye bye
     - I need to go, goodbye
+
 - intent: go_back_to_candidate_characteristics
   examples: |
     - I would like to go back to the candidate characteristics question
@@ -288,6 +306,7 @@ nlu:
     - I'd like to go back to the candidate characteristics question
     - I would repeat the candidate characteristics question
     - you misunderstood me, I would like to go back to the candidate characteristics question
+
 - intent: bot_goal
   examples: |
     - What is your goal?
@@ -297,15 +316,79 @@ nlu:
     - What is your intention?
     - What is your mission?
     - Why are you here?
+
 - intent: looking_for_something_else
   examples: |
     - I am looking for something else
     - Stop the conversation, I am looking for something else
+
+
 - intent: redo_candidate_profile
   examples: |
     - I would like to redo the candidate profile
     - Could I go back to the candidate profile question?
     - I would like to go back to the candidate profile question
+
+- intent: full_time
+  examples: |
+    - full time
+    - full-time
+    - fulltime
+    - full-time job
+    - fulltime job
+    - full-time position
+    - Full-time position
+    - Full time position
+    - I am looking for a full-time position
+
+- intent: part_time
+  examples: |
+    - part time
+    - part-time
+    - parttime
+    - part-time job
+    - parttime job
+    - part-time position
+    - Part-time position
+    - Part time position
+    - I am looking for a part-time position
+
+- intent: internship
+  examples: |
+    - internship
+    - intern
+    - intern position
+    - intern job
+    - I am looking for an internship
+    - I am looking for an intern position
+    - I am looking for an intern job
+    - trainee
+
+- intent: junior
+  examples: |
+    - junior
+    - junior position
+    - junior job
+    - I am looking for a junior position
+    - I am looking for a junior job
+
+- intent: senior
+  examples: |
+    - senior
+    - senior position
+    - senior job
+    - I am looking for a senior position
+    - I am looking for a senior job
+
+- intent: expert
+  examples: |
+    - expert
+    - expert position
+    - expert job
+    - I am looking for an expert position
+    - I am looking for an expert job
+    
+
 - regex: candidate_number
   examples: |
     - 1

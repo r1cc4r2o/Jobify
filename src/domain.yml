@@ -73,6 +73,7 @@ slots:
     - type: from_intent
       intent: in_place
       value: in_place
+
   candidate_salary_max:
     type: float
     influence_conversation: true
@@ -82,20 +83,43 @@ slots:
     - type: from_entity
       entity: candidate_salary_max
       value: candidate_salary_max
+      
   candidate_type_position:
-    type: text
+    type: categorical
     influence_conversation: true
+    values:
+    - full_time
+    - part_time
+    - internship
     mappings:
-    - type: from_entity
-      entity: candidate_type_position
-      value: candidate_type_position
+    - type: from_intent
+      intent: full_time
+      value: full_time
+    - type: from_intent
+      intent: part_time
+      value: part_time
+    - type: from_intent
+      intent: internship
+      value: internship
+
   candidate_experience:
-    type: text
+    type: categorical
     influence_conversation: true
+    values:
+    - junior
+    - senior
+    - expert
     mappings:
-    - type: from_entity
-      entity: candidate_experience
-      value: candidate_experience
+    - type: from_intent
+      intent: junior
+      value: junior
+    - type: from_intent
+      intent: senior
+      value: senior
+    - type: from_intent
+      intent: expert
+      value: expert
+
   relocation:
     type: categorical
     values:
@@ -108,6 +132,7 @@ slots:
     - type: from_intent
       intent: deny
       value: no
+
   years_of_experience:
     type: float
     min_value: 0
@@ -116,24 +141,28 @@ slots:
     - type: from_entity
       entity: years_of_experience
       value: years_of_experience
+
   candidate_number:
     type: text
     mappings:
     - type: from_entity
       entity: candidate_number
       value: candidate_number
+
   candidate_education:
     type: text
     mappings:
     - type: from_entity
       entity: candidate_education
       value: candidate_education
+
   candidate_language:
     type: text
     mappings:
     - type: from_entity
       entity: candidate_language
       value: candidate_language
+      
 actions:
 - utter_help
 
@@ -144,6 +173,7 @@ actions:
 - utter_ask_candidate_salary_max  
 - utter_ask_candidate_type_position
 - utter_ask_candidate_experience
+- utter_confirm_candidate_reachout
 - utter_ask_relocation
 - utter_ask_want_stop_conversation
 - utter_ask_need_something_else
@@ -230,6 +260,8 @@ responses:
     image: https://i.imgur.com/nGF1K8f.jpg
   utter_happy:
   - text: Great, carry on!
+
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
