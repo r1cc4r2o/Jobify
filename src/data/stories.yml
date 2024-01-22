@@ -15,6 +15,9 @@ stories:
     - in_place_or_remote: in_place
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
+
+- story: Goodbye 1
+  steps:
   - intent: ask_to_know_more_about_candidate
   - action: action_provide_candidate_profile_details_llm
   - action: utter_which_candidate_confirmation
@@ -23,6 +26,19 @@ stories:
   - intent: confirm_candidate_reachout
   - action: utter_confirm_candidate_reachout
   - intent: goodbye
+
+- story: Go back to candidate profile 1
+  steps:
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: redo_candidate_profile
+  - action: utter_random_confirmation
+  - action: utter_help
+  - checkpoint: looking_for_candidate
+
 
 - story: Intro looking for candidates 2
   steps:
@@ -36,15 +52,8 @@ stories:
     - in_place_or_remote: in_place
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
-  - intent: ask_to_know_more_about_candidate
-  - action: action_provide_candidate_profile_details_llm
-  - action: utter_which_candidate_confirmation
-  - action: utter_ask_candidate_characteristics
-  - action: utter_ask_need_something_else
-  - intent: redo_candidate_profile
-  - action: utter_random_confirmation
-  - action: utter_help
-  - intent: looking_for_candidate
+
+
 
 - story: Intro looking for candidates 2
   steps:
@@ -117,7 +126,7 @@ stories:
   - intent: redo_candidate_profile
   - action: utter_random_confirmation
   - action: utter_help
-  - intent: looking_for_candidate
+  - checkpoint: looking_for_candidate
  
 - story: Intro looking for candidates 2 relocation deny 1
   steps:
@@ -169,7 +178,7 @@ stories:
   - intent: redo_candidate_profile
   - action: utter_random_confirmation
   - action: utter_help
-  - intent: looking_for_candidate
+  - checkpoint: looking_for_candidate
 
 - story: Intro looking for candidates 2 relocation deny 3
   steps:
@@ -196,6 +205,30 @@ stories:
   - action: utter_random_confirmation
   - action: utter_help
   - intent: looking_for_job
+
+- story: Looking for a candidate and reachout
+  steps:
+  - checkpoint: looking_for_candidate
+  - action: utter_ask_in_place_or_remote
+  - intent: remote
+  - slot_was_set:
+    - in_place_or_remote: remote
+  - action: utter_ask_relocation
+  - intent: deny
+  - slot_was_set:
+    - relocation: false
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_ask_candidate_characteristics
+  - action: utter_ask_need_something_else
+  - intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - intent: goodbye
+  - action: utter_goodbye
+
 
 # - story: Utter ask candidate more info
 #   steps:  

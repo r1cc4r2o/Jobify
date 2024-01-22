@@ -227,6 +227,8 @@ nlu:
     - Perfect! I would like to know more about the candidate [3](candidate_number)
     - Good to know! Can you tell me more about the candidate [1](candidate_number)?
     - The cabdidate [2](candidate_number) is perfect. Can you tell me more about him?
+    - The candidate [3](candidate_number) is perfect. Can you tell me if is a good fit for a software engineer role?
+    - The candidate [1](candidate_number) is perfect. Can you tell me if is a good fit for journalism role?
 
 
 - intent: in_place
