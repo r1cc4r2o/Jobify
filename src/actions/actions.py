@@ -340,13 +340,24 @@ class ActionSearchCandidates(Action):
         return "action_search_candidates"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        # requested slots
+        in_place_or_remote = tracker.get_slot("in_place_or_remote")
+        candidate_experience = tracker.get_slot("candidate_experience")
+        candidate_type_position = tracker.get_slot("candidate_type_position")
+        candidate_salary_max = tracker.get_slot("candidate_salary_max")
+        
+        MESSAGE_SLOTS = f"""You are looking for a {candidate_experience} candidate for a {candidate_type_position} position with a maximum salary of {candidate_salary_max} USD. The candidate should be {in_place_or_remote}."""
+        
         query = tracker.latest_message.get('text')
+        
+        query = MESSAGE_SLOTS + " " + query
 
         db = FAISS_db.load_db(index_path=CANDIDATES_VECTOR_DB_PATH)
         search_results = FAISS_db.search(db, query)
 
         if search_results:
-            
+    
             message = f"Here are the top candidates results based on your demand:\n"
             
             for result in search_results:
