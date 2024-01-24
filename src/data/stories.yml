@@ -29,6 +29,10 @@ stories:
   - intent: redo_candidate_profile
   - action: utter_random_confirmation
   - action: utter_help
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
   - checkpoint: looking_for_candidate
 
 - story: Go back to candidate profile 2
@@ -36,6 +40,10 @@ stories:
   - intent: redo_candidate_profile
   - action: utter_random_confirmation
   - action: utter_help
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
   - checkpoint: looking_for_job
 
 - story: I am looking for something else 1
