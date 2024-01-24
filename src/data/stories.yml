@@ -22,6 +22,7 @@ stories:
   - intent: confirm_candidate_reachout
   - action: utter_confirm_candidate_reachout
   - intent: goodbye
+  - action: utter_goodbye
 
 - story: Go back to candidate profile 1
   steps:
@@ -48,7 +49,6 @@ stories:
     - intent: affirm
     - intent: deny
   - action: utter_goodbye
-
 
 # - story: Goodbye 1
 #   steps:
