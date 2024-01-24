@@ -261,7 +261,15 @@ nlu:
   examples: |
     - The candidate salary must not exceed [100000](candidate_salary_max) USD
     - The candidate salary shouldn't be more than [100000](candidate_salary_max) USD
-    - The salary range for the candidate should be between [50000](candidate_salary_min) and [100000](candidate_salary_max) USD
+    - The salary range for the candidate should be between [100000](candidate_salary_max) USD
+    - [500000] USD is the maximum salary for the candidate
+    - I'd like to pay the candidate [100000](candidate_salary_max) USD
+    - the maximum salary for the candidate should be [100000](candidate_salary_max) USD
+    - I am willing to pay the candidate [100000](candidate_salary_max) USD
+    - no more than [100000](candidate_salary_max) USD
+    - the maximum salary for the candidate should be [100000](candidate_salary_max) USD
+    - [30000] USD is the minimum salary for the candidate
+    
 
 
 - intent: confirm_candidate

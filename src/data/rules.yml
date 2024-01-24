@@ -3,23 +3,31 @@ version: "3.1"
 
 rules:
 
-# - rule: Say goodbye anytime the user says goodbye
-#   steps:
-#   - intent: goodbye
-#   - action: utter_goodbye
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
 
-# - rule: Say 'I am a bot' anytime the user challenges
-#   steps:
-#   - intent: bot_challenge
-#   - action: utter_iamabot
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
 
-# - rule: Say the bot goal anytime the user asks
-#   steps:
-#   - intent: bot_goal
-#   - action: utter_bot_goal
+- rule: Say the bot goal anytime the user asks
+  steps:
+  - intent: bot_goal
+  - action: utter_bot_goal
 
 # - rule: Give to the user details about the candidate
 #   steps:
+
+- rule: Is the candidate a good fit?
+  steps:
+  - intent: ask_to_know_more_about_candidate
+  - action: action_provide_candidate_profile_details_llm
+  - action: utter_which_candidate_confirmation
+  - action: utter_confirmation_candidate_found
+
 
 
 ### Activate looking for candidate FORM ###
@@ -60,8 +68,10 @@ rules:
     - requested_slot: null
   - action: utter_ask_candidate_characteristics
   - intent: candidate_role
-  - action: action_provide_candidate_profile
+  # - action: action_provide_candidate_profile
+  - action: action_search_candidates
   - action: utter_which_candidate_confirmation
+
   # - intent: ask_to_know_more_about_candidate
   # - action: action_provide_candidate_profile_details_llm
 

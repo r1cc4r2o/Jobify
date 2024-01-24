@@ -37,10 +37,16 @@ model_id = "mistralai/Mistral-7B-Instruct-v0.1"
 
 QUESTION_MANAGER_TEMPLATE = """The manager asks what is in the context above, could you answer his question given the context?"""
 TEMPLATE_RESPONCE_MANAGER = """<s>[INST] You are a helpful, respectful and honest assistant. Answer exactly in few words from the context
-Answer the question below from context below :
+Answer the question below from context below providing an explanation for the answer:
 {context}
 {question_manager}
 {question_manager_template} [/INST] </s>
+"""
+
+TEMPLATE_RESPONCE_MANAGER_profile_summary = """<s>[INST] You are a helpful, respectful and honest assistant. Answer exactly in few words from the context
+Summarize the profile of the candidate below professionaly :
+{user_profile}
+[/INST] </s>
 """
 
 ########################################################################################
@@ -57,12 +63,12 @@ from langchain import PromptTemplate, LLMChain
 
 quantization_config = BitsAndBytesConfig(
     load_in_4bit=True,
-    bnb_4bit_compute_dtype=torch.float16,
+    bnb_4bit_compute_dtype=torch.bfloat16,
     bnb_4bit_quant_type="nf4",
     bnb_4bit_use_double_quant=True,
 )
 
-model_4bit = AutoModelForCausalLM.from_pretrained(model_id, device_map="cuda", quantization_config=quantization_config, )
+model_4bit = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto", quantization_config=quantization_config, )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 pipeline = pipeline(
@@ -100,11 +106,19 @@ from rasa_sdk.executor import CollectingDispatcher
 
 import pandas as pd
 
+from installation.vector_db import FAISS_db
+
+
+JOBS_VECTOR_DB_PATH = "actions\data\jobs_index"
+CANDIDATES_VECTOR_DB_PATH = "actions\data\candidates_index"
+
 
 # GLOBAL VARIABLES set
 DESCRIPTION_USERS = ''
 
 
+
+########################################################################################
 
 
 class ValidateLookingForCandidateForm(FormValidationAction):
@@ -147,7 +161,9 @@ class ValidateLookingForCandidateForm(FormValidationAction):
             dispatcher.utter_message(text="Please specify the maximum salary you are willing to pay.")
             return {"candidate_salary_max": None}
         
-    
+        
+
+########################################################################################
 
 
 class ActionProvideCandidateProfile(Action):
@@ -214,7 +230,12 @@ class ActionProvideCandidateProfile(Action):
         dispatcher.utter_message(text=last_message)
         
         return []
-    
+
+
+
+########################################################################################
+
+
 class ActionCheckConfidence(Action):
     def name(self) -> Text:
         return "action_check_confidence"
@@ -238,6 +259,10 @@ class ActionCheckConfidence(Action):
 
         return []
     
+
+
+########################################################################################
+
 
 class ActionProvideCandidateDetailsWithLLM(Action):
     def name(self) -> Text:
@@ -263,14 +288,96 @@ class ActionProvideCandidateDetailsWithLLM(Action):
             return []
         else:
         
-            # get description of the candidate
-            description = DESCRIPTION_USERS[candidate_number]
+            if DESCRIPTION_USERS != '':
+                # get description of the candidate
+                description = DESCRIPTION_USERS[candidate_number]
+                
+                prompt = PromptTemplate(template=TEMPLATE_RESPONCE_MANAGER, input_variables=["question_manager", "question_manager_template", "context"])
+                llm_chain = LLMChain(prompt=prompt, llm=llm)
+                response = llm_chain.run({"question_manager": last_message, "context":description, "question_manager_template": QUESTION_MANAGER_TEMPLATE})
+                
+                # Send the message back to the user
+                dispatcher.utter_message(text=response)
+                
+            else:
+                dispatcher.utter_message(text="There is no description of the candidates yet in the memory.")
             
-            prompt = PromptTemplate(template=TEMPLATE_RESPONCE_MANAGER, input_variables=["question_manager", "question_manager_template", "context"])
-            llm_chain = LLMChain(prompt=prompt, llm=llm)
-            response = llm_chain.run({"question_manager": last_message, "context":description, "question_manager_template": QUESTION_MANAGER_TEMPLATE})
+            return []
+        
+
+
+########################################################################################
+  
+
+
+class ActionSearchJobs(Action):
+    def name(self) -> Text:
+        return "action_search_jobs"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        query = tracker.latest_message.get('text')
+
+        db = FAISS_db.load_db(index_path=JOBS_VECTOR_DB_PATH)
+        search_results = FAISS_db.search(db, query)
+
+        if search_results:
+            message = f"Here are the top job results based on your query:\n"
+            for result in search_results:
+                message += f"{result.page_content}\n\n\n"
+        else:
+            message = "I'm sorry, but I couldn't find any matching jobs."
+
+        dispatcher.utter_message(text=message)
+        return []
+
+
+
+########################################################################################
+
+
+class ActionSearchCandidates(Action):
+    def name(self) -> Text:
+        return "action_search_candidates"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        query = tracker.latest_message.get('text')
+
+        db = FAISS_db.load_db(index_path=CANDIDATES_VECTOR_DB_PATH)
+        search_results = FAISS_db.search(db, query)
+
+        if search_results:
             
+            message = f"Here are the top candidates results based on your demand:\n"
+            
+            for result in search_results:
+                
+                # get the profile of the candidate
+                profile = f"{result.page_content}\n"
+                
+                # create the prompt
+                prompt = PromptTemplate(template=TEMPLATE_RESPONCE_MANAGER_profile_summary, input_variables=["user_profile"])
+                
+                # create the llm chain
+                llm_chain = LLMChain(prompt=prompt, llm=llm)
+                
+                # get the response from the llm model
+                response = llm_chain.run({"user_profile": profile})
+                
+                message += f"{response}\n\n\n"
+                
             # Send the message back to the user
             dispatcher.utter_message(text=response)
             
-            return []
+            # update the description users global variable
+            global DESCRIPTION_USERS
+            DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], message + message)}
+            
+            utter_ask_to_know_more_about_candidate = "Would you like to know more about one of the candidates? Number 1, 2 or 3?"
+            message_out = message + "\n\n" + utter_ask_to_know_more_about_candidate
+            
+        else:
+            message = "I'm sorry, but I couldn't find any matching candidates."
+
+        dispatcher.utter_message(text=message_out)
+        
+        return []

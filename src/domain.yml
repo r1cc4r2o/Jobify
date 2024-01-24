@@ -77,8 +77,8 @@ slots:
   candidate_salary_max:
     type: float
     influence_conversation: true
-    min_value: 10000
-    max_value: 1000000
+    min_value: 100
+    max_value: 10000000
     mappings:
     - type: from_entity
       entity: candidate_salary_max
@@ -180,9 +180,12 @@ actions:
 - validate_looking_for_candidate_form
 
 - utter_greet
+
 - action_check_confidence
 - action_provide_candidate_profile
 - action_provide_candidate_profile_details_llm
+- action_search_jobs
+- action_search_candidates
 
 forms:
   looking_for_candidate_form:
@@ -247,6 +250,8 @@ responses:
   - text: Wonderful. I have lots of candidates in mind. Let me find the best one for you.
   utter_which_candidate_confirmation:
   - text: Which candidate would you like to know more about? One, Two or Three?
+  utter_confirmation_candidate_found:
+  - text: Or Do you want to confirm a candidate?
   utter_random_confirmation:
   - text: Certainly!!
   utter_random_confirmation_2:
