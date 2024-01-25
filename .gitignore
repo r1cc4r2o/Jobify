@@ -397,6 +397,16 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# ignore .DS_Store files
-*.DS_Store
+src/models/*
+
+# FAISS db
+*index
+data/*
+src/actions/data/*
+src/actions/installation/data/*
+
+
+*venv/
+*.rasa
+
 
