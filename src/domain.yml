@@ -220,9 +220,9 @@ responses:
 
 ## challenge
   utter_iamabot:
-  - text: I am a bot, powered by Rasa.
+  - text: I am a dialogue system, powered by Rasa.
   utter_bot_goal:
-  - text: 'I am a bot, powered by Rasa. I can help you with your job search or candidate search. '
+  - text: 'I am a dialogue system, powered by Rasa. I can help you with your job search or candidate search. '
 
 ## help
   utter_did_that_help:

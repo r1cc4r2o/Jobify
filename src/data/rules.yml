@@ -18,6 +18,13 @@ rules:
   - intent: bot_goal
   - action: utter_bot_goal
 
+- rule: I am not looking for a job nor a candidate
+  steps:
+  - intent: im_not_looking_for_job_nor_for_candidate
+  - action: utter_bot_goal
+  - action: utter_help
+  - action: utter_ask_want_stop_conversation
+
 - rule: Is the candidate a good fit?
   steps:
   - intent: ask_to_know_more_about_candidate
@@ -39,7 +46,7 @@ rules:
 # # deactivate the looking for candidate form
 # # when the user ask that he/she is not looking
 # # for a candidate
-- rule: Deactivate looking for candidate FORM
+- rule: Deactivate looking for candidate FORM (looking for something else)
   condition:
   - active_loop: looking_for_candidate_form
   steps:
@@ -50,6 +57,17 @@ rules:
     - requested_slot: null
   - action: utter_help
   - action: utter_ask_want_stop_conversation
+
+- rule: Deactivate looking for candidate FORM
+  condition:
+  - active_loop: looking_for_candidate_form
+  steps:
+  - intent: im_not_looking_for_job_nor_for_candidate
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
 
 # # deactivate the looking for candidate form
 # # when the user provided all the required slots
