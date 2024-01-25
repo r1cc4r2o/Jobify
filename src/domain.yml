@@ -12,6 +12,7 @@ intents:
 - mood_great
 - mood_unhappy
 
+- im_not_looking_for_job_nor_for_candidate
 
 ##  looking for a job
 - looking_for_job

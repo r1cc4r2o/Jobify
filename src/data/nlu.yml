@@ -396,6 +396,24 @@ nlu:
     - I am looking for an expert position
     - I am looking for an expert job
     
+- intent: im_not_looking_for_job_nor_for_candidate
+  examples: |
+    - I am not looking for a job nor for a candidate
+    - I am not looking for a job
+    - I am not looking for a candidate
+    - I am not looking for a job nor for a candidate
+    - I want an ice cream
+    - I want a pizza
+    - I want a beer
+    - I want a coffee
+    - I want a tea
+    - I want a coke
+    - I want a coke zero
+    - I wand to see a movie
+    - I want to book a flight
+    - I want to book a hotel
+    - I want to call the police
+    - I want a 30 cum laude in human machine dialogue
 
 - regex: candidate_number
   examples: |

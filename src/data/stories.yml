@@ -14,13 +14,13 @@ stories:
   - action: utter_greet
   - action: utter_help
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: in_place
   - slot_was_set:
     - in_place_or_remote: in_place
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
-
 
 - story: Goodbye 1
   steps:
@@ -34,8 +34,8 @@ stories:
   - intent: redo_candidate_profile
   - action: utter_random_confirmation
   - action: utter_help
-  - checkpoint: looking_for_candidate
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: in_place
   - slot_was_set:
@@ -48,8 +48,8 @@ stories:
   - intent: redo_candidate_profile
   - action: utter_random_confirmation
   - action: utter_help
-  - checkpoint: looking_for_candidate
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: remote
   - slot_was_set:
@@ -87,6 +87,7 @@ stories:
   - action: utter_greet
   - action: utter_help
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: in_place
   - slot_was_set:
@@ -103,6 +104,7 @@ stories:
   - action: utter_greet
   - action: utter_help
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: in_place
   - slot_was_set:
@@ -117,6 +119,7 @@ stories:
   - action: utter_greet
   - action: utter_help
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: remote
   - slot_was_set:
@@ -135,6 +138,7 @@ stories:
   - action: utter_greet
   - action: utter_help
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: remote
   - slot_was_set:
@@ -153,6 +157,7 @@ stories:
   - action: utter_greet
   - action: utter_help
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: remote
   - slot_was_set:
@@ -172,6 +177,7 @@ stories:
   - action: utter_greet
   - action: utter_help
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: remote
   - slot_was_set:
@@ -190,6 +196,7 @@ stories:
   - action: utter_greet
   - action: utter_help
   - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
   - action: utter_ask_in_place_or_remote
   - intent: remote
   - slot_was_set:
