@@ -229,6 +229,8 @@ responses:
   - text: Did that help you?
   utter_help:
   - text: Are you looking for a job? or Are you looking for a candidate?
+  utter_feedback:
+  - text: Thanks for the feedback. I will use this to improve my services!
 
 ## inform
   utter_ask_in_place_or_remote:

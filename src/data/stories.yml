@@ -26,6 +26,11 @@ stories:
   steps:
   - intent: confirm_candidate_reachout
   - action: utter_confirm_candidate_reachout
+  - action: utter_did_that_help
+  - or:
+    - intent: affirm
+    - intent: deny
+  - action: utter_feedback
   - intent: goodbye
   - action: utter_goodbye
 
@@ -78,6 +83,7 @@ stories:
   - or:
     - intent: affirm
     - intent: deny
+  - action: utter_feedback
   - action: utter_goodbye
 
 

@@ -2,6 +2,147 @@
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
 
 stories:
+
+
+#####################################################
+# Looking for something else
+#####################################################
+
+- story: looking for something else
+  steps:
+  - user: |
+      I am not looking for a job nor for a candidate
+    intent: im_not_looking_for_job_nor_for_candidate
+  - action: utter_bot_goal
+  - action: utter_help
+  - action: utter_ask_want_stop_conversation
+  - user: |
+      no
+    intent: deny
+  - action: utter_help
+  - user: |
+      I am looking for a candidate
+    intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - user: |
+      remote
+    intent: remote
+  - action: utter_ask_relocation
+  - user: |
+      no
+    intent: deny
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+
+
+- story: looking for something else
+  steps:
+  - user: |
+      I am not looking for a job nor for a candidate
+    intent: im_not_looking_for_job_nor_for_candidate
+  - action: utter_bot_goal
+  - action: utter_help
+  - action: utter_ask_want_stop_conversation
+  - user: |
+      yes
+    intent: affirm
+    - action: utter_did_that_help
+  - user: |
+      no
+    intent: deny
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: looking for something else
+  steps:
+  - user: |
+      I am not looking for a job nor for a candidate
+    intent: im_not_looking_for_job_nor_for_candidate
+  - action: utter_bot_goal
+  - action: utter_help
+  - action: utter_ask_want_stop_conversation
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_did_that_help
+  - user: |
+      yes
+    intent: affirm
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+
+- story: looking for something else
+  steps:
+  - user: |
+      I am not looking for a job nor for a candidate
+    intent: im_not_looking_for_job_nor_for_candidate
+  - action: utter_bot_goal
+  - action: utter_help
+  - action: utter_ask_want_stop_conversation
+  - user: |
+      no
+    intent: deny
+  - action: utter_help
+  - user: |
+      I am looking for a candidate
+    intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - user: |
+      in place
+    intent: in_place
+  - action: utter_ask_relocation
+  - user: |
+      no
+    intent: deny
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+
+
+
+#####################################################
+# Looking for candidate
+#####################################################
+
+- story: Intro looking for candidates 1
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - user: |
+      I am looking for a candidate
+    intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - user: |
+      remote
+    intent: remote
+  - action: utter_ask_relocation
+  - user: |
+      no
+    intent: deny
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+
+
+
+#####################################################
+# Looking for job
+#####################################################
+
+
+#####################################################
+# Default stories 
+#####################################################
+
 - story: happy path 1
   steps:
   - user: |
