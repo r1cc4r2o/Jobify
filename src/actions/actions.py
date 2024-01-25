@@ -44,7 +44,7 @@ Answer the question below from context below providing an explanation for the an
 """
 
 TEMPLATE_RESPONCE_MANAGER_profile_summary = """<s>[INST] You are a helpful, respectful and honest assistant. Answer exactly in few words from the context
-Summarize the profile of the candidate below professionaly :
+Summarize the profile of the candidate below with 4 or 5 sentences:
 {user_profile}
 [/INST] </s>
 """
