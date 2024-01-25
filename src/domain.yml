@@ -31,7 +31,6 @@ intents:
 
 - redo_candidate_profile
 - request_looking_for_candidate_form
-- want_stop_conversation
 
 - remote
 - in_place
@@ -43,6 +42,9 @@ intents:
 - junior
 - senior
 - expert
+
+- want_stop_conversation
+
 
 entities:
 - job_characteristics
@@ -164,7 +166,11 @@ slots:
       value: candidate_language
       
 actions:
+
+- action_custom_fallback # custom fallback action to handle the unknown intents
+
 - utter_help
+- utter_greet
 
 - utter_ask_in_place_or_remote
 - utter_ask_to_know_more_about_candidate
@@ -178,8 +184,6 @@ actions:
 - utter_ask_want_stop_conversation
 - utter_ask_need_something_else
 - validate_looking_for_candidate_form
-
-- utter_greet
 
 - action_check_confidence
 - action_provide_candidate_profile

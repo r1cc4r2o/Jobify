@@ -116,6 +116,17 @@ CANDIDATES_VECTOR_DB_PATH = "actions\data\candidates_index"
 # GLOBAL VARIABLES set
 DESCRIPTION_USERS = ''
 
+########################################################################################
+
+class ActionCustomFallback(Action):
+    def name(self) -> Text:
+        return "action_custom_fallback"
+    
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]: 
+        
+        dispatcher.utter_message(text="I'm sorry, I didn't understand. Could you please rephrase that?")
+        
+        return []
 
 
 ########################################################################################
@@ -309,7 +320,6 @@ class ActionProvideCandidateDetailsWithLLM(Action):
 ########################################################################################
   
 
-
 class ActionSearchJobs(Action):
     def name(self) -> Text:
         return "action_search_jobs"
@@ -392,3 +402,8 @@ class ActionSearchCandidates(Action):
         dispatcher.utter_message(text=message_out)
         
         return []
+    
+    
+########################################################################################
+
+

@@ -18,17 +18,12 @@ rules:
   - intent: bot_goal
   - action: utter_bot_goal
 
-# - rule: Give to the user details about the candidate
-#   steps:
-
 - rule: Is the candidate a good fit?
   steps:
   - intent: ask_to_know_more_about_candidate
   - action: action_provide_candidate_profile_details_llm
   - action: utter_which_candidate_confirmation
   - action: utter_confirmation_candidate_found
-
-
 
 ### Activate looking for candidate FORM ###
 
@@ -72,19 +67,6 @@ rules:
   - action: action_search_candidates
   - action: utter_which_candidate_confirmation
 
-  # - intent: ask_to_know_more_about_candidate
-  # - action: action_provide_candidate_profile_details_llm
-
-# - rule: Deactivate looking for candidate FORM 2
-#   condition:
-#   - active_loop: looking_for_candidate_form
-#   steps:
-#   - action: looking_for_candidate_form
-#   - active_loop: null
-#   - slot_was_set:
-#     - requested_slot: null
-#   - action: action_provide_candidate_profile
-#   - action: utter_which_candidate_confirmation
 
 # # handle interruption 1 in looking for candidate FORM
 # # when the ask if the user ask to the system if it is
@@ -109,11 +91,6 @@ rules:
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
 
-
-# # - rule: Could you please rephrase the candidate characteristics
-# #   steps:
-# #   - intent: characteristics
-# #   - action: action_check_confidence
 
 
 
