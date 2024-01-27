@@ -109,7 +109,19 @@ rules:
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
 
-
+- rule: Deactivate looking for job
+  condition:
+  - active_loop: looking_for_job_form
+  steps:
+  - action: looking_for_job_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_ask_job_characteristics
+  - intent: jod_description
+  # - action: action_provide_candidate_profile
+  - action: action_search_jobs
+  - action: utter_which_jobs_confirmation
 
 
 

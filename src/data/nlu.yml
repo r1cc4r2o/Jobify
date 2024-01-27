@@ -415,6 +415,46 @@ nlu:
     - I want to call the police
     - I want a 30 cum laude in human machine dialogue
 
+- intent: provide_job_title
+  examples: |
+    - Looking for a job as a data scientist
+    - I'm interested in software engineering roles
+    - Seeking a position in artificial intelligence
+    - Job title: Project Manager
+    - I want to work as a UX/UI designer
+    - Searching for jobs in finance, specifically as a financial analyst
+    - I'm a frontend developer looking for new opportunities
+    - Interested in a role as a marketing specialist
+    - I want to find a job in the healthcare industry, preferably as a nurse
+    - Job title: Business Analyst
+    - Exploring opportunities as a sales representative
+    - I'm a recent graduate looking for entry-level positions in computer science
+    - Seeking a job as a machine learning engineer
+    - Job title: Customer Support Representative
+    - I want to work as a graphic designer
+    - I'm looking for positions in the field of cybersecurity
+    - Job title: Human Resources Coordinator
+    - Interested in a role as a product owner
+    - I'm a teacher looking for a job in education administration
+    - Software Developer
+    - Data Scientist
+    - Marketing Manager
+    - Project Manager
+    - Financial Analyst
+    - UX/UI Designer
+    - Frontend Developer
+    - Sales Representative
+    - Graphic Designer
+    - Machine Learning Engineer
+    - Customer Support Representative
+    - Product Owner
+    - Human Resources Coordinator
+    - Nurse
+    - Teacher
+    - Entry-level Computer Science
+    - Cybersecurity Specialist
+    - Education Administrator
+
 - regex: candidate_number
   examples: |
     - 1

@@ -16,6 +16,7 @@ intents:
 
 ##  looking for a job
 - looking_for_job
+- job_description
 
 
 ##  looking for a candidate
@@ -62,6 +63,11 @@ entities:
 - relocation
 - candidate_language
 - candidate_degree
+
+- job_title
+- job_work_type
+- job_country
+- job_salary
 
 slots:
   in_place_or_remote:
@@ -165,6 +171,15 @@ slots:
     - type: from_entity
       entity: candidate_language
       value: candidate_language
+
+  job_title:
+    type: text
+  job_work_type:
+    type: text
+  job_country:
+    type: text
+  job_salary:
+    type: float
       
 actions:
 
@@ -186,6 +201,12 @@ actions:
 - utter_ask_need_something_else
 - validate_looking_for_candidate_form
 
+- utter_ask_job_title
+- utter_ask_job_work_type
+- utter_ask_job_country
+- utter_ask_job_salary
+- utter_ask_job_characteristics
+
 - action_check_confidence
 - action_provide_candidate_profile
 - action_provide_candidate_profile_details_llm
@@ -199,6 +220,12 @@ forms:
     - candidate_experience
     - candidate_type_position
     - candidate_salary_max
+  
+  looking_for_job_form:
+    required_slots:
+    - job_work_type
+    - job_country
+    - job_salary
 
 responses:
 
@@ -250,6 +277,17 @@ responses:
   utter_ask_relocation:
   - text: Would you like the candidate to relocate?
 
+  utter_ask_job_title:
+   - text: "What if the title of the job you're looking for?"
+  utter_ask_job_work_type:
+    - text: "Are you looking for a full-time, part-time, contract, internship, or temporary job?"
+  utter_ask_job_country:
+    - text: "In which country are you looking for a job?"
+  utter_ask_job_salary:
+    - text: "What salary range are you targeting for the job? Please provide a numeric value."
+  utter_ask_job_characteristics:
+    - text: "Please, enter more details you're looking for in your job"
+
 ## confirm
   utter_confirmation_searching_for_candidate:
   - text: I have noted down your requirements. Now I am searching for the best candidate for you.
@@ -263,6 +301,9 @@ responses:
   - text: Certainly!!
   utter_random_confirmation_2:
   - text: Wonderful!!
+
+  utter_which_candidate_confirmation:
+  - text: Which job position would you like to know more about? One, Two or Three?
 
 ## excuse
   utter_random_sorry:

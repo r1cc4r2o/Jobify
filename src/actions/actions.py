@@ -49,6 +49,12 @@ Summarize the profile of the candidate below with 4 or 5 sentences:
 [/INST] </s>
 """
 
+JOB_TEMPLATE = """<s>[INST] You are a helpful, respectful and honest assistant. Answer exactly in few words from the context
+Summarize the profile of the job description below with 2 to 3 sentences:
+{job}
+[/INST] </s>
+"""
+
 ########################################################################################
 # Load minstral-llm model
 ########################################################################################
@@ -106,7 +112,7 @@ from rasa_sdk.executor import CollectingDispatcher
 
 import pandas as pd
 
-from installation.vector_db import FAISS_db
+from src.actions.installation.vector_db import FAISS_db
 
 
 JOBS_VECTOR_DB_PATH = "actions\data\jobs_index"
@@ -128,6 +134,53 @@ class ActionCustomFallback(Action):
         
         return []
 
+
+########################################################################################
+
+
+class ValidateLookingForJobForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_looking_for_job_form"
+
+    def validate_job_work_type(
+        self, 
+        slot_value: Any, 
+        dispatcher: CollectingDispatcher, 
+        tracker: Tracker, 
+        domain: Dict[Text, Any]
+    ) -> Dict[Text, Any]:
+        valid_work_types = ['full_time', 'part_time', 'contract', 'internship', 'temporary']
+        if slot_value.lower() in valid_work_types:
+            dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} job.")
+            return {"job_work_type": slot_value}
+        else:
+            dispatcher.utter_message(text="Please specify the type of job you are looking for (full-time, part-time, contract, internship, temporary).")
+            return {"job_work_type": None}
+
+    def validate_job_country(
+        self, 
+        slot_value: Any, 
+        dispatcher: CollectingDispatcher, 
+        tracker: Tracker, 
+        domain: Dict[Text, Any]
+    ) -> Dict[Text, Any]:
+        # Add any specific validation for job country if needed
+        return {"job_country": slot_value}
+
+    def validate_job_salary(
+        self, 
+        slot_value: Any, 
+        dispatcher: CollectingDispatcher, 
+        tracker: Tracker, 
+        domain: Dict[Text, Any]
+    ) -> Dict[Text, Any]:
+        if slot_value.isdigit():
+            dispatcher.utter_message(text=f"Ok, you are looking for a job with a salary of {slot_value} €.")
+            return {"job_salary": slot_value}
+        else:
+            dispatcher.utter_message(text="Please specify the salary you are looking for (numeric value).")
+            return {"job_salary": None}
+        
 
 ########################################################################################
 
@@ -314,9 +367,23 @@ class ActionProvideCandidateDetailsWithLLM(Action):
                 dispatcher.utter_message(text="There is no description of the candidates yet in the memory.")
             
             return []
-        
+
+######################################################################################## 
 
 
+class ActionSetJobTitle(Action):
+    def name(self) -> Text:
+        return "action_set_job_title"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Get the user input from the latest user message
+        user_input = tracker.latest_message.get("text")
+
+        # Set the job_title slot with the extracted job title
+        dispatcher.utter_message(text=f"Great! I understand you're looking for '{user_input}' positions.")
+        return [SlotSet("job_title", user_input)]
+    
+    
 ########################################################################################
   
 
@@ -325,19 +392,56 @@ class ActionSearchJobs(Action):
         return "action_search_jobs"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # requested slots
+        job_title = tracker.get_slot("job_title")
+        job_work_type = tracker.get_slot("job_work_type")
+        job_country = tracker.get_slot("job_country")
+        job_salary = tracker.get_slot("job_salary")
+        
+        MESSAGE_SLOTS = f"""You requested {job_title}, {job_work_type} position with a salary of {job_salary}, in {job_country}."""
+        
         query = tracker.latest_message.get('text')
+        
+        query = MESSAGE_SLOTS + " " + query
 
         db = FAISS_db.load_db(index_path=JOBS_VECTOR_DB_PATH)
         search_results = FAISS_db.search(db, query)
 
         if search_results:
-            message = f"Here are the top job results based on your query:\n"
+    
+            message = f"Here are the top job results based on your demand:\n"
+            
             for result in search_results:
-                message += f"{result.page_content}\n\n\n"
+                
+                # get the profile of the candidate
+                job = f"{result.page_content}\n"
+                
+                # create the prompt
+                prompt = PromptTemplate(template=JOB_TEMPLATE, input_variables=["job"])
+                
+                # create the llm chain
+                llm_chain = LLMChain(prompt=prompt, llm=llm)
+                
+                # get the response from the llm model
+                response = llm_chain.run({"job": job})
+                
+                message += f"{response}\n\n"
+                
+            # Send the message back to the user
+            dispatcher.utter_message(text=response)
+            
+            # update the description users global variable
+            global DESCRIPTION_USERS
+            DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], message + message)}
+            
+            utter_ask_to_know_more_about_job = "Would you like to know more about one of the job positions? Number 1, 2 or 3?"
+            message_out = message + "\n\n" + utter_ask_to_know_more_about_job
+            
         else:
-            message = "I'm sorry, but I couldn't find any matching jobs."
+            message = "I'm sorry, but I couldn't find any matching job positions."
 
-        dispatcher.utter_message(text=message)
+        dispatcher.utter_message(text=message_out)
+        
         return []
 
 

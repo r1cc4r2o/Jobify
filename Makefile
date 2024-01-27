@@ -22,7 +22,7 @@ install:
 	-@pip install -r requirements.txt
 	@echo ${GREEN}"Dependencies installed successfully."${NC}
 	@echo ${YELLOW}"Creating your vector database..."${NC}
-	@python ./installation/install.py
+	@python ./src/installation/install.py
 	@echo ${GREEN}"Vector database created successfully."${NC}
 
 run:
