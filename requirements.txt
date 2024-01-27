@@ -2,3 +2,6 @@ faiss-cpu
 rasa
 sentence-transformers
 langchain
+accelerate
+bitsandbytes
+pandas

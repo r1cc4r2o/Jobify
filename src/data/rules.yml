@@ -119,7 +119,6 @@ rules:
     - requested_slot: null
   - action: utter_ask_job_characteristics
   - intent: jod_description
-  # - action: action_provide_candidate_profile
   - action: action_search_jobs
   - action: utter_which_jobs_confirmation
 

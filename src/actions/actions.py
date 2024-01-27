@@ -28,7 +28,9 @@
 
 # import actions.utils.utils as utils
 # import actions.utils.config as cfg
-KB_CANDIDATES_PROFILES_PATH = "data\KB_user_profiles.csv.gz"
+from pathlib import Path
+
+KB_CANDIDATES_PROFILES_PATH = Path("data/KB_user_profiles.csv.gz")
 model_id = "mistralai/Mistral-7B-Instruct-v0.1"
 
 ########################################################################################
@@ -112,11 +114,11 @@ from rasa_sdk.executor import CollectingDispatcher
 
 import pandas as pd
 
-from src.actions.installation.vector_db import FAISS_db
+from installation.vector_db import FAISS_db
 
 
-JOBS_VECTOR_DB_PATH = "actions\data\jobs_index"
-CANDIDATES_VECTOR_DB_PATH = "actions\data\candidates_index"
+JOBS_VECTOR_DB_PATH = "actions/data/jobs_index"
+CANDIDATES_VECTOR_DB_PATH = "actions/data/candidates_index"
 
 
 # GLOBAL VARIABLES set
@@ -267,28 +269,28 @@ class ActionProvideCandidateProfile(Action):
         
         # Format the message
         last_messages = [
-                        f"Name: {db['name'].values[i]} {db['surname'].values[i]} \n" +
-                        f"City: {db['city'].values[i]} \n" +
-                        f"Relocation: {relocations[i]} \n" +
-                        f"Salary: {db['salary'].values[i]} \n" +
-                        f"Skills: {db['skills'].values[i]} \n" +
-                        f"Mansion: {db['mansion'].values[i]} \n" +
-                        f"Part/Full Time: {db['part_full_time'].values[i]} \n" +
-                        f"Experience Years: {db['experience_years'].values[i]} \n" + 
-                        f"Level Education: {levels_education[i]} \n" +
-                        f"Description: {db['description'].values[i]} \n" for i in range(len(db))
+                        f"Name: {db['name'].values[i]} {db['surname'].values[i]} /n" +
+                        f"City: {db['city'].values[i]} /n" +
+                        f"Relocation: {relocations[i]} /n" +
+                        f"Salary: {db['salary'].values[i]} /n" +
+                        f"Skills: {db['skills'].values[i]} /n" +
+                        f"Mansion: {db['mansion'].values[i]} /n" +
+                        f"Part/Full Time: {db['part_full_time'].values[i]} /n" +
+                        f"Experience Years: {db['experience_years'].values[i]} /n" + 
+                        f"Level Education: {levels_education[i]} /n" +
+                        f"Description: {db['description'].values[i]} /n" for i in range(len(db))
                     ] 
-                    #    f"Similarity: {db['similarity'].values[i]} \n"
+                    #    f"Similarity: {db['similarity'].values[i]} /n"
                     
         # join the messages
-        last_message = "\n\n".join(last_messages)
+        last_message = "/n/n".join(last_messages)
         
         # update the description users global variable
         global DESCRIPTION_USERS
         DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], last_messages + last_messages)}
         
         utter_ask_to_know_more_about_candidate = "Would you like to know more about one of the candidates? Number 1, 2 or 3?"
-        last_message = last_message + "\n\n" + utter_ask_to_know_more_about_candidate
+        last_message = last_message + "/n/n" + utter_ask_to_know_more_about_candidate
         
         # Send the message back to the user
         dispatcher.utter_message(text=last_message)
@@ -409,12 +411,12 @@ class ActionSearchJobs(Action):
 
         if search_results:
     
-            message = f"Here are the top job results based on your demand:\n"
+            message = f"Here are the top job results based on your demand:/n"
             
             for result in search_results:
                 
                 # get the profile of the candidate
-                job = f"{result.page_content}\n"
+                job = f"{result.page_content}/n"
                 
                 # create the prompt
                 prompt = PromptTemplate(template=JOB_TEMPLATE, input_variables=["job"])
@@ -425,7 +427,7 @@ class ActionSearchJobs(Action):
                 # get the response from the llm model
                 response = llm_chain.run({"job": job})
                 
-                message += f"{response}\n\n"
+                message += f"{response}/n/n"
                 
             # Send the message back to the user
             dispatcher.utter_message(text=response)
@@ -435,7 +437,7 @@ class ActionSearchJobs(Action):
             DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], message + message)}
             
             utter_ask_to_know_more_about_job = "Would you like to know more about one of the job positions? Number 1, 2 or 3?"
-            message_out = message + "\n\n" + utter_ask_to_know_more_about_job
+            message_out = message + "/n/n" + utter_ask_to_know_more_about_job
             
         else:
             message = "I'm sorry, but I couldn't find any matching job positions."
@@ -472,12 +474,12 @@ class ActionSearchCandidates(Action):
 
         if search_results:
     
-            message = f"Here are the top candidates results based on your demand:\n"
+            message = f"Here are the top candidates results based on your demand:/n"
             
             for result in search_results:
                 
                 # get the profile of the candidate
-                profile = f"{result.page_content}\n"
+                profile = f"{result.page_content}/n"
                 
                 # create the prompt
                 prompt = PromptTemplate(template=TEMPLATE_RESPONCE_MANAGER_profile_summary, input_variables=["user_profile"])
@@ -488,7 +490,7 @@ class ActionSearchCandidates(Action):
                 # get the response from the llm model
                 response = llm_chain.run({"user_profile": profile})
                 
-                message += f"{response}\n\n\n"
+                message += f"{response}/n/n/n"
                 
             # Send the message back to the user
             dispatcher.utter_message(text=response)
@@ -498,7 +500,7 @@ class ActionSearchCandidates(Action):
             DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], message + message)}
             
             utter_ask_to_know_more_about_candidate = "Would you like to know more about one of the candidates? Number 1, 2 or 3?"
-            message_out = message + "\n\n" + utter_ask_to_know_more_about_candidate
+            message_out = message + "/n/n" + utter_ask_to_know_more_about_candidate
             
         else:
             message = "I'm sorry, but I couldn't find any matching candidates."

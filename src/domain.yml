@@ -17,6 +17,7 @@ intents:
 ##  looking for a job
 - looking_for_job
 - job_description
+- provide_job_title
 
 
 ##  looking for a candidate
@@ -174,12 +175,31 @@ slots:
 
   job_title:
     type: text
+    mappings:
+    - type: from_entity
+      entity: job_title
+      value: job_title
+
   job_work_type:
     type: text
+    mappings:
+    - type: from_entity
+      entity: job_work_type
+      value: job_work_type
+
   job_country:
     type: text
+    mappings:
+    - type: from_entity
+      entity: job_country
+      value: job_country
+
   job_salary:
     type: float
+    mappings:
+    - type: from_entity
+      entity: job_salary
+      value: job_salary
       
 actions:
 
@@ -201,11 +221,15 @@ actions:
 - utter_ask_need_something_else
 - validate_looking_for_candidate_form
 
+- utter_confirmation_searching_for_job
+- action_set_job_title
+
 - utter_ask_job_title
 - utter_ask_job_work_type
 - utter_ask_job_country
 - utter_ask_job_salary
 - utter_ask_job_characteristics
+- utter_which_jobs_confirmation
 
 - action_check_confidence
 - action_provide_candidate_profile
@@ -302,7 +326,9 @@ responses:
   utter_random_confirmation_2:
   - text: Wonderful!!
 
-  utter_which_candidate_confirmation:
+  utter_confirmation_searching_for_job:
+  - text: Wonderful. I have lots of jobs in mind. Let me find the best one for you.
+  utter_which_job_confirmation:
   - text: Which job position would you like to know more about? One, Two or Three?
 
 ## excuse
