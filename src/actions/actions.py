@@ -31,6 +31,17 @@
 from pathlib import Path
 
 KB_CANDIDATES_PROFILES_PATH = Path("data/KB_user_profiles.csv.gz")
+
+
+JOBS_VECTOR_DB_PATH = "actions/data/jobs_index"
+CANDIDATES_VECTOR_DB_PATH = "actions/data/candidates_index"
+
+
+# GLOBAL VARIABLES set
+DESCRIPTION_USERS = ''
+
+########################################################################################
+
 model_id = "mistralai/Mistral-7B-Instruct-v0.1"
 
 ########################################################################################
@@ -68,6 +79,26 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import rbf_kernel, linear_kernel, cosine_similarity, sigmoid_kernel, euclidean_distances, manhattan_distances, cosine_distances
+
+from typing import Any, Text, Dict, List
+
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+
+from rasa_sdk import Tracker, FormValidationAction, Action
+from rasa_sdk.events import SlotSet, EventType
+from rasa_sdk.types import DomainDict
+from rasa_sdk.executor import CollectingDispatcher
+
+import pandas as pd
+
+from installation.vector_db import FAISS_db
+
+
+########################################################################################
+########################################################################################
 
 quantization_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -95,34 +126,6 @@ pipeline = pipeline(
 
 llm = HuggingFacePipeline(pipeline=pipeline)
 
-########################################################################################
-########################################################################################
-
-
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import rbf_kernel, linear_kernel, cosine_similarity, sigmoid_kernel, euclidean_distances, manhattan_distances, cosine_distances
-
-from typing import Any, Text, Dict, List
-
-from rasa_sdk import Action, Tracker
-from rasa_sdk.executor import CollectingDispatcher
-
-from rasa_sdk import Tracker, FormValidationAction, Action
-from rasa_sdk.events import SlotSet, EventType
-from rasa_sdk.types import DomainDict
-from rasa_sdk.executor import CollectingDispatcher
-
-import pandas as pd
-
-from installation.vector_db import FAISS_db
-
-
-JOBS_VECTOR_DB_PATH = "actions/data/jobs_index"
-CANDIDATES_VECTOR_DB_PATH = "actions/data/candidates_index"
-
-
-# GLOBAL VARIABLES set
-DESCRIPTION_USERS = ''
 
 ########################################################################################
 
@@ -355,6 +358,7 @@ class ActionProvideCandidateDetailsWithLLM(Action):
         else:
         
             if DESCRIPTION_USERS != '':
+                
                 # get description of the candidate
                 description = DESCRIPTION_USERS[candidate_number]
                 
@@ -369,6 +373,8 @@ class ActionProvideCandidateDetailsWithLLM(Action):
                 dispatcher.utter_message(text="There is no description of the candidates yet in the memory.")
             
             return []
+        
+        
 
 ######################################################################################## 
 
@@ -474,12 +480,13 @@ class ActionSearchCandidates(Action):
 
         if search_results:
     
-            message = f"Here are the top candidates results based on your demand:/n"
+            message = f"Here are the top candidates results based on your demand:\n"
+            list_candidates = []
             
             for result in search_results:
                 
                 # get the profile of the candidate
-                profile = f"{result.page_content}/n"
+                profile = f"{result.page_content}\n"
                 
                 # create the prompt
                 prompt = PromptTemplate(template=TEMPLATE_RESPONCE_MANAGER_profile_summary, input_variables=["user_profile"])
@@ -490,17 +497,19 @@ class ActionSearchCandidates(Action):
                 # get the response from the llm model
                 response = llm_chain.run({"user_profile": profile})
                 
-                message += f"{response}/n/n/n"
+                message += f"{response}\n\n\n"
+                
+                list_candidates.append(response)
+                
                 
             # Send the message back to the user
             dispatcher.utter_message(text=response)
             
             # update the description users global variable
             global DESCRIPTION_USERS
-            DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], message + message)}
+            DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], list_candidates + list_candidates)}
             
-            utter_ask_to_know_more_about_candidate = "Would you like to know more about one of the candidates? Number 1, 2 or 3?"
-            message_out = message + "/n/n" + utter_ask_to_know_more_about_candidate
+            message_out = message
             
         else:
             message = "I'm sorry, but I couldn't find any matching candidates."
