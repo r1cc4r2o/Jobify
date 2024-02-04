@@ -231,6 +231,23 @@ nlu:
     - The candidate [1](candidate_number) is perfect. Can you tell me if is a good fit for journalism role?
 
 
+- intent: ask_to_know_more_about_job
+  examples: |
+    - Can you tell me more about the job position [1](job_number)?
+    - Could you tell me more about the job [1](job_number)?
+    - Tell me more about job [2](job_number)?
+    - I would like to know more about job [3](job_number)
+    - I want to know more about the candidate [1](job_number)
+    - The Job [2](job_number) sounds interesting. Can you tell me more about it?
+    - Would you like to know more about job [3](job_number)?
+    - It would be great if you could tell me more about the job position [1](job_number)
+    - Perhaps you could tell me more about position [2](job_number)?
+    - Perfect! I would like to know more about number [3](job_number)
+    - The job position [2](job_number) is perfect. Can you tell me more about him?
+    - The job [3](job_number) is perfect.
+    - The job [1](job_number) is perfect.
+
+
 - intent: in_place
   examples: |
     - in place
@@ -395,7 +412,7 @@ nlu:
     - expert job
     - I am looking for an expert position
     - I am looking for an expert job
-    
+
 - intent: im_not_looking_for_job_nor_for_candidate
   examples: |
     - I am not looking for a job nor for a candidate
@@ -454,6 +471,101 @@ nlu:
     - Entry-level Computer Science
     - Cybersecurity Specialist
     - Education Administrator
+
+- intent: provide_job_salary
+  examples: |
+    - [50000](job_salary)
+    - [70000](job_salary)
+    - [100000](job_salary)
+    - At least [80000](job_salary)
+    - Minimum salary of [90000](job_salary)
+    - Around [60000](job_salary)
+    - Salary [100000](job_salary)
+    - Not less than [75000](job_salary)
+    - More than [85000](job_salary)
+    - Over [70000](job_salary)
+    - [110000](job_salary)
+    - At least [95000](job_salary)
+    - Exceeding [120000](job_salary)
+    - [68000](job_salary)
+    - At least [85000](job_salary)
+
+
+
+- intent: provide_job_country
+  examples: |
+    - I'd love to work in [Italy](job_country)
+    - Dreaming of a job in [Spain](job_country)
+    - Seeking opportunities in [Germany](job_country)
+    - Ready to relocate to the [United States](job_country)
+    - Looking for a career change in the [United Kingdom](job_country)
+    - Exploring job options in [France](job_country)
+    - Considering a move to [Canada](job_country)
+    - Eager to work Down Under in [Australia](job_country)
+    - Hoping to find a job in the [Netherlands](job_country)
+    - Aspiring to work in the beautiful [Switzerland](job_country)
+    - Dream job destination: [Japan](job_country)
+    - Ready for an adventure in [South Korea](job_country)
+    - Imagining a career in [Brazil](job_country)
+    - Dreaming big in the [United Arab Emirates](job_country)
+    - Exploring job opportunities in [New Zealand](job_country)
+    - Picturing a career in the bustling city of [Singapore](job_country)
+    - Seeking job satisfaction in [South Africa](job_country)
+    - Embarking on a job search journey in [Thailand](job_country)
+    - Considering job options in the tech hub of [India](job_country)
+    - Dreaming of a job by the beach in [Maldives](job_country)
+    - Imagining a career in the historic land of [Egypt](job_country)
+    - Hoping for job success in the vibrant city of [Mexico](job_country)
+    - Considering job opportunities in the diverse nation of [Nigeria](job_country)
+    - Visualizing a career in the cultural hub of [Ghana](job_country)
+    - Aspiring to work in the heart of [Argentina](job_country)
+    - Dreaming big in the land of [Ireland](job_country)
+    - Picturing a career in the enchanting [Fiji](job_country)
+    - Imagining a job in the beautiful islands of [Philippines](job_country)
+    - Considering job opportunities in the dynamic city of [Singapore](job_country)
+    - Dreaming of a job in the scenic landscapes of [New Zealand](job_country)
+    - Aspiring to work in the bustling [UK](job_country)
+    - Visualizing a career in the vibrant tech scene of [USA](job_country)
+
+- intent: job_description
+  examples: |
+    - Dynamic work environment
+    - I'd love to work in a startup company
+    - The ideal job position has remote possibilities
+    - Exciting opportunities for professional growth
+    - Seeking a role with a collaborative team
+    - Emphasis on innovation and creativity
+    - A job with a focus on cutting-edge technologies
+    - Work that allows for a healthy work-life balance
+    - Looking for a challenging and rewarding job
+    - Passionate about contributing to meaningful projects
+    - Seeking a role with a diverse and inclusive workplace
+    - Interested in a position that encourages continuous learning
+    - The perfect job involves problem-solving and critical thinking
+    - Valuing work that makes a positive impact on society
+    - Opportunities for leadership and career advancement
+    - Ideal role involves working with emerging technologies
+    - Balancing autonomy and teamwork in the workplace
+    - A job that aligns with my values and passions
+    - Seeking a role with opportunities for travel
+    - A position that fosters creativity and innovation
+    - Looking for a job that encourages work-life integration
+    - The perfect job allows for flexible scheduling
+    - Excited about contributing to a positive company culture
+    - A role that emphasizes adaptability and flexibility
+    - Enthusiastic about contributing to a collaborative team
+    - Seeking a job that promotes diversity and inclusion
+    - Passionate about working on impactful projects
+    - Ideal role involves continuous professional development
+    - A job with opportunities for leadership and mentorship
+    - Valuing a work environment that promotes well-being
+    - Interested in a position with a global impact
+    - Excited about contributing to cutting-edge research
+    - A job that values open communication and transparency
+    - Seeking a role with a focus on sustainability and ethics
+    - Ideal position involves contributing to social responsibility
+    - A job that aligns with personal and professional goals
+
 
 - regex: candidate_number
   examples: |

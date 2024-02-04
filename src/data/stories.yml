@@ -240,5 +240,68 @@ stories:
   - action: utter_ask_job_title
   - intent: provide_job_title
   - action: action_set_job_title
+  - action: utter_ask_job_country
+  - intent: provide_job_country
+  # - action: action_set_job_country
+  - action: utter_ask_job_salary
+  - intent: provide_job_salary
+  # - action: action_set_job_salary
   - action: looking_for_job_form
   - active_loop: looking_for_job_form
+
+- story: No greet looking for candidate in place
+  steps:
+  - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - intent: in_place
+  - slot_was_set:
+    - in_place_or_remote: in_place
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+
+- story: No greet looking for job
+  steps:
+  - intent: looking_for_job
+  - action: utter_confirmation_searching_for_job
+  - action: utter_ask_job_title
+  - intent: provide_job_title
+  - action: action_set_job_title
+  - action: utter_ask_job_country
+  - intent: provide_job_country
+  # - action: action_set_job_country
+  - action: utter_ask_job_salary
+  - intent: provide_job_salary
+  # - action: action_set_job_salary
+  - action: looking_for_job_form
+  - active_loop: looking_for_job_form
+
+- story: No greet looking for candidate remote false
+  steps:
+  - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - intent: remote
+  - slot_was_set:
+    - in_place_or_remote: remote
+  - action: utter_ask_relocation
+  - intent: deny
+  - slot_was_set:
+    - relocation: false
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+
+- story: No greet looking for candidate remote true
+  steps:
+  - intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - intent: remote
+  - slot_was_set:
+    - in_place_or_remote: remote
+  - action: utter_ask_relocation
+  - intent: deny
+  - slot_was_set:
+    - relocation: true
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form

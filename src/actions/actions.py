@@ -28,13 +28,13 @@
 
 # import actions.utils.utils as utils
 # import actions.utils.config as cfg
-from pathlib import Path
+# from pathlib import Path
 
-KB_CANDIDATES_PROFILES_PATH = Path("data/KB_user_profiles.csv.gz")
+# KB_CANDIDATES_PROFILES_PATH = Path("data/KB_user_profiles.csv.gz")
 
 
-JOBS_VECTOR_DB_PATH = "actions/data/jobs_index"
-CANDIDATES_VECTOR_DB_PATH = "actions/data/candidates_index"
+JOBS_VECTOR_DB_PATH = "data/jobs_index"
+CANDIDATES_VECTOR_DB_PATH = "data/candidates_index"
 
 
 # GLOBAL VARIABLES set
@@ -57,7 +57,7 @@ Answer the question below from context below providing an explanation for the an
 """
 
 TEMPLATE_RESPONCE_MANAGER_profile_summary = """<s>[INST] You are a helpful, respectful and honest assistant. Answer exactly in few words from the context
-Summarize the profile of the candidate below with 4 or 5 sentences:
+Summarize the profile of the candidate below with 2 or 3 sentences:
 {user_profile}
 [/INST] </s>
 """
@@ -154,7 +154,7 @@ class ValidateLookingForJobForm(FormValidationAction):
         tracker: Tracker, 
         domain: Dict[Text, Any]
     ) -> Dict[Text, Any]:
-        valid_work_types = ['full_time', 'part_time', 'contract', 'internship', 'temporary']
+        valid_work_types = ['full_time', 'part_time','internship']
         if slot_value.lower() in valid_work_types:
             dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} job.")
             return {"job_work_type": slot_value}
@@ -169,7 +169,27 @@ class ValidateLookingForJobForm(FormValidationAction):
         tracker: Tracker, 
         domain: Dict[Text, Any]
     ) -> Dict[Text, Any]:
-        # Add any specific validation for job country if needed
+        valid_countries = [
+    "Italy", "Spain", "Germany", "United States", "United Kingdom",
+    "France", "Canada", "Australia", "Netherlands", "Switzerland",
+    "Sweden", "Norway", "Denmark", "Finland", "Belgium", "Austria",
+    "Ireland", "Portugal", "Greece", "Luxembourg", "Poland", "Czech Republic",
+    "Hungary", "Romania", "Bulgaria", "Croatia", "Slovenia", "Slovakia",
+    "Estonia", "Latvia", "Lithuania", "Malta", "Cyprus", "Iceland", "Liechtenstein",
+    "Monaco", "San Marino", "Vatican City", "Japan", "South Korea", "China",
+    "India", "Singapore", "Malaysia", "Thailand", "Indonesia", "Vietnam", "Brazil",
+    "Argentina", "Mexico", "South Africa", "Nigeria", "Kenya", "Egypt", "Morocco",
+    "Ghana", "Senegal", "Ivory Coast", "Tunisia", "Algeria", "Saudi Arabia",
+    "United Arab Emirates", "Qatar", "Kuwait", "Bahrain", "Oman", "Jordan",
+    "Lebanon", "Israel", "Palestine", "Turkey", "Iran", "Iraq", "Syria", "Yemen",
+    "Afghanistan", "Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Bhutan",
+    "Maldives", "Myanmar", "Laos", "Cambodia", "Vietnam", "Philippines", "Brunei",
+    "East Timor", "Papua New Guinea", "Solomon Islands", "Fiji", "Samoa", "Tonga",
+    "Tuvalu", "Kiribati", "Marshall Islands", "Micronesia", "Palau", "Nauru",
+    "Vanuatu", "New Zealand", "Antarctica", "UK", "US", "USA"
+]
+        if slot_value.lower() in valid_countries:
+            dispatcher.utter_message(text=f"Ok, you are looking for a job in {slot_value}.")
         return {"job_country": slot_value}
 
     def validate_job_salary(
@@ -180,7 +200,7 @@ class ValidateLookingForJobForm(FormValidationAction):
         domain: Dict[Text, Any]
     ) -> Dict[Text, Any]:
         if slot_value.isdigit():
-            dispatcher.utter_message(text=f"Ok, you are looking for a job with a salary of {slot_value} €.")
+            dispatcher.utter_message(text=f"Ok, you are looking for a job with a salary of {slot_value}.")
             return {"job_salary": slot_value}
         else:
             dispatcher.utter_message(text="Please specify the salary you are looking for (numeric value).")
@@ -235,70 +255,70 @@ class ValidateLookingForCandidateForm(FormValidationAction):
 ########################################################################################
 
 
-class ActionProvideCandidateProfile(Action):
-    def __init__(self):
-        super().__init__()
+# class ActionProvideCandidateProfile(Action):
+    # def __init__(self):
+    #     super().__init__()
         
-        self.KB_CANDIDATES_PROFILES = pd.read_csv(KB_CANDIDATES_PROFILES_PATH, compression='gzip')
+    #     self.KB_CANDIDATES_PROFILES = pd.read_csv(KB_CANDIDATES_PROFILES_PATH, compression='gzip')
         
-        # Text Preprocessing
-        self.vectorizer = TfidfVectorizer(stop_words='english') 
-        self.tfidf_matrix = self.vectorizer.fit_transform(self.KB_CANDIDATES_PROFILES['description'].fillna(''))
+    #     # Text Preprocessing
+    #     self.vectorizer = TfidfVectorizer(stop_words='english') 
+    #     self.tfidf_matrix = self.vectorizer.fit_transform(self.KB_CANDIDATES_PROFILES['description'].fillna(''))
 
-    def name(self) -> Text:
-        return "action_provide_candidate_profile"
+    # def name(self) -> Text:
+    #     return "action_provide_candidate_profile"
     
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]: 
+    # def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]: 
         
-        # Get last message
-        last_message = tracker.latest_message.get('text', '')
+    #     # Get last message
+    #     last_message = tracker.latest_message.get('text', '')
         
-        # Feature Extraction
-        input_vector = self.vectorizer.transform([last_message])
+    #     # Feature Extraction
+    #     input_vector = self.vectorizer.transform([last_message])
         
-        # Similarity Calculation
-        cosine_similarities = linear_kernel(input_vector, self.tfidf_matrix).flatten()   
+    #     # Similarity Calculation
+    #     cosine_similarities = linear_kernel(input_vector, self.tfidf_matrix).flatten()   
         
-        db = self.KB_CANDIDATES_PROFILES.copy()
+    #     db = self.KB_CANDIDATES_PROFILES.copy()
         
-        # Ranking
-        db['similarity'] = cosine_similarities
-        ranked_profiles = db.sort_values(by='similarity', ascending=False)
+    #     # Ranking
+    #     db['similarity'] = cosine_similarities
+    #     ranked_profiles = db.sort_values(by='similarity', ascending=False)
         
-        db = ranked_profiles[['name', 'surname',  'salary', 'description', 'skills', 'mansion', 'city', 'relocation', 'part_full_time', 'experience_years', 'level_education', 'similarity']].head(3)
+    #     db = ranked_profiles[['name', 'surname',  'salary', 'description', 'skills', 'mansion', 'city', 'relocation', 'part_full_time', 'experience_years', 'level_education', 'similarity']].head(3)
         
-        levels_education = ["Bachelor's Degree" if db['level_education'].values[i] == 1 else "Master's Degree" for i in range(len(db))]
-        relocations = ['Yes' if db['relocation'].values[i] == 1 else 'No' for i in range(len(db))]
+    #     levels_education = ["Bachelor's Degree" if db['level_education'].values[i] == 1 else "Master's Degree" for i in range(len(db))]
+    #     relocations = ['Yes' if db['relocation'].values[i] == 1 else 'No' for i in range(len(db))]
         
-        # Format the message
-        last_messages = [
-                        f"Name: {db['name'].values[i]} {db['surname'].values[i]} /n" +
-                        f"City: {db['city'].values[i]} /n" +
-                        f"Relocation: {relocations[i]} /n" +
-                        f"Salary: {db['salary'].values[i]} /n" +
-                        f"Skills: {db['skills'].values[i]} /n" +
-                        f"Mansion: {db['mansion'].values[i]} /n" +
-                        f"Part/Full Time: {db['part_full_time'].values[i]} /n" +
-                        f"Experience Years: {db['experience_years'].values[i]} /n" + 
-                        f"Level Education: {levels_education[i]} /n" +
-                        f"Description: {db['description'].values[i]} /n" for i in range(len(db))
-                    ] 
-                    #    f"Similarity: {db['similarity'].values[i]} /n"
+    #     # Format the message
+    #     last_messages = [
+    #                     f"Name: {db['name'].values[i]} {db['surname'].values[i]} \n" +
+    #                     f"City: {db['city'].values[i]} \n" +
+    #                     f"Relocation: {relocations[i]} \n" +
+    #                     f"Salary: {db['salary'].values[i]} \n" +
+    #                     f"Skills: {db['skills'].values[i]} \n" +
+    #                     f"Mansion: {db['mansion'].values[i]} \n" +
+    #                     f"Part/Full Time: {db['part_full_time'].values[i]} \n" +
+    #                     f"Experience Years: {db['experience_years'].values[i]} \n" + 
+    #                     f"Level Education: {levels_education[i]} \n" +
+    #                     f"Description: {db['description'].values[i]} \n" for i in range(len(db))
+    #                 ] 
+    #                 #    f"Similarity: {db['similarity'].values[i]} \n"
                     
-        # join the messages
-        last_message = "/n/n".join(last_messages)
+    #     # join the messages
+    #     last_message = "\n\n".join(last_messages)
         
-        # update the description users global variable
-        global DESCRIPTION_USERS
-        DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], last_messages + last_messages)}
+    #     # update the description users global variable
+    #     global DESCRIPTION_USERS
+    #     DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], last_messages + last_messages)}
         
-        utter_ask_to_know_more_about_candidate = "Would you like to know more about one of the candidates? Number 1, 2 or 3?"
-        last_message = last_message + "/n/n" + utter_ask_to_know_more_about_candidate
+    #     utter_ask_to_know_more_about_candidate = "Would you like to know more about one of the candidates? Number 1, 2 or 3?"
+    #     last_message = last_message + "\n\n" + utter_ask_to_know_more_about_candidate
         
-        # Send the message back to the user
-        dispatcher.utter_message(text=last_message)
+    #     # Send the message back to the user
+    #     dispatcher.utter_message(text=last_message)
         
-        return []
+    #     return []
 
 
 
@@ -379,6 +399,52 @@ class ActionProvideCandidateDetailsWithLLM(Action):
 ######################################################################################## 
 
 
+class ActionProvideCandidateDetailsWithLLM(Action):
+    def name(self) -> Text:
+        return "action_provide_job_profile_details_llm"
+    
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]: 
+
+        # Get last message
+        last_message = tracker.latest_message.get('text', '')
+        
+        # get entities
+        entities = tracker.latest_message['entities']
+        
+        candidate_number = None
+        # get number of candidate
+        for e in entities:
+            if e['entity'] == 'job_number':
+                candidate_number = e['value'].lower()
+                break
+            
+        if candidate_number is None:
+            dispatcher.utter_message(text="Please specify the number of the job position you want to know more about.")
+            return []
+        else:
+        
+            if DESCRIPTION_USERS != '':
+                
+                # get description of the candidate
+                description = DESCRIPTION_USERS[candidate_number]
+                
+                prompt = PromptTemplate(template=TEMPLATE_RESPONCE_MANAGER, input_variables=["question_manager", "question_manager_template", "context"])
+                llm_chain = LLMChain(prompt=prompt, llm=llm)
+                response = llm_chain.run({"question_manager": last_message, "context":description, "question_manager_template": QUESTION_MANAGER_TEMPLATE})
+                
+                # Send the message back to the user
+                dispatcher.utter_message(text=response)
+                
+            else:
+                dispatcher.utter_message(text="There is no description of those jobs yet.")
+            
+            return []
+        
+        
+
+######################################################################################## 
+
+
 class ActionSetJobTitle(Action):
     def name(self) -> Text:
         return "action_set_job_title"
@@ -390,6 +456,38 @@ class ActionSetJobTitle(Action):
         # Set the job_title slot with the extracted job title
         dispatcher.utter_message(text=f"Great! I understand you're looking for '{user_input}' positions.")
         return [SlotSet("job_title", user_input)]
+    
+    
+########################################################################################
+
+
+class ActionSetJobCountry(Action):
+    def name(self) -> Text:
+        return "action_set_job_country"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Get the user input from the latest user message
+        user_input = tracker.latest_message.get("text")
+
+        # Set the job_title slot with the extracted job title
+        dispatcher.utter_message(text=f"Great! So you're looking for a job in '{user_input}'.")
+        return [SlotSet("job_country", user_input)]
+    
+    
+########################################################################################
+
+
+class ActionSetJobSalary(Action):
+    def name(self) -> Text:
+        return "action_set_job_salary"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Get the user input from the latest user message
+        user_input = tracker.latest_message.get("text")
+
+        # Set the job_title slot with the extracted job title
+        dispatcher.utter_message(text=f"Ok! you're looking for a salary of '{user_input}'.")
+        return [SlotSet("job_salary", user_input)]
     
     
 ########################################################################################
@@ -406,7 +504,7 @@ class ActionSearchJobs(Action):
         job_country = tracker.get_slot("job_country")
         job_salary = tracker.get_slot("job_salary")
         
-        MESSAGE_SLOTS = f"""You requested {job_title}, {job_work_type} position with a salary of {job_salary}, in {job_country}."""
+        MESSAGE_SLOTS = f"""I want a job as {job_title}, {job_work_type} with a salary of {job_salary}, in {job_country}."""
         
         query = tracker.latest_message.get('text')
         
@@ -417,12 +515,12 @@ class ActionSearchJobs(Action):
 
         if search_results:
     
-            message = f"Here are the top job results based on your demand:/n"
-            
+            message = f"Here are the top job results based on your demand:\n"
+
             for result in search_results:
                 
                 # get the profile of the candidate
-                job = f"{result.page_content}/n"
+                job = f"{result.page_content}\n"
                 
                 # create the prompt
                 prompt = PromptTemplate(template=JOB_TEMPLATE, input_variables=["job"])
@@ -433,17 +531,14 @@ class ActionSearchJobs(Action):
                 # get the response from the llm model
                 response = llm_chain.run({"job": job})
                 
-                message += f"{response}/n/n"
+                message += f"{response}\n\n"
                 
-            # Send the message back to the user
-            dispatcher.utter_message(text=response)
             
             # update the description users global variable
             global DESCRIPTION_USERS
             DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], message + message)}
             
-            utter_ask_to_know_more_about_job = "Would you like to know more about one of the job positions? Number 1, 2 or 3?"
-            message_out = message + "/n/n" + utter_ask_to_know_more_about_job
+            message_out = message
             
         else:
             message = "I'm sorry, but I couldn't find any matching job positions."
@@ -501,9 +596,6 @@ class ActionSearchCandidates(Action):
                 
                 list_candidates.append(response)
                 
-                
-            # Send the message back to the user
-            dispatcher.utter_message(text=response)
             
             # update the description users global variable
             global DESCRIPTION_USERS
@@ -512,7 +604,7 @@ class ActionSearchCandidates(Action):
             message_out = message
             
         else:
-            message = "I'm sorry, but I couldn't find any matching candidates."
+            message_out = "I'm sorry, but I couldn't find any matching candidates."
 
         dispatcher.utter_message(text=message_out)
         

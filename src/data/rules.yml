@@ -31,6 +31,13 @@ rules:
   - action: action_provide_candidate_profile_details_llm
   - action: utter_which_candidate_confirmation
   - action: utter_confirmation_candidate_found
+ 
+- rule: Is the job a good fit?
+  steps:
+  - intent: ask_to_know_more_about_job
+  - action: action_provide_job_profile_details_llm
+  - action: utter_which_job_confirmation
+  - action: utter_confirmation_job_found
 
 ### Activate looking for candidate FORM ###
 
@@ -118,7 +125,7 @@ rules:
   - slot_was_set:
     - requested_slot: null
   - action: utter_ask_job_characteristics
-  - intent: jod_description
+  - intent: job_description
   - action: action_search_jobs
   - action: utter_which_jobs_confirmation
 
