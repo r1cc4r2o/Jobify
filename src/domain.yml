@@ -359,9 +359,7 @@ responses:
   - text: Wonderful. I have lots of jobs in mind. Let me find the best one for you.
   utter_which_job_confirmation:
   - text: Which job position would you like to know more about? One, Two or Three?
-  utter_which_job_confirmation:
-  - text: Which job would you like to know more about? One, Two or Three?
-  utter_confirmation_candidate_found:
+  utter_confirmation_job_found:
   - text: Or Do you want to confirm a job?
 
 ## excuse
