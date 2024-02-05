@@ -11,11 +11,13 @@ stories:
 - story: Intro looking for candidates 1
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: in_place
   - slot_was_set:
     - in_place_or_remote: in_place
@@ -25,8 +27,9 @@ stories:
 - story: Goodbye 1
   steps:
   - intent: confirm_candidate_reachout
-  - action: utter_confirm_candidate_reachout
-  - action: utter_did_that_help
+  # - action: utter_confirm_candidate_reachout
+  # - action: utter_did_that_help
+  - action: utter_confirm_candidate_reachout_did_that_help
   - or:
     - intent: affirm
     - intent: deny
@@ -37,11 +40,13 @@ stories:
 - story: Go back to candidate profile 1.1
   steps:
   - intent: redo_candidate_profile
-  - action: utter_random_confirmation
-  - action: utter_help
+  # - action: utter_random_confirmation
+  # - action: utter_help
+  - action: utter_random_confirmation_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: in_place
   - slot_was_set:
     - in_place_or_remote: in_place
@@ -51,11 +56,13 @@ stories:
 - story: Go back to candidate profile 1.2
   steps:
   - intent: redo_candidate_profile
-  - action: utter_random_confirmation
-  - action: utter_help
+  # - action: utter_random_confirmation
+  # - action: utter_help
+  - action: utter_random_confirmation_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: remote
   - slot_was_set:
     - in_place_or_remote: remote
@@ -69,32 +76,37 @@ stories:
 - story: Go back to candidate profile 2
   steps:
   - intent: redo_candidate_profile
-  - action: utter_random_confirmation
-  - action: utter_help
+  # - action: utter_random_confirmation
+  # - action: utter_help
+  - action: utter_random_confirmation_help
   - checkpoint: looking_for_job
 
 - story: I am looking for something else 1
   steps:
   - intent: looking_for_something_else
-  - action: utter_help
-  - action: utter_ask_want_stop_conversation
+  # - action: utter_help
+  # - action: utter_ask_want_stop_conversation
+  - action: utter_help_ask_want_stop_conversation
   - intent: want_stop_conversation
   - action: utter_did_that_help
   - or:
     - intent: affirm
     - intent: deny
-  - action: utter_feedback
-  - action: utter_goodbye
+  # - action: utter_feedback
+  # - action: utter_goodbye
+  - action: utter_feedback_goodbye
 
 
 - story: Intro looking for candidates 2
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: in_place
   - slot_was_set:
     - in_place_or_remote: in_place
@@ -107,11 +119,13 @@ stories:
 - story: Intro looking for candidates 2
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: in_place
   - slot_was_set:
     - in_place_or_remote: in_place
@@ -122,11 +136,13 @@ stories:
 - story: Intro looking for candidates 2 relocation affirm 1
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: remote
   - slot_was_set:
     - in_place_or_remote: remote
@@ -141,11 +157,13 @@ stories:
 - story: Intro looking for candidates 2 relocation affirm 2
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: remote
   - slot_was_set:
     - in_place_or_remote: remote
@@ -160,11 +178,13 @@ stories:
 - story: Intro looking for candidates 2 relocation deny 1
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: remote
   - slot_was_set:
     - in_place_or_remote: remote
@@ -180,11 +200,13 @@ stories:
 - story: Intro looking for candidates 2 relocation deny 2
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: remote
   - slot_was_set:
     - in_place_or_remote: remote
@@ -199,11 +221,13 @@ stories:
 - story: Intro looking for candidates 2 relocation deny 3
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: remote
   - slot_was_set:
     - in_place_or_remote: remote
@@ -233,11 +257,13 @@ stories:
 - story: Intro looking for job 1
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_help
+  # - action: utter_greet
+  # - action: utter_help
+  - action: utter_greet_help
   - intent: looking_for_job
-  - action: utter_confirmation_searching_for_job
-  - action: utter_ask_job_title
+  # - action: utter_confirmation_searching_for_job
+  # - action: utter_ask_job_title
+  - action: utter_confirmation_searching_for_job_2_ask_job_title
   - intent: provide_job_title
   - action: action_set_job_title
   - action: utter_ask_job_country
@@ -252,8 +278,9 @@ stories:
 - story: No greet looking for candidate in place
   steps:
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: in_place
   - slot_was_set:
     - in_place_or_remote: in_place
@@ -263,8 +290,9 @@ stories:
 - story: No greet looking for job
   steps:
   - intent: looking_for_job
-  - action: utter_confirmation_searching_for_job
-  - action: utter_ask_job_title
+  # - action: utter_confirmation_searching_for_job
+  # - action: utter_ask_job_title
+  - action: utter_confirmation_searching_for_job_2_ask_job_title
   - intent: provide_job_title
   - action: action_set_job_title
   - action: utter_ask_job_country
@@ -279,8 +307,9 @@ stories:
 - story: No greet looking for candidate remote false
   steps:
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: remote
   - slot_was_set:
     - in_place_or_remote: remote
@@ -294,8 +323,9 @@ stories:
 - story: No greet looking for candidate remote true
   steps:
   - intent: looking_for_candidate
-  - action: utter_confirmation_searching_for_candidate_2
-  - action: utter_ask_in_place_or_remote
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  - action: utter_confirmation_searching_for_candidate_2_in_place_or_remote
   - intent: remote
   - slot_was_set:
     - in_place_or_remote: remote

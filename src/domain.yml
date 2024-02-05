@@ -286,6 +286,11 @@ responses:
   utter_greet:
   - text: Hey! Glad to help you out.
 
+  # - action: utter_greet
+  # - action: utter_help
+  utter_greet_help:
+  - text: Hey! Glad to help you out. Are you looking for a job or a candidate?
+
 ## goodbye
   utter_goodbye:
   - text: Bye, it was nice talking to you. See you soon.
@@ -311,7 +316,10 @@ responses:
   - text: Are you looking for a job? or Are you looking for a candidate?
   utter_feedback:
   - text: Thanks for the feedback. I will use this to improve my services!
-
+  # - action: utter_feedback
+  # - action: utter_goodbye
+  utter_feedback_goodbye:
+  - text: Thanks for the feedback. I will use this to improve my services! Bye, it was nice talking to you. See you soon.
 ## inform
   utter_ask_in_place_or_remote:
   - text: Would you like a candidate to work in place or remotely?
@@ -362,6 +370,36 @@ responses:
   utter_confirmation_job_found:
   - text: Or Do you want to confirm a job?
 
+  # - action: utter_confirmation_searching_for_candidate_2
+  # - action: utter_ask_in_place_or_remote
+  utter_confirmation_searching_for_candidate_2_in_place_or_remote:
+  - text: Wonderful. I have lots of candidates in mind. Let me find the best one for you. Would you like a candidate to work in place or remotely?
+
+  # - action: utter_random_confirmation
+  # - action: utter_help
+  utter_random_confirmation_help:
+  - text: Certainly!! Are you looking for a job? or Are you looking for a candidate?
+
+  # - action: utter_help
+  # - action: utter_ask_want_stop_conversation
+  utter_help_ask_want_stop_conversation:
+  - text: Are you looking for a job? or Are you looking for a candidate? Or Do you want to stop the conversation?
+  
+  # - action: utter_confirmation_searching_for_job
+  # - action: utter_ask_job_title
+  utter_confirmation_searching_for_job_2_ask_job_title:
+  - text: Wonderful. I have lots of jobs in mind. Let me find the best one for you. What is the title of the job you're looking for?
+
+  # - action: utter_bot_goal
+  # - action: utter_help
+  # - action: utter_ask_want_stop_conversation
+  utter_bot_goal_help_ask_want_stop_conversation:
+  - text: I can help you with your job search or candidate search. Are you looking for a job? or Are you looking for a candidate? Or Do you want to stop the conversation?
+  
+  # - action: utter_confirm_candidate_reachout
+  # - action: utter_did_that_help
+  utter_confirm_candidate_reachout_did_that_help:
+  - text: Great. I will reach out him/her and get back to you soon. Did that help you?
 ## excuse
   utter_random_sorry:
   - text: Certainly!! Could you please repeat?

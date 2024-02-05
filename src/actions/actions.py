@@ -386,6 +386,8 @@ class ActionProvideCandidateDetailsWithLLM(Action):
                 llm_chain = LLMChain(prompt=prompt, llm=llm)
                 response = llm_chain.run({"question_manager": last_message, "context":description, "question_manager_template": QUESTION_MANAGER_TEMPLATE})
                 
+                response = response + "\n\n" + "Which candidate would you like to know more about? One, Two or Three?" + "\n\n" + "Or Do you want to confirm a candidate?"
+                
                 # Send the message back to the user
                 dispatcher.utter_message(text=response)
                 
@@ -431,6 +433,8 @@ class ActionProvideCandidateDetailsWithLLM(Action):
                 prompt = PromptTemplate(template=TEMPLATE_RESPONCE_MANAGER, input_variables=["question_manager", "question_manager_template", "context"])
                 llm_chain = LLMChain(prompt=prompt, llm=llm)
                 response = llm_chain.run({"question_manager": last_message, "context":description, "question_manager_template": QUESTION_MANAGER_TEMPLATE})
+                
+                response = response + "\n\n" + "Which job would you like to know more about? One, Two or Three?" + "\n\n" + "Or Do you want to confirm a job?"
                 
                 # Send the message back to the user
                 dispatcher.utter_message(text=response)
@@ -538,6 +542,8 @@ class ActionSearchJobs(Action):
             global DESCRIPTION_USERS
             DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], message + message)}
             
+            message = message + "Which job would you like to know more about? One, Two or Three?"
+            
             message_out = message
             
         else:
@@ -600,6 +606,8 @@ class ActionSearchCandidates(Action):
             # update the description users global variable
             global DESCRIPTION_USERS
             DESCRIPTION_USERS = {i: desc for i, desc in zip(['1', '2', '3', 'one', 'two', 'three'], list_candidates + list_candidates)}
+            
+            message = message + "Which candidate would you like to know more about? One, Two or Three?"
             
             message_out = message
             
