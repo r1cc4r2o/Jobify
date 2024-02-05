@@ -1,0 +1,56 @@
+[
+  {
+    "text": "A candidate with a Ph.D. in data science is preferred",
+    "entities": [
+      {
+        "start": 19,
+        "end": 24,
+        "value": "Ph.D.",
+        "entity": "candidate_education"
+      },
+      {
+        "start": 28,
+        "end": 40,
+        "value": "data science",
+        "entity": "candidate_degree"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_degree",
+        "start": 28,
+        "end": 40,
+        "confidence_entity": 0.9820797443389893,
+        "value": "data science",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "I want to know more about the candidate 1",
+    "entities": [
+      {
+        "start": 40,
+        "end": 41,
+        "value": "1",
+        "entity": "candidate_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_number",
+        "start": 40,
+        "end": 41,
+        "confidence_entity": 0.7206697463989258,
+        "value": "1",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  }
+]

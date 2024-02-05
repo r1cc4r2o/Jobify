@@ -1,0 +1,18 @@
+[
+  {
+    "text": "I want to know more about the candidate 1",
+    "intent": "ask_to_know_more_about_candidate",
+    "intent_prediction": {
+      "name": "ask_to_know_more_about_job",
+      "confidence": 0.6250707507133484
+    }
+  },
+  {
+    "text": "the candidate should work in place",
+    "intent": "in_place",
+    "intent_prediction": {
+      "name": "remote",
+      "confidence": 0.5571445822715759
+    }
+  }
+]

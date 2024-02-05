@@ -47,7 +47,7 @@ stories:
   - user: |
       yes
     intent: affirm
-    - action: utter_did_that_help
+  - action: utter_did_that_help
   - user: |
       no
     intent: deny

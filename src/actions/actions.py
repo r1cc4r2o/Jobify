@@ -156,7 +156,7 @@ class ValidateLookingForJobForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         valid_work_types = ['full_time', 'part_time','internship']
         if slot_value.lower() in valid_work_types:
-            dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} job.")
+            # dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} job.")
             return {"job_work_type": slot_value}
         else:
             dispatcher.utter_message(text="Please specify the type of job you are looking for (full-time, part-time, contract, internship, temporary).")
@@ -188,8 +188,8 @@ class ValidateLookingForJobForm(FormValidationAction):
     "Tuvalu", "Kiribati", "Marshall Islands", "Micronesia", "Palau", "Nauru",
     "Vanuatu", "New Zealand", "Antarctica", "UK", "US", "USA"
 ]
-        if slot_value.lower() in valid_countries:
-            dispatcher.utter_message(text=f"Ok, you are looking for a job in {slot_value}.")
+        # if slot_value.lower() in valid_countries:
+            # dispatcher.utter_message(text=f"Ok, you are looking for a job in {slot_value}.")
         return {"job_country": slot_value}
 
     def validate_job_salary(
@@ -200,7 +200,13 @@ class ValidateLookingForJobForm(FormValidationAction):
         domain: Dict[Text, Any]
     ) -> Dict[Text, Any]:
         if slot_value.isdigit():
-            dispatcher.utter_message(text=f"Ok, you are looking for a job with a salary of {slot_value}." + "\n\n" + "Please, enter more details you're looking for in your job.")
+            job_title = tracker.get_slot("job_title")
+            job_work_type = tracker.get_slot("job_work_type")
+            job_country = tracker.get_slot("job_country")
+            job_salary = tracker.get_slot("job_salary")
+            
+            MESSAGE_SLOTS = f"""Ok, you want a job as {job_title}, {job_work_type} with a salary of {job_salary}, in {job_country}."""
+            dispatcher.utter_message(text=f"Ok, you are looking for a job with a salary of {job_salary}." + "\n\n" + "Please, enter more details you're looking for in your job.")
             return {"job_salary": slot_value}
         else:
             dispatcher.utter_message(text="Please specify the salary you are looking for (numeric value).")
@@ -217,7 +223,7 @@ class ValidateLookingForCandidateForm(FormValidationAction):
     def validate_in_place_or_remote(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
         if slot_value.lower() in ['remote', 'in_place']:
             # confirm the slot value to the user
-            dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
+            # dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
             return {"in_place_or_remote": slot_value}
         else:
             dispatcher.utter_message(text="Please specify if you are looking for a remote or in place candidate.")
@@ -226,7 +232,7 @@ class ValidateLookingForCandidateForm(FormValidationAction):
     def validate_candidate_experience(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
         if slot_value.lower() in ['junior', 'senior', 'expert']:
             # confirm the slot value to the user
-            dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
+            # dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
             return {"candidate_experience": slot_value}
         else:
             dispatcher.utter_message(text="Please specify if you are looking for a junior or senior candidate.")
@@ -235,7 +241,7 @@ class ValidateLookingForCandidateForm(FormValidationAction):
     def validate_candidate_type_position(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
         if slot_value.lower() in ['full_time', 'part_time', 'internship']:
             # confirm the slot value to the user
-            dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
+            # dispatcher.utter_message(text=f"Ok, you are looking for a {slot_value} candidate.")
             return {"candidate_type_position": slot_value}
         else:
             dispatcher.utter_message(text="Please specify if you are looking for a full time or part time candidate.")
@@ -243,8 +249,13 @@ class ValidateLookingForCandidateForm(FormValidationAction):
         
     def validate_candidate_salary_max(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
         if slot_value.isdigit():
+            in_place_or_remote = tracker.get_slot("in_place_or_remote")
+            candidate_experience = tracker.get_slot("candidate_experience")
+            candidate_type_position = tracker.get_slot("candidate_type_position")
+            
+            MESSAGE_SLOTS = f"""You are looking for a {candidate_experience} candidate for a {candidate_type_position} position with a maximum salary of {slot_value} USD. The candidate should be {in_place_or_remote}."""
             # confirm the slot value to the user
-            dispatcher.utter_message(text=f"Ok, you are looking for a candidate with a maximum salary of {slot_value} €." + "\n\n" + "Would you like more details on any of these candidates or do you have specific criteria in mind for the role?")
+            dispatcher.utter_message(text=MESSAGE_SLOTS + "\n\n" + "Would you like more details on any of these candidates or do you have specific criteria in mind for the role?")
             return {"candidate_salary_max": slot_value}
         else:
             dispatcher.utter_message(text="Please specify the maximum salary you are willing to pay.")
@@ -458,7 +469,7 @@ class ActionSetJobTitle(Action):
         user_input = tracker.latest_message.get("text")
 
         # Set the job_title slot with the extracted job title
-        dispatcher.utter_message(text=f"Great! I understand you're looking for '{user_input}' positions.")
+        dispatcher.utter_message(text=f"Great! I understand you're looking for '{user_input}' positions." + "\n\n" +  "In which country are you looking for a job?")
         return [SlotSet("job_title", user_input)]
     
     
@@ -474,7 +485,7 @@ class ActionSetJobCountry(Action):
         user_input = tracker.latest_message.get("text")
 
         # Set the job_title slot with the extracted job title
-        dispatcher.utter_message(text=f"Great! So you're looking for a job in '{user_input}'.")
+        # dispatcher.utter_message(text=f"Great! So you're looking for a job in '{user_input}'.")
         return [SlotSet("job_country", user_input)]
     
     
@@ -490,7 +501,7 @@ class ActionSetJobSalary(Action):
         user_input = tracker.latest_message.get("text")
 
         # Set the job_title slot with the extracted job title
-        dispatcher.utter_message(text=f"Ok! you're looking for a salary of '{user_input}'.")
+        # dispatcher.utter_message(text=f"Ok! you're looking for a salary of '{user_input}'.")
         return [SlotSet("job_salary", user_input)]
     
     
