@@ -401,11 +401,8 @@ src/models/*
 
 # FAISS db
 *index
-data/*
-src/actions/data/*
-src/actions/installation/data/*
 
-
+rasa.db
 *venv/
 *.rasa
 
