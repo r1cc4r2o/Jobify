@@ -92,7 +92,7 @@ rules:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_ask_candidate_characteristics
+  # - action: utter_ask_candidate_characteristics
   - intent: candidate_role
   # - action: action_provide_candidate_profile
   - action: action_search_candidates
@@ -131,7 +131,7 @@ rules:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_ask_job_characteristics
+  # - action: utter_ask_job_characteristics
   - intent: job_description
   - action: action_search_jobs
   # - action: utter_which_jobs_confirmation

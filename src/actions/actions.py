@@ -200,7 +200,7 @@ class ValidateLookingForJobForm(FormValidationAction):
         domain: Dict[Text, Any]
     ) -> Dict[Text, Any]:
         if slot_value.isdigit():
-            dispatcher.utter_message(text=f"Ok, you are looking for a job with a salary of {slot_value}.")
+            dispatcher.utter_message(text=f"Ok, you are looking for a job with a salary of {slot_value}." + "\n\n" + "Please, enter more details you're looking for in your job.")
             return {"job_salary": slot_value}
         else:
             dispatcher.utter_message(text="Please specify the salary you are looking for (numeric value).")
@@ -244,7 +244,7 @@ class ValidateLookingForCandidateForm(FormValidationAction):
     def validate_candidate_salary_max(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict,) -> Dict[Text, Any]:
         if slot_value.isdigit():
             # confirm the slot value to the user
-            dispatcher.utter_message(text=f"Ok, you are looking for a candidate with a maximum salary of {slot_value} €.")
+            dispatcher.utter_message(text=f"Ok, you are looking for a candidate with a maximum salary of {slot_value} €." + "\n\n" + "Would you like more details on any of these candidates or do you have specific criteria in mind for the role?")
             return {"candidate_salary_max": slot_value}
         else:
             dispatcher.utter_message(text="Please specify the maximum salary you are willing to pay.")
