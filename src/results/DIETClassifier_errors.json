@@ -1,0 +1,773 @@
+[
+  {
+    "text": "We are seeking someone with a Bachelor's degree in engineering",
+    "entities": [
+      {
+        "start": 30,
+        "end": 38,
+        "value": "Bachelor",
+        "entity": "candidate_education"
+      },
+      {
+        "start": 51,
+        "end": 62,
+        "value": "engineering",
+        "entity": "candidate_degree"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_education",
+        "start": 30,
+        "end": 38,
+        "confidence_entity": 0.9383527636528015,
+        "value": "Bachelor",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Perfect! I would like to know more about number 3",
+    "entities": [
+      {
+        "start": 48,
+        "end": 49,
+        "value": "3",
+        "entity": "job_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_number",
+        "start": 41,
+        "end": 47,
+        "confidence_entity": 0.733611524105072,
+        "value": "number",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "job_number",
+        "start": 48,
+        "end": 49,
+        "confidence_entity": 0.9945880174636841,
+        "value": "3",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Exploring job options in France",
+    "entities": [
+      {
+        "start": 25,
+        "end": 31,
+        "value": "France",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Ready for an adventure in South Korea",
+    "entities": [
+      {
+        "start": 26,
+        "end": 37,
+        "value": "South Korea",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_country",
+        "start": 26,
+        "end": 31,
+        "confidence_entity": 0.9969118237495422,
+        "value": "South",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Dreaming big in the United Arab Emirates",
+    "entities": [
+      {
+        "start": 20,
+        "end": 40,
+        "value": "United Arab Emirates",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_country",
+        "start": 20,
+        "end": 26,
+        "confidence_entity": 0.9984661340713501,
+        "value": "United",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "job_country",
+        "start": 32,
+        "end": 40,
+        "confidence_entity": 0.5759168863296509,
+        "value": "Emirates",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Effective communication skills are a must-have for this role",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "candidate_soft_skill",
+        "start": 10,
+        "end": 23,
+        "confidence_entity": 0.6378509402275085,
+        "value": "communication",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Good communication skills are required for this role and the candidate should be a team player",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "candidate_soft_skill",
+        "start": 5,
+        "end": 18,
+        "confidence_entity": 0.5279160737991333,
+        "value": "communication",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Seeking opportunities in Germany",
+    "entities": [
+      {
+        "start": 25,
+        "end": 32,
+        "value": "Germany",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Dream job destination: Japan",
+    "entities": [
+      {
+        "start": 23,
+        "end": 28,
+        "value": "Japan",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Imagining a career in Brazil",
+    "entities": [
+      {
+        "start": 22,
+        "end": 28,
+        "value": "Brazil",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "We require candidates with excellent communication skills",
+    "entities": [
+      {
+        "start": 27,
+        "end": 57,
+        "value": "excellent communication skills",
+        "entity": "candidate_soft_skill"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I want to know more about the candidate 1",
+    "entities": [
+      {
+        "start": 40,
+        "end": 41,
+        "value": "1",
+        "entity": "candidate_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_number",
+        "start": 40,
+        "end": 41,
+        "confidence_entity": 0.9791737794876099,
+        "value": "1",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "I'd love to work in Italy",
+    "entities": [
+      {
+        "start": 20,
+        "end": 25,
+        "value": "Italy",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "The candidate should have a Bachelor's degree in computer science",
+    "entities": [
+      {
+        "start": 28,
+        "end": 45,
+        "value": "Bachelor's degree",
+        "entity": "candidate_education"
+      },
+      {
+        "start": 49,
+        "end": 65,
+        "value": "computer science",
+        "entity": "candidate_degree"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_education",
+        "start": 28,
+        "end": 36,
+        "confidence_entity": 0.9948337078094482,
+        "value": "Bachelor",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "candidate_degree",
+        "start": 58,
+        "end": 65,
+        "confidence_entity": 0.967566967010498,
+        "value": "science",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "We are looking for someone with strong communication skills",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "candidate_soft_skill",
+        "start": 53,
+        "end": 59,
+        "confidence_entity": 0.9256277680397034,
+        "value": "skills",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I'm a recent graduate looking for entry-level positions in computer science",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "candidate_degree",
+        "start": 68,
+        "end": 75,
+        "confidence_entity": 0.9160479307174683,
+        "value": "science",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Ready to relocate to the United States",
+    "entities": [
+      {
+        "start": 25,
+        "end": 38,
+        "value": "United States",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_country",
+        "start": 25,
+        "end": 31,
+        "confidence_entity": 0.9971912503242493,
+        "value": "United",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Picturing a career in the enchanting Fiji",
+    "entities": [
+      {
+        "start": 37,
+        "end": 41,
+        "value": "Fiji",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "The candidate must be fluent in English",
+    "entities": [
+      {
+        "start": 32,
+        "end": 39,
+        "value": "English",
+        "entity": "candidate_language"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Experience with Agile methodologies is highly desirable",
+    "entities": [
+      {
+        "start": 16,
+        "end": 35,
+        "value": "Agile methodologies",
+        "entity": "candidate_domain_skill"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "The ideal candidate should have 5 years of experience in data science",
+    "entities": [
+      {
+        "start": 32,
+        "end": 33,
+        "value": "5",
+        "entity": "years_of_experience"
+      },
+      {
+        "start": 57,
+        "end": 69,
+        "value": "data science",
+        "entity": "candidate_domain_skill"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "years_of_experience",
+        "start": 32,
+        "end": 33,
+        "confidence_entity": 0.37592682242393494,
+        "value": "5",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "candidate_degree",
+        "start": 57,
+        "end": 69,
+        "confidence_entity": 0.8897584676742554,
+        "value": "data science",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "I want to know more about the candidate 1",
+    "entities": [
+      {
+        "start": 40,
+        "end": 41,
+        "value": "1",
+        "entity": "job_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_number",
+        "start": 40,
+        "end": 41,
+        "confidence_entity": 0.9958112239837646,
+        "value": "1",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "The job 1 is perfect.",
+    "entities": [
+      {
+        "start": 8,
+        "end": 9,
+        "value": "1",
+        "entity": "job_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_salary",
+        "start": 8,
+        "end": 9,
+        "confidence_entity": 0.5570385456085205,
+        "value": "1",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Looking for a career change in the United Kingdom",
+    "entities": [
+      {
+        "start": 35,
+        "end": 49,
+        "value": "United Kingdom",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_country",
+        "start": 35,
+        "end": 41,
+        "confidence_entity": 0.9970505237579346,
+        "value": "United",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Eager to work Down Under in Australia",
+    "entities": [
+      {
+        "start": 28,
+        "end": 37,
+        "value": "Australia",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Seeking job satisfaction in South Africa",
+    "entities": [
+      {
+        "start": 28,
+        "end": 40,
+        "value": "South Africa",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_country",
+        "start": 28,
+        "end": 33,
+        "confidence_entity": 0.9966912269592285,
+        "value": "South",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Excellent problem-solving skills are required for this role",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "candidate_soft_skill",
+        "start": 0,
+        "end": 9,
+        "confidence_entity": 0.9874539375305176,
+        "value": "Excellent",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Considering a move to Canada",
+    "entities": [
+      {
+        "start": 22,
+        "end": 28,
+        "value": "Canada",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "An ideal candidate should have 5 years of experience in software engineering",
+    "entities": [
+      {
+        "start": 31,
+        "end": 32,
+        "value": "5",
+        "entity": "years_of_experience"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "job_salary",
+        "start": 31,
+        "end": 32,
+        "confidence_entity": 0.584960401058197,
+        "value": "5",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "candidate_degree",
+        "start": 65,
+        "end": 76,
+        "confidence_entity": 0.9731757044792175,
+        "value": "engineering",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Candidates with a Master's degree in data science will be given priority",
+    "entities": [
+      {
+        "start": 18,
+        "end": 24,
+        "value": "Master",
+        "entity": "candidate_education"
+      },
+      {
+        "start": 37,
+        "end": 49,
+        "value": "data science",
+        "entity": "candidate_degree"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_education",
+        "start": 25,
+        "end": 33,
+        "confidence_entity": 0.9544106125831604,
+        "value": "s degree",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "candidate_degree",
+        "start": 37,
+        "end": 49,
+        "confidence_entity": 0.788611888885498,
+        "value": "data science",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Aspiring to work in the heart of Argentina",
+    "entities": [
+      {
+        "start": 33,
+        "end": 42,
+        "value": "Argentina",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Aspiring to work in the bustling UK",
+    "entities": [
+      {
+        "start": 33,
+        "end": 35,
+        "value": "UK",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "The candidate should have a solid understanding of data analysis techniques",
+    "entities": [
+      {
+        "start": 51,
+        "end": 64,
+        "value": "data analysis",
+        "entity": "candidate_domain_skill"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_degree",
+        "start": 51,
+        "end": 55,
+        "confidence_entity": 0.960643470287323,
+        "value": "data",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Imagining a career in the historic land of Egypt",
+    "entities": [
+      {
+        "start": 43,
+        "end": 48,
+        "value": "Egypt",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Can you tell me more about the candidate 1? Could fit a data scientist role?",
+    "entities": [
+      {
+        "start": 41,
+        "end": 42,
+        "value": "1",
+        "entity": "candidate_number"
+      },
+      {
+        "start": 56,
+        "end": 70,
+        "value": "data scientist",
+        "entity": "candidate_domain_skill"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_number",
+        "start": 41,
+        "end": 42,
+        "confidence_entity": 0.5519629716873169,
+        "value": "1",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Would you like to know more about job 3?",
+    "entities": [
+      {
+        "start": 38,
+        "end": 39,
+        "value": "3",
+        "entity": "job_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_number",
+        "start": 38,
+        "end": 39,
+        "confidence_entity": 0.5579888820648193,
+        "value": "3",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Imagining a job in the beautiful islands of Philippines",
+    "entities": [
+      {
+        "start": 44,
+        "end": 55,
+        "value": "Philippines",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Perhaps you could tell me more about position 2?",
+    "entities": [
+      {
+        "start": 46,
+        "end": 47,
+        "value": "2",
+        "entity": "job_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "candidate_number",
+        "start": 46,
+        "end": 47,
+        "confidence_entity": 0.7133987545967102,
+        "value": "2",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "I want a 30 cum laude in human machine dialogue",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "job_number",
+        "start": 9,
+        "end": 11,
+        "confidence_entity": 0.5953768491744995,
+        "value": "30",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Hoping for job success in the vibrant city of Mexico",
+    "entities": [
+      {
+        "start": 46,
+        "end": 52,
+        "value": "Mexico",
+        "entity": "job_country"
+      }
+    ],
+    "predicted_entities": []
+  }
+]

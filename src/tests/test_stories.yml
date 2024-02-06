@@ -47,7 +47,7 @@ stories:
   - user: |
       yes
     intent: affirm
-    - action: utter_did_that_help
+  - action: utter_did_that_help
   - user: |
       no
     intent: deny
@@ -110,7 +110,7 @@ stories:
 # Looking for candidate
 #####################################################
 
-- story: Intro looking for candidates 1
+- story: Intro looking for candidates 1 relocation denied
   steps:
   - user: |
       hi
@@ -131,6 +131,199 @@ stories:
     intent: deny
   - action: looking_for_candidate_form
   - active_loop: looking_for_candidate_form
+  - user: |
+      junior
+    intent: junior
+  - action: looking_for_candidate_form
+  - user: |
+      full time
+    intent: full_time
+  - action: looking_for_candidate_form
+  - user: |
+      Up to a maximum of [50000](candidate_salary_max) USD
+    intent: inform
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - action: utter_ask_candidate_characteristics
+  - user: |
+      The ideal candidate should have a degree in computer science
+    intent: candidate_role
+  - action: action_search_candidates
+  - action: utter_which_candidate_confirmation
+  - user: |
+      I want to know more about the candidate [2](candidate_number). Is he a good fit for a software developer position?
+    intent: ask_to_know_more_about_candidate
+  - action: utter_which_candidate_confirmation
+  - action: utter_confirmation_candidate_found
+  - user: |
+      I confirm that I want to reach out to a candidate
+    intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - action: utter_did_that_help
+  - user: |
+      no
+    intent: deny
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+  
+- story: Intro looking for candidates 1 relocation denied 2
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - user: |
+      I am looking for a candidate
+    intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - user: |
+      remote
+    intent: remote
+  - action: utter_ask_relocation
+  - user: |
+      no
+    intent: deny
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+  - user: |
+      senior
+    intent: senior
+  - action: looking_for_candidate_form
+  - user: |
+      part time
+    intent: part_time
+  - action: looking_for_candidate_form
+  - user: |
+      maximum of [60000](candidate_salary_max) USD
+    intent: inform
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - action: utter_ask_candidate_characteristics
+  - user: |
+      The ideal candidate should have a degree in computer science
+    intent: candidate_role
+  - action: action_search_candidates
+  - action: utter_which_candidate_confirmation
+  - user: |
+      know more about the candidate [2](candidate_number). Is he a good fit data scientist?
+    intent: ask_to_know_more_about_candidate
+  - action: utter_which_candidate_confirmation
+  - action: utter_confirmation_candidate_found
+  - user: |
+      I want to reach out to a candidate, I confirm the candidate reachout!!
+    intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - action: utter_did_that_help
+  - user: |
+      yes
+    intent: affirm
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: Intro looking for candidates 1 relocation denied
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - user: |
+      I am looking for a candidate
+    intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - user: |
+      remote
+    intent: remote
+  - action: utter_ask_relocation
+  - user: |
+      no
+    intent: deny
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+  - user: |
+      senior
+    intent: senior
+  - action: looking_for_candidate_form
+  - user: |
+      internship
+    intent: internship
+  - action: looking_for_candidate_form
+  - user: |
+      A maximum of [50000](candidate_salary_max) USD
+    intent: inform
+  - action: looking_for_candidate_form
+  - active_loop: null
+  - action: utter_ask_candidate_characteristics
+  - user: |
+      The best candidate must have a degree in data science
+    intent: candidate_role
+  - action: action_search_candidates
+  - action: utter_which_candidate_confirmation
+  - user: |
+      Is it possible to know more about the candidate [2](candidate_number)? Is he a good fit for a software developer position?
+    intent: ask_to_know_more_about_candidate
+  - action: utter_which_candidate_confirmation
+  - action: utter_confirmation_candidate_found
+  - user: |
+      I confirm that I want to reach out to a candidate
+    intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - action: utter_did_that_help
+  - user: |
+      no
+    intent: deny
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: Intro looking for candidates 1 relocation affirmed
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - user: |
+      a candidate
+    intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - user: |
+      remote
+    intent: remote
+  - action: utter_ask_relocation
+  - user: |
+      yes
+    intent: affirm
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
+
+
+- story: Intro looking for candidates 1 in place
+  steps:
+  - user: |
+      hi there, would you help me?
+    intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - user: |
+      a candidate
+    intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - user: |
+      in place
+    intent: in_place
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form
 
 
 
@@ -138,6 +331,191 @@ stories:
 # Looking for job
 #####################################################
 
+- story: No greet looking for job test
+  steps:
+  - user: |
+      I am looking for a job
+    intent: looking_for_job
+  - action: utter_confirmation_searching_for_job
+  - action: utter_ask_job_title
+  - user: |
+      software developer
+    intent: provide_job_title
+  - action: action_set_job_title
+  - action: utter_ask_job_country
+  - user: |
+      [Germany](job_country)
+    intent: provide_job_country
+  - action: utter_ask_job_salary
+  - user: |
+      [50000](job_salary)
+    intent: provide_job_salary
+  - action: looking_for_job_form
+  - active_loop: looking_for_job_form
+  
+
+- story: No greet looking for job test 2
+  steps:
+  - user: |
+      I am searching for a job
+    intent: looking_for_job
+  - action: utter_confirmation_searching_for_job
+  - action: utter_ask_job_title
+  - user: |
+      data scientist
+    intent: provide_job_title
+  - action: action_set_job_title
+  - action: utter_ask_job_country
+  - user: |
+      [France](job_country)
+    intent: provide_job_country
+  - action: utter_ask_job_salary
+  - user: |
+      I would like to earn [60000](job_salary)
+    intent: provide_job_salary
+  - action: looking_for_job_form
+  - active_loop: looking_for_job_form
+
+- story: No greet looking for job test 3
+  steps:
+  - user: |
+      Hi there
+    intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - user: |
+      I need a job
+    intent: looking_for_job
+  - action: utter_confirmation_searching_for_job
+  - action: utter_ask_job_title
+  - user: |
+      machine learning engineer
+    intent: provide_job_title
+  - action: action_set_job_title
+  - action: utter_ask_job_country
+  - user: |
+      [Norway](job_country)
+    intent: provide_job_country
+  - action: utter_ask_job_salary
+  - user: |
+      I need to earn [60000](job_salary)
+    intent: provide_job_salary
+  - action: looking_for_job_form
+  - active_loop: looking_for_job_form
+
+
+- story: No greet looking for job test 4
+  steps:
+  - user: |
+      Hi there
+    intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - user: |
+      I need a job
+    intent: looking_for_job
+  - action: utter_confirmation_searching_for_job
+  - action: utter_ask_job_title
+  - user: |
+      machine learning engineer
+    intent: provide_job_title
+  - action: action_set_job_title
+  - action: utter_ask_job_country
+  - user: |
+      [Norway](job_country)
+    intent: provide_job_country
+  - action: utter_ask_job_salary
+  - user: |
+      I need to earn [60000](job_salary)
+    intent: provide_job_salary
+  - action: looking_for_job_form
+  - active_loop: looking_for_job_form
+  - user: |
+      I need a full time job
+    intent: full_time
+  - action: looking_for_job_form
+  - user: |
+      I'd like to work in [Germany](job_country)
+    intent: provide_job_country
+  - action: looking_for_job_form
+  - user: |
+      I need to earn [60000](job_salary)
+    intent: provide_job_salary
+  - action: looking_for_job_form
+  - active_loop: null
+  - action: utter_ask_want_stop_conversation
+  - user: |
+      no
+    intent: deny
+  - action: utter_help
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+
+- story: No greet looking for job test 5
+  steps:
+  - user: |
+      Hi there
+    intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - user: |
+      I need a job
+    intent: looking_for_job
+  - action: utter_confirmation_searching_for_job
+  - action: utter_ask_job_title
+  - user: |
+      machine learning engineer
+    intent: provide_job_title
+  - action: action_set_job_title
+  - action: utter_ask_job_country
+  - user: |
+      [Norway](job_country)
+    intent: provide_job_country
+  - action: utter_ask_job_salary
+  - user: |
+      I need to earn [60000](job_salary)
+    intent: provide_job_salary
+  - action: looking_for_job_form
+  - active_loop: looking_for_job_form
+  - user: |
+      I need a full time job
+    intent: full_time
+  - action: looking_for_job_form
+  - user: |
+      I'd like to work in [Germany](job_country)
+    intent: provide_job_country
+  - action: looking_for_job_form
+  - user: |
+      I need to earn [60000](job_salary)
+    intent: provide_job_salary
+  - action: looking_for_job_form
+  - active_loop: null
+  - action: utter_ask_job_characteristics
+  - user: |
+      I'd like to work in a company that is looking for a machine learning engineer
+    intent: job_description
+  - action: action_search_jobs
+  - action: utter_which_jobs_confirmation
+  - user: |
+      I'd like to know more about the job [2](job_number). Is it a good fit for a machine learning engineer?
+    intent: ask_to_know_more_about_job
+  - action: action_provide_job_profile_details_llm
+  - action: utter_which_job_confirmation
+  - action: utter_confirmation_job_found
+  - user: |
+      I confirm that job is a good fit
+    intent: affirm
+  - action: utter_did_that_help
+  - user: |
+      yes
+    intent: affirm
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
 
 #####################################################
 # Default stories 
@@ -231,4 +609,54 @@ stories:
     intent: bot_challenge
   - action: utter_iamabot
 
+#####################################################
+# End of stories
+#####################################################
 
+- story: Goodbye 1
+  steps:
+  - user: |
+      I confirm that I want to reach out to a candidate
+    intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - action: utter_did_that_help
+  - user: |
+      yes
+    intent: affirm
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: Goodbye 2
+  steps:
+  - user: |
+      I confirm that I want to reach out to a candidate
+    intent: confirm_candidate_reachout
+  - action: utter_confirm_candidate_reachout
+  - action: utter_did_that_help
+  - user: |
+      no
+    intent: deny
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+    
+- story: Go back to candidate profile 1.1
+  steps:
+  - user: |
+      I want to redo the candidate profile
+    intent: redo_candidate_profile
+  - action: utter_random_confirmation
+  - action: utter_help
+  - user: |
+      I am looking for a candidate
+    intent: looking_for_candidate
+  - action: utter_confirmation_searching_for_candidate_2
+  - action: utter_ask_in_place_or_remote
+  - user: |
+      in place
+    intent: in_place
+  - action: looking_for_candidate_form
+  - active_loop: looking_for_candidate_form

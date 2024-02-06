@@ -1,0 +1,173 @@
+{
+  "provide_job_title": {
+    "precision": 0.918918918918919,
+    "recall": 0.918918918918919,
+    "f1-score": 0.918918918918919,
+    "support": 37,
+    "confused_with": {
+      "looking_for_job": 2,
+      "bot_challenge": 1
+    }
+  },
+  "im_not_looking_for_job_nor_for_candidate": {
+    "precision": 0.9166666666666666,
+    "recall": 0.7333333333333333,
+    "f1-score": 0.8148148148148148,
+    "support": 15,
+    "confused_with": {
+      "want_stop_conversation": 1,
+      "provide_job_salary": 1
+    }
+  },
+  "job_description": {
+    "precision": 0.9696969696969697,
+    "recall": 0.8888888888888888,
+    "f1-score": 0.927536231884058,
+    "support": 36,
+    "confused_with": {
+      "provide_job_country": 1,
+      "looking_for_job": 1
+    }
+  },
+  "mood_great": {
+    "precision": 0.8333333333333334,
+    "recall": 0.7142857142857143,
+    "f1-score": 0.7692307692307692,
+    "support": 14,
+    "confused_with": {
+      "mood_unhappy": 2,
+      "want_stop_conversation": 1
+    }
+  },
+  "looking_for_candidate": {
+    "precision": 0.9375,
+    "recall": 1.0,
+    "f1-score": 0.967741935483871,
+    "support": 30,
+    "confused_with": {}
+  },
+  "ask_to_know_more_about_candidate": {
+    "precision": 0.9285714285714286,
+    "recall": 0.9285714285714286,
+    "f1-score": 0.9285714285714286,
+    "support": 14,
+    "confused_with": {
+      "ask_to_know_more_about_job": 1
+    }
+  },
+  "in_place": {
+    "precision": 0.8333333333333334,
+    "recall": 1.0,
+    "f1-score": 0.9090909090909091,
+    "support": 10,
+    "confused_with": {}
+  },
+  "goodbye": {
+    "precision": 0.5833333333333334,
+    "recall": 0.7,
+    "f1-score": 0.6363636363636365,
+    "support": 10,
+    "confused_with": {
+      "candidate_role": 1,
+      "mood_great": 1
+    }
+  },
+  "candidate_role": {
+    "precision": 0.9666666666666667,
+    "recall": 0.9354838709677419,
+    "f1-score": 0.9508196721311476,
+    "support": 31,
+    "confused_with": {
+      "job_description": 1,
+      "looking_for_candidate": 1
+    }
+  },
+  "provide_job_country": {
+    "precision": 0.9615384615384616,
+    "recall": 0.78125,
+    "f1-score": 0.8620689655172413,
+    "support": 32,
+    "confused_with": {
+      "looking_for_job": 4,
+      "provide_job_title": 1
+    }
+  },
+  "ask_to_know_more_about_job": {
+    "precision": 0.9230769230769231,
+    "recall": 0.9230769230769231,
+    "f1-score": 0.9230769230769231,
+    "support": 13,
+    "confused_with": {
+      "ask_to_know_more_about_candidate": 1
+    }
+  },
+  "want_stop_conversation": {
+    "precision": 0.7692307692307693,
+    "recall": 1.0,
+    "f1-score": 0.8695652173913044,
+    "support": 10,
+    "confused_with": {}
+  },
+  "bot_challenge": {
+    "precision": 0.9655172413793104,
+    "recall": 0.9655172413793104,
+    "f1-score": 0.9655172413793104,
+    "support": 29,
+    "confused_with": {
+      "provide_job_title": 1
+    }
+  },
+  "greet": {
+    "precision": 0.9090909090909091,
+    "recall": 0.7142857142857143,
+    "f1-score": 0.8,
+    "support": 14,
+    "confused_with": {
+      "mood_unhappy": 2,
+      "want_stop_conversation": 1
+    }
+  },
+  "provide_job_salary": {
+    "precision": 0.9375,
+    "recall": 1.0,
+    "f1-score": 0.967741935483871,
+    "support": 15,
+    "confused_with": {}
+  },
+  "mood_unhappy": {
+    "precision": 0.7142857142857143,
+    "recall": 0.7142857142857143,
+    "f1-score": 0.7142857142857143,
+    "support": 14,
+    "confused_with": {
+      "goodbye": 3,
+      "mood_great": 1
+    }
+  },
+  "looking_for_job": {
+    "precision": 0.7714285714285715,
+    "recall": 1.0,
+    "f1-score": 0.870967741935484,
+    "support": 27,
+    "confused_with": {}
+  },
+  "accuracy": 0.8917378917378918,
+  "macro avg": {
+    "precision": 0.8729228965030184,
+    "recall": 0.8775233969408052,
+    "f1-score": 0.8703712973858472,
+    "support": 351
+  },
+  "weighted avg": {
+    "precision": 0.899327559904483,
+    "recall": 0.8917378917378918,
+    "f1-score": 0.8913364325623565,
+    "support": 351
+  },
+  "micro avg": {
+    "precision": 0.8917378917378918,
+    "recall": 0.8917378917378918,
+    "f1-score": 0.8917378917378918,
+    "support": 351
+  }
+}
