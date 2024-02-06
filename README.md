@@ -2,9 +2,10 @@
 
 We're developing a way for managers and professionals to find what they need.
 
-> Jobify: a conversational agent for job-related search; Human Machine Dialogue course project. 
+> Jobify: a conversational agent for job-related search; 
+Human Machine Dialogue course 2024. 
 > 
-> [[Video-DEMO]](https://drive.google.com/file/d/1J6thJvAPIvKIOYXMmLqJPIDsP51QQjxv/view?usp=sharing), [[REPORT]]()
+> [[Video-DEMO]](https://drive.google.com/file/d/1J6thJvAPIvKIOYXMmLqJPIDsP51QQjxv/view?usp=sharing), [[REPORT]](https://drive.google.com/file/d/1CrbSDHgzTDosYDnXOu5yaBsfPevm41N4/view?usp=sharing)
 >
 > Authors: [Andrea Coppari](https://it.linkedin.com/in/andreacoppari1005), [Riccardo Tedoldi](https://www.linkedin.com/in/riccardo-tedoldi-460269291/)
 > 
@@ -20,17 +21,11 @@ Due to the nature of the project, we employed LLMs so it may require a lot of co
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-Run the makefile to install all the necessary packages and vectorize the DBs.
-
-```bash
-make
-```
+What things you need to install the software and how to install them.
 
 ### Installing
 
-Install the necessary packages from requirements.txt into a conda virtual environment.
+You need to clone the repository and enter in the src folder. Then, to install the necessary packages from requirements.txt into a conda virtual environment.
 
 ```bash
 # Create the virtual environment
@@ -39,6 +34,16 @@ conda create -n jobify --file requirements.txt
 # Activate the virtual environment
 conda activate jobify
 ```
+
+or
+
+Run the makefile to install all the necessary packages and vectorize the DBs.
+
+```bash
+make
+```
+
+To vectorize the DBs manually, there is the following script `src\installation\install.py`. If you have issues with bitsandbytes, you can checkout the first cell of the notebook `notebooks\02_mistralLLM\minstral-llm.ipynb`.
 
 ## Running the tests
 
@@ -95,7 +100,7 @@ The repository is structured as follows:
     * 03_mistralLLM
     * data
     * utils
-* jobify
+* src
     * actions
         * actions.py
     * data
@@ -103,8 +108,13 @@ The repository is structured as follows:
         * stories.yml
         * rules.yml
     * models
+    * installation
+        * data
+        * install.py
+        * vector_db.py
     * tests
         * test_stories.yml
+    * results
     * config.yml
     * credentials.yml
     * domain.yml
@@ -125,7 +135,16 @@ The repository is structured as follows:
 * [ngrok](https://ngrok.com/) - The secure tunnel used
 * [Hugging Face](https://huggingface.co/) - The transformer models used
 
+## Contributing
 
+If you want to contribute to the project, please contact us.
+
+* **Riccardo Tedoldi** - [LinkedIn](https://www.linkedin.com/in/riccardo-tedoldi-460269291/)
+* **Andrea Coppari** - [LinkedIn](https://it.linkedin.com/in/andreacoppari1005)
+
+We are glad to accept any kind of contribution.
+
+## To Cite
 
 ```bibtex
 @misc{CoppariTedoldi2023,
